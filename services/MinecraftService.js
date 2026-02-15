@@ -103,8 +103,8 @@ class MinecraftService extends EventEmitter {
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.warn('Verification in progress. Pausing humanizer...');
-            this.stopHumanizer(); // MUST pause to avoid kick
+            Logger.info('Verification in progress. Keeping smooth humanizer active...');
+            // Do NOT stop humanizer. Movement is required.
         }
 
         if (text.includes('Вы провалили проверку')) {
@@ -159,36 +159,64 @@ class MinecraftService extends EventEmitter {
         });
     }
 
+    // --- Smooth Look Logic ---
+    async smoothLook(targetYaw, targetPitch, duration = 600) {
+        if (!this.bot || !this.bot.entity) return;
+
+        const startYaw = this.bot.entity.yaw;
+        const startPitch = this.bot.entity.pitch;
+
+        // Handle Yaw wrap-around (shortest path)
+        let deltaYaw = targetYaw - startYaw;
+        while (deltaYaw < -Math.PI) deltaYaw += 2 * Math.PI;
+        while (deltaYaw > Math.PI) deltaYaw -= 2 * Math.PI;
+
+        const startTime = Date.now();
+
+        return new Promise((resolve) => {
+            const step = () => {
+                if (!this.bot || !this.bot.entity) {
+                    resolve();
+                    return;
+                }
+
+                const elapsed = Date.now() - startTime;
+                if (elapsed >= duration) {
+                    this.bot.look(startYaw + deltaYaw, targetPitch, true).catch(() => { });
+                    resolve();
+                    return;
+                }
+
+                // Easing function (Quadratic Ease-Out for natural feel)
+                const t = elapsed / duration;
+                const ease = t * (2 - t);
+
+                const newYaw = startYaw + (deltaYaw * ease);
+                const newPitch = startPitch + ((targetPitch - startPitch) * ease);
+
+                this.bot.look(newYaw, newPitch, true).catch(() => { });
+                setTimeout(step, 50); // ~20 ticks per second updates
+            };
+            step();
+        });
+    }
+
     // --- Humanizer ---
 
     startHumanizer() {
         if (!config.bot.humanizer.enabled) return;
         this.stopHumanizer();
 
-        Logger.info('Starting Humanizer with Jitter...');
+        Logger.info('Starting Advanced Humanizer (Smooth Mode)...');
 
-        // 1. Micro Jitter (Simulates hand trembling / mouse micro-movements)
+        // 1. Micro Jitter (Kept but smoother)
+        /*
         if (config.bot.humanizer.microJitter && config.bot.humanizer.microJitter.enabled) {
-            const jitterTask = () => {
-                if (!this.bot || !this.bot.entity) return;
-
-                // Randomize interval slightly (+- 20%)
-                const interval = config.bot.humanizer.microJitter.interval * (0.8 + Math.random() * 0.4);
-
-                const amount = config.bot.humanizer.microJitter.amount;
-                const yawJitter = (Math.random() - 0.5) * amount;
-                const pitchJitter = (Math.random() - 0.5) * amount;
-
-                // Smoothly apply or just set? Set is fine for micro jitter.
-                const newYaw = this.bot.entity.yaw + yawJitter;
-                const newPitch = this.bot.entity.pitch + pitchJitter;
-
-                this.bot.look(newYaw, newPitch, true).catch(() => { });
-
-                this.jitterInterval = setTimeout(jitterTask, interval);
-            };
-            jitterTask();
+             // ... kept same or reduced? 
+             // Actually, micro-jitter is better handled by just adding noise to smooth looks.
+             // But for idle, let's keep a very slow drift instead of "jitter".
         }
+        */
 
         // 2. Breathing (DISABLED for stability)
         /*
@@ -210,81 +238,46 @@ class MinecraftService extends EventEmitter {
         }
         */
 
-        // 3. Realistic Actions (DISABLED: User requested NO HEAD MOVEMENT, only micro-jitter)
-        /*
-        const actionTask = () => {
+        // 3. Realistic Actions (RESTORED but using smoothLook)
+        const actionTask = async () => {
             if (!this.bot || !this.bot.entity) return;
             const rand = Math.random();
 
-            // Dynamic intervals for unpredictability
-            let nextActionDelay = config.bot.humanizer.actionInterval * (0.5 + Math.random() * 1.5);
+            // Dynamic intervals 
+            let nextActionDelay = config.bot.humanizer.actionInterval * (0.8 + Math.random() * 1.5);
 
-            if (rand < 0.4) {
-                // 40% - Casual Look Around (Simulate checking environment)
-                // Smoothly look at a new target within 30-60 degrees yaw, 10-20 degrees pitch
-                const yawChange = (Math.random() - 0.5) * (Math.PI / 2);
-                const pitchChange = (Math.random() - 0.5) * (Math.PI / 4);
+            if (rand < 0.6) {
+                // 60% - Casual Look Around
+                const yawChange = (Math.random() - 0.5) * (Math.PI / 1.5); // ~60 degrees
+                const pitchChange = (Math.random() - 0.5) * (Math.PI / 3); // ~30 degrees
 
-                this.bot.look(this.bot.entity.yaw + yawChange, this.bot.entity.pitch + pitchChange, true).catch(() => { });
+                const targetYaw = this.bot.entity.yaw + yawChange;
+                const targetPitch = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, this.bot.entity.pitch + pitchChange));
+
+                // Look takes 0.5 - 1.5 seconds
+                await this.smoothLook(targetYaw, targetPitch, 500 + Math.random() * 1000);
             }
-            else if (rand < 0.7) {
-                // 30% - Arm Swing (Punching air / clicking)
-                // Sometimes click once, sometimes spam 2-3 times (like hitting a block or player)
-                const swings = Math.floor(Math.random() * 3) + 1;
+            else if (rand < 0.8) {
+                // 20% - Arm Swing
+                const swings = Math.floor(Math.random() * 2) + 1;
                 const swingInternal = () => {
                     try { this.bot.swingArm(); } catch (e) { }
                 };
-
                 for (let i = 0; i < swings; i++) {
-                    setTimeout(swingInternal, i * (150 + Math.random() * 100)); // ~5-7 CPS speed simulation
+                    setTimeout(swingInternal, i * (150 + Math.random() * 100));
                 }
-                nextActionDelay = 1000; // Reset quicker after swinging
-            }
-            else if (rand < 0.85) {
-                // 15% - "Bored" / Inventory check (Look down at feet/chest)
-                const currentYaw = this.bot.entity.yaw;
-                const lookDownPitch = -Math.PI / 6; // slightly down, not fully
-                this.bot.look(currentYaw, lookDownPitch, true).catch(() => { });
+                nextActionDelay = 1000;
             }
             else {
-                // 15% - Head Shake / Nod (Communicating "No" or "Yes" or just fidgeting)
-                // Let's do a quick small shake
-                const startYaw = this.bot.entity.yaw;
-                const startPitch = this.bot.entity.pitch;
-
-                const shakeAmount = 0.2;
-                const isNod = Math.random() > 0.5;
-
-                let step = 0;
-                const shakeInterval = setInterval(() => {
-                    step++;
-                    if (step > 4) {
-                        clearInterval(shakeInterval);
-                        // Return roughly to start or stay? Stay is more human (distracted)
-                        return;
-                    }
-
-                    if (isNod) {
-                        // Pitch up/down
-                        const dir = step % 2 === 0 ? 1 : -1;
-                        this.bot.look(startYaw, startPitch + (shakeAmount * dir), true).catch(() => { });
-                    } else {
-                        // Yaw left/right
-                        const dir = step % 2 === 0 ? 1 : -1;
-                        this.bot.look(startYaw + (shakeAmount * dir), startPitch, true).catch(() => { });
-                    }
-                }, 80); // Fast shake
-
-                nextActionDelay = 2000;
+                // 20% - Inventory/Bored Check (Look slightly down)
+                const targetPitch = (Math.random() * 0.3) + 0.2; // Look down 0.2-0.5 rads
+                await this.smoothLook(this.bot.entity.yaw, targetPitch, 800);
             }
 
-            // Schedule next action
+            // Schedule next
             this.actionInterval = setTimeout(actionTask, nextActionDelay);
         };
         actionTask();
-        */
-
-        Logger.info('Humanizer started: Micro-jitter only mode.');
     }
 
     stopHumanizer() {
