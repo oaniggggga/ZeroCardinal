@@ -110,7 +110,8 @@ class MinecraftService extends EventEmitter {
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.info('Verification in progress. Letting Mimic handle it...');
+            Logger.info('Verification in progress. Pausing Mimic to avoid freeze-kick...');
+            if (this.bot.mimic) this.bot.mimic.stop();
         }
 
         if (text.includes('Вы провалили проверку')) {
