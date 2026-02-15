@@ -79,6 +79,7 @@ class MinecraftService extends EventEmitter {
             Logger.warn('Connection closed.');
             // Mimic stops itself on 'end'
             MouseRecorder.stop(this.bot);
+            this._stopVerificationSlotRandomizer();
             this.verificationStrafeDone = false;
             this.emit('end');
 
@@ -120,22 +121,53 @@ class MinecraftService extends EventEmitter {
 
             // Stop Mouse Playback
             MouseRecorder.stop(this.bot);
+            this._stopVerificationSlotRandomizer();
             this.verificationStrafeDone = false; // Reset for next time
 
             setTimeout(() => this.chat(config.bot.serverJoinCommand || '/an401'), 2000);
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.info('Verification: PHYSICS ONLY (No movement/rotation)...');
+            Logger.info('Verification: PHYSICS ONLY + SLOT RANDOMIZER...');
             this.bot.physicsEnabled = true;
             if (this.bot.mimic) this.bot.mimic.stop();
             MouseRecorder.stop(this.bot); // Ensure recorder is stopped
+            this._startVerificationSlotRandomizer();
         }
 
         if (text.includes('Вы провалили проверку')) {
             Logger.error('FAILED VERIFICATION! Bot was kicked.');
+            this._stopVerificationSlotRandomizer();
         }
     }
+
+    _startVerificationSlotRandomizer() {
+        if (this.slotRandomizerInterval) return;
+        Logger.info('Starting Verification Slot Randomizer...');
+
+        const randomize = () => {
+            if (!this.bot) return;
+            const slot = Math.floor(Math.random() * 9);
+            // Use a try-catch to allow server overrides/prevent crashes
+            try {
+                this.bot.setQuickBarSlot(slot);
+            } catch (e) { }
+
+            // Schedule next switch (variable 0.5s - 1.5s)
+            const delay = 500 + Math.random() * 1000;
+            this.slotRandomizerInterval = setTimeout(randomize, delay);
+        };
+
+        randomize();
+    }
+
+    _stopVerificationSlotRandomizer() {
+        if (this.slotRandomizerInterval) {
+            clearTimeout(this.slotRandomizerInterval);
+            this.slotRandomizerInterval = null;
+        }
+    }
+
 
     chat(message) {
         if (this.bot && this.bot._client && !this.bot._client.ended) {
