@@ -1,16 +1,21 @@
 import sys
 import subprocess
 import importlib
+import os
 
 def install_package(package):
     print(f"Installing {package}...")
+    # Добавляем --ignore-installed чтобы обойти ошибки с urllib3/requests
+    base_cmd = [sys.executable, "-m", "pip", "install", package, "--break-system-packages", "--ignore-installed"]
     try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", package, "--break-system-packages"])
-    except:
-        try:
-            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-        except Exception as e:
-            print(f"Failed to install {package}: {e}")
+        subprocess.check_call(base_cmd)
+    except Exception as e:
+        print(f"Failed to install {package}: {e}")
+
+# Принудительно добавляем пути, куда pip ставит пакеты на Linux
+for path in ['/usr/local/lib/python3.12/dist-packages', '/usr/local/lib/python3.11/dist-packages', os.path.expanduser('~/.local/lib/python3.12/site-packages')]:
+    if os.path.exists(path) and path not in sys.path:
+        sys.path.append(path)
 
 def check_and_install(module_name, package_name):
     attempts = 0
