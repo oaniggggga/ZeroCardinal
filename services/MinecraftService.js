@@ -65,6 +65,13 @@ class MinecraftService extends EventEmitter {
             this.emit('kicked', reason);
         });
 
+        this.bot.on('forcedMove', () => {
+            if (MouseRecorder.isPlaying(this.bot)) {
+                Logger.info('Server forced rotation. Stopping Mouse Recorder to comply.');
+                MouseRecorder.stop(this.bot);
+            }
+        });
+
         this.bot.on('end', () => {
             this.ready = false;
             Logger.warn('Connection closed.');

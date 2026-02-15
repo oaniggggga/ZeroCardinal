@@ -86,6 +86,10 @@ class MouseRecorder {
         }
     }
 
+    static isPlaying(bot) {
+        return !!bot._mousePlaybackTimeout;
+    }
+
     static generateHumanFall(bot) {
         if (!bot || !bot.entity) return [];
         return generateHumanFallPath(bot.entity.yaw, bot.entity.pitch, 3500);
