@@ -443,11 +443,12 @@ class OrderManager {
     }
 
     async processCommand(username, text) {
-        if (text === '!status' || text === '!статус') {
+        const cmd = text.trim().toLowerCase();
+        if (cmd === '!status' || cmd === '!статус') {
             const stats = this.orderQueue.getStats();
             this.sendFunPayMessage(username, this.formatMessage(config.messages.dialog.stats, { completed: stats.completed, queued: stats.queued }));
             return true;
-        } else if (text === '!queue' || text === '!очередь') {
+        } else if (cmd === '!queue' || cmd === '!очередь') {
             const position = this.orderQueue.getPositionByUsername(username);
             if (position > 0) {
                 const msg = this.formatMessage(config.messages.dialog.queueStatus, { position: position, ahead: position - 1 });
@@ -464,7 +465,7 @@ class OrderManager {
                 this.sendFunPayMessage(username, config.messages.dialog.notInQueue);
             }
             return true;
-        } else if (text === '!help' || text === '!помощь') {
+        } else if (cmd === '!help' || cmd === '!помощь') {
             this.sendFunPayMessage(username, config.messages.dialog.help);
             return true;
         } else if (text === '!skip') {
@@ -502,12 +503,12 @@ class OrderManager {
                 this.sendFunPayMessage(username, config.messages.dialog.adminOnly);
             }
             return true;
-        } else if (text === '!balance' || text === '!баланс') {
+        } else if (cmd === '!balance' || cmd === '!баланс') {
             const balance = await MinecraftService.getBalance();
             const msg = this.formatMessage(config.messages.dialog.balance || "💰 Текущий баланс: {balance} монет.", { balance: balance.toLocaleString() });
             this.sendFunPayMessage(username, msg);
             return true;
-        } else if (text === '!refund') {
+        } else if (cmd === '!refund') {
             this.sendFunPayMessage(username, "Для возврата средств, пожалуйста, обратитесь к администратору или создайте тикет на FunPay.");
             return true;
         }

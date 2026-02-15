@@ -25,14 +25,15 @@ async function main() {
 
         // Optional: Wire up specific events if needed
         MinecraftService.on('chat', async (message, packet) => {
-            if (message.startsWith('!status') || message.startsWith('!статус')) {
+            const text = message.toLowerCase();
+            if (text.includes('!status') || text.includes('!статус')) {
                 const stats = OrderManager.getStats();
                 const msg = config.messages.game.stats
                     .replace('${completed}', stats.completed)
                     .replace('${failed}', stats.failed)
                     .replace('${queued}', stats.queued);
                 MinecraftService.chat(msg);
-            } else if (message.startsWith('!balance') || message.startsWith('!баланс')) {
+            } else if (text.includes('!balance') || text.includes('!баланс')) {
                 const balance = await MinecraftService.getBalance();
                 const msg = config.messages.game.balance
                     .replace('${balance}', balance.toLocaleString());

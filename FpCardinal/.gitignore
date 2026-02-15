@@ -6,7 +6,6 @@
 /logs
 /storage
 /configs
-/plugins
 /build
 /dist
 test.py
