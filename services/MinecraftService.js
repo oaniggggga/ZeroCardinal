@@ -2,7 +2,6 @@ const mineflayer = require('mineflayer');
 const EventEmitter = require('events');
 const Logger = require('../utils/Logger');
 const config = require('../config/default.json');
-const config = require('../config/default.json');
 // Dynamic import for bot config (since it might be in config.json in root if not fully migrated, but I'll use the one I created or load from root if needed.
 // For now, I'll assume config/default.json has the structure, but wait, I didn't put the credentials there to avoid hardcoding secrets in potential git artifacts if this was a real repo.
 // I should load the root config.json for credentials.
