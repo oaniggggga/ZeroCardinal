@@ -99,7 +99,7 @@ class MinecraftService extends EventEmitter {
             Logger.warn('Connection closed.');
             // Mimic stops itself on 'end'
             MouseRecorder.stop(this.bot);
-            this._stopVerificationActionRandomizer();
+            this._stopDumbVerification();
             this.verificationStrafeDone = false;
             this.emit('end');
 
@@ -141,23 +141,23 @@ class MinecraftService extends EventEmitter {
 
             // Stop Mouse Playback
             MouseRecorder.stop(this.bot);
-            this._stopVerificationActionRandomizer();
+            this._stopDumbVerification();
             this.verificationStrafeDone = false; // Reset for next time
 
             setTimeout(() => this.chat(config.bot.serverJoinCommand || '/an401'), 2000);
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.info('Verification: PHYSICS ONLY + SLOT RANDOMIZER...');
+            Logger.info('Verification: DUMB MODE (Rare inputs)...');
             this.bot.physicsEnabled = true;
             if (this.bot.mimic) this.bot.mimic.stop();
             MouseRecorder.stop(this.bot); // Ensure recorder is stopped
-            this._startVerificationActionRandomizer();
+            this._startDumbVerification();
         }
 
         if (text.includes('Вы провалили проверку')) {
             Logger.error('FAILED VERIFICATION! Bot was kicked.');
-            this._stopVerificationActionRandomizer();
+            this._stopDumbVerification();
         }
     }
 
