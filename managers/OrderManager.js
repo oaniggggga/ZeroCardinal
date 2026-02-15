@@ -503,7 +503,6 @@ class OrderManager {
             }
             return true;
         } else if (text === '!balance' || text === '!баланс') {
-            const MinecraftService = require('../services/MinecraftService');
             const balance = await MinecraftService.getBalance();
             const msg = this.formatMessage(config.messages.dialog.balance || "💰 Текущий баланс: {balance} монет.", { balance: balance.toLocaleString() });
             this.sendFunPayMessage(username, msg);

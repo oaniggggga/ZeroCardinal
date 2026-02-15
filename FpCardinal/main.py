@@ -1,21 +1,35 @@
-import time
-from pip._internal.cli.main import main
+import sys
+import subprocess
+
+def install_package(package):
+    print(f"Installing {package}...")
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package, "--break-system-packages"])
+    except:
+        try:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+        except Exception as e:
+            print(f"Failed to install {package}: {e}")
 
 # todo убрать когда-то
 while True:
     try:
         import lxml
-
         break
-    except ModuleNotFoundError:
-        main(["install", "-U", "lxml>=5.3.0"])
+    except ImportError:
+        install_package("lxml>=5.3.0")
 while True:
     try:
         import bcrypt
-
         break
-    except ModuleNotFoundError:
-        main(["install", "-U", "bcrypt>=4.2.0"])
+    except ImportError:
+        install_package("bcrypt>=4.2.0")
+while True:
+    try:
+        import requests_toolbelt
+        break
+    except ImportError:
+        install_package("requests-toolbelt==0.10.1")
 import Utils.cardinal_tools
 import Utils.config_loader as cfg_loader
 from first_setup import first_setup
