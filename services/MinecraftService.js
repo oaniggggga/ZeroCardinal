@@ -46,13 +46,8 @@ class MinecraftService extends EventEmitter {
             // this.startHumanizer(); // Moved to auth success to avoid moving in lobby/verification
         });
 
-        this.bot.on('spawn', () => {
-            Logger.info('Bot spawned.');
-            this.ready = true;
-            this.bot.physicsEnabled = true; // User request: Physics ALWAYS on
-            this.emit('spawn');
-            // _emulateLookAround removed to prevent kicks on join
-        });
+        // on 'spawn' moved below to merge with jitter logic
+        // this.bot.on('spawn', ... );
 
         this.bot.on('error', (err) => {
             Logger.error(`Bot error: ${err.message || err}`);
@@ -68,8 +63,26 @@ class MinecraftService extends EventEmitter {
         });
 
         this.bot.on('forcedMove', () => {
-            // Dumb Strategy: Server turned -> Bot accepted -> Silence
-            Logger.info('Server forced rotation. Accepting. Doing nothing.');
+            // ACK Strategy: Server turned -> We MUST respond with look packet in next tick
+            // Vanilla behavior: Accept pos/look, then sending look packet with tiny jitter
+            Logger.info('Server forced rotation. ACKing with micro-jitter.');
+
+            // We don't need to do anything manually if we are sending look packets every tick via jitter loop.
+            // But to be safe, we can force an update to internal state.
+            // Mineflayer handles the 'forcedMove' packet by updating bot.entity.yaw/pitch automatically.
+            // We just need to ensure our jitter loop picks it up.
+        });
+
+        this.bot.on('spawn', () => {
+            Logger.info('Bot spawned.');
+            this.ready = true;
+            this.bot.physicsEnabled = true; // User request: Physics ALWAYS on
+            this.emit('spawn');
+
+            // Start Always-On Micro-Jitter (The "Noisy Client")
+            this._startMicroJitter();
+            // Start Dumb Actions in background
+            this._startDumbVerification();
         });
 
         this.bot.on('end', () => {
@@ -78,6 +91,7 @@ class MinecraftService extends EventEmitter {
             // Mimic stops itself on 'end'
             MouseRecorder.stop(this.bot);
             this._stopDumbVerification();
+            this._stopMicroJitter();
             this.verificationStrafeDone = false;
             this.emit('end');
 
@@ -120,22 +134,51 @@ class MinecraftService extends EventEmitter {
             // Stop Mouse Playback
             MouseRecorder.stop(this.bot);
             this._stopDumbVerification();
+            this._stopMicroJitter();
             this.verificationStrafeDone = false; // Reset for next time
 
             setTimeout(() => this.chat(config.bot.serverJoinCommand || '/an401'), 2000);
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.info('Verification: DUMB MODE (Rare inputs)...');
-            this.bot.physicsEnabled = true;
-            if (this.bot.mimic) this.bot.mimic.stop();
-            MouseRecorder.stop(this.bot); // Ensure recorder is stopped
-            this._startDumbVerification();
+            Logger.info('Verification: PASSIVE (Jitter + Dumb Actions running)...');
+            // Logic is already running since spawn
         }
 
         if (text.includes('Вы провалили проверку')) {
             Logger.error('FAILED VERIFICATION! Bot was kicked.');
             this._stopDumbVerification();
+            this._stopMicroJitter();
+        }
+    }
+
+    _startMicroJitter() {
+        if (this.jitterInterval) return;
+        Logger.info('Starting Micro-Jitter (Always-On Noise)...');
+
+        this.jitterInterval = setInterval(() => {
+            if (!this.bot || !this.bot.entity) return;
+
+            // Get current rotation
+            const currentYaw = this.bot.entity.yaw;
+            const currentPitch = this.bot.entity.pitch;
+
+            // Add tiny noise (floating point error simulation)
+            // Magnitude: 0.0001 - 0.0005 rad
+            const yawNoise = (Math.random() - 0.5) * 0.0005;
+            const pitchNoise = (Math.random() - 0.5) * 0.0005;
+
+            // Send look packet
+            // force=true guarantees packet sending even if difference is small
+            this.bot.look(currentYaw + yawNoise, currentPitch + pitchNoise, true);
+
+        }, 50); // Every tick
+    }
+
+    _stopMicroJitter() {
+        if (this.jitterInterval) {
+            clearInterval(this.jitterInterval);
+            this.jitterInterval = null;
         }
     }
 
