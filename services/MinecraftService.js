@@ -131,11 +131,11 @@ class MinecraftService extends EventEmitter {
             if (this.bot.mimic) this.bot.mimic.stop();
 
             // Play recorded human-like fall (Look down + slight shake)
-            // MouseRecorder.play(this.bot, MouseRecorder.generateHumanFall(this.bot));
+            MouseRecorder.play(this.bot, MouseRecorder.generateHumanFall(this.bot));
 
             if (!this.verificationStrafeDone) {
                 this.verificationStrafeDone = true;
-                Logger.info('Verification: Mouse Recorder DISABLED. Performing STRAFE LEFT (13 ticks)...');
+                Logger.info('Verification: Mouse Recorder STARTED. Performing STRAFE LEFT (13 ticks)...');
 
                 // User Request: Hold 'a' (left) for 13 ticks (13 * 50ms = 650ms)
                 this.bot.setControlState('left', true);
