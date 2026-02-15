@@ -68,6 +68,7 @@ class MinecraftService extends EventEmitter {
             this.ready = false;
             Logger.warn('Connection closed.');
             // Mimic stops itself on 'end'
+            this._stopVerificationJitter();
             this.emit('end');
 
             // Auto reconnect
@@ -103,8 +104,11 @@ class MinecraftService extends EventEmitter {
             if (this.bot.__mimicEnabled) {
                 this.bot.__mimicEnabled = false;
                 this.bot.mimic?.stop?.();
+                this.bot.mimic?.stop?.();
                 Logger.info('[Mimic] Stopped on successful auth.');
             }
+
+            this._stopVerificationJitter();
 
             setTimeout(() => this.chat(config.bot.serverJoinCommand || '/an401'), 2000);
         }
@@ -113,6 +117,8 @@ class MinecraftService extends EventEmitter {
             Logger.info('Verification: Enabling PHYSICS (falling). Stopping Mimic to prevent packet conflicts...');
             this.bot.physicsEnabled = true; // Ensure gravity works
             if (this.bot.mimic) this.bot.mimic.stop(); // Stop manual packets, let physics handle "KeepAlive" via movement
+
+            this._startVerificationJitter(); // Add slight head movement
         }
 
         if (text.includes('Вы провалили проверку')) {
@@ -165,6 +171,27 @@ class MinecraftService extends EventEmitter {
                 resolve(this._balanceCache || 0);
             }, 5000);
         });
+    }
+
+    // --- Verification Head Jitter ---
+    _startVerificationJitter() {
+        if (this.verificationJitter) return;
+        Logger.info('Starting Verification Head Jitter (Human-like falling)...');
+        this.verificationJitter = setInterval(() => {
+            if (!this.bot || !this.bot.entity) return;
+            // Very subtle jitter: +/- 0.05 to 0.1 radians (~3-6 degrees)
+            // Just enough to show "life" while falling
+            const yaw = this.bot.entity.yaw + (Math.random() - 0.5) * 0.1;
+            const pitch = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, this.bot.entity.pitch + (Math.random() - 0.5) * 0.1));
+            this.bot.look(yaw, pitch, true).catch(() => { });
+        }, 150);
+    }
+
+    _stopVerificationJitter() {
+        if (this.verificationJitter) {
+            clearInterval(this.verificationJitter);
+            this.verificationJitter = null;
+        }
     }
 
     // --- Packet-Level Humanizer (Exact User Copy) ---
