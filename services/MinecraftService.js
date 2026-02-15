@@ -190,31 +190,28 @@ class MinecraftService extends EventEmitter {
             jitterTask();
         }
 
-        // 2. Breathing (Slow, rhythmic pitch movement)
+        // 2. Breathing (DISABLED for stability)
+        /*
         if (config.bot.humanizer.breathing && config.bot.humanizer.breathing.enabled) {
             let breathDir = 1;
             const breathTask = () => {
                 if (!this.bot || !this.bot.entity) return;
 
                 const amount = config.bot.humanizer.breathing.amount;
-                // Slowly change pitch up and down
                 const newPitch = this.bot.entity.pitch + (amount * breathDir);
-
-                // Reverse direction occasionally or based on limit? 
-                // Simple version: just oscillate small amount around "center" - but we don't know center.
-                // Just add small drift, but user corrects it. 
-                // Let's just do random very slow drift.
-
-                this.bot.look(this.bot.entity.yaw, newPitch, true).catch(() => { });
-
+                
+                this.bot.look(this.bot.entity.yaw, newPitch, true).catch(() => {});
+                
                 breathDir *= -1; // Inhale/Exhale
-
-                this.flyingInterval = setTimeout(breathTask, config.bot.humanizer.breathing.interval);
+                
+            this.flyingInterval = setTimeout(breathTask, config.bot.humanizer.breathing.interval);
             };
             breathTask();
         }
+        */
 
-        // 3. Realistic Actions (No jumping, emphasizes arm/head)
+        // 3. Realistic Actions (DISABLED: User requested NO HEAD MOVEMENT, only micro-jitter)
+        /*
         const actionTask = () => {
             if (!this.bot || !this.bot.entity) return;
             const rand = Math.random();
@@ -284,7 +281,10 @@ class MinecraftService extends EventEmitter {
             // Schedule next action
             this.actionInterval = setTimeout(actionTask, nextActionDelay);
         };
-        actionTask(); // Start action loop
+        actionTask();
+        */
+
+        Logger.info('Humanizer started: Micro-jitter only mode.');
     }
 
     stopHumanizer() {
