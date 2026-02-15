@@ -126,24 +126,10 @@ class MinecraftService extends EventEmitter {
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.info('Verification: Enabling PHYSICS + Playing MOUSE RECORDING (Human Fall)...');
+            Logger.info('Verification: PHYSICS ONLY (No movement/rotation)...');
             this.bot.physicsEnabled = true;
             if (this.bot.mimic) this.bot.mimic.stop();
-
-            // Play recorded human-like fall (Look down + slight shake)
-            MouseRecorder.play(this.bot, MouseRecorder.generateHumanFall(this.bot));
-
-            if (!this.verificationStrafeDone) {
-                this.verificationStrafeDone = true;
-                Logger.info('Verification: Mouse Recorder STARTED. Performing STRAFE LEFT (13 ticks)...');
-
-                // User Request: Hold 'a' (left) for 13 ticks (13 * 50ms = 650ms)
-                this.bot.setControlState('left', true);
-                setTimeout(() => {
-                    if (this.bot) this.bot.setControlState('left', false);
-                    Logger.info('Verification: Strafe complete.');
-                }, 13 * 50);
-            }
+            MouseRecorder.stop(this.bot); // Ensure recorder is stopped
         }
 
         if (text.includes('Вы провалили проверку')) {
