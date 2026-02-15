@@ -68,7 +68,16 @@ class MinecraftService extends EventEmitter {
         });
 
         this.bot.on('forcedMove', () => {
-            Logger.info('Server forced rotation (Teleport/Look).');
+            Logger.info('Server forced rotation. Yielding control for 2s...');
+
+            // Pause custom rotation to respect server authority
+            this.rotationPaused = true;
+            if (this.rotationPauseTimeout) clearTimeout(this.rotationPauseTimeout);
+            this.rotationPauseTimeout = setTimeout(() => {
+                this.rotationPaused = false;
+                Logger.info('Resuming Spookytime rotation.');
+            }, 2000);
+
             // Sync SpookyRotation state to accept server's authority
             if (this.bot.entity) {
                 const yawDeg = (this.bot.entity.yaw * 180) / Math.PI;
