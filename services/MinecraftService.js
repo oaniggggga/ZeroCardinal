@@ -66,8 +66,9 @@ class MinecraftService extends EventEmitter {
         });
 
         this.bot.on('forcedMove', () => {
+            Logger.info('Server forced rotation (Teleport/Look).');
             if (MouseRecorder.isPlaying(this.bot)) {
-                Logger.info('Server forced rotation. Stopping Mouse Recorder to comply.');
+                Logger.info('Stopping Mouse Recorder to comply.');
                 MouseRecorder.stop(this.bot);
             }
         });
@@ -77,6 +78,7 @@ class MinecraftService extends EventEmitter {
             Logger.warn('Connection closed.');
             // Mimic stops itself on 'end'
             MouseRecorder.stop(this.bot);
+            this.verificationStrafeDone = false;
             this.emit('end');
 
             // Auto reconnect
@@ -117,6 +119,7 @@ class MinecraftService extends EventEmitter {
 
             // Stop Mouse Playback
             MouseRecorder.stop(this.bot);
+            this.verificationStrafeDone = false; // Reset for next time
 
             setTimeout(() => this.chat(config.bot.serverJoinCommand || '/an401'), 2000);
         }
