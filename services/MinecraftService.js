@@ -48,6 +48,7 @@ class MinecraftService extends EventEmitter {
         this.bot.on('spawn', () => {
             Logger.info('Bot spawned.');
             this.ready = true;
+            this.bot.physicsEnabled = true; // User request: Physics ALWAYS on
             this.emit('spawn');
             // _emulateLookAround removed to prevent kicks on join
         });
