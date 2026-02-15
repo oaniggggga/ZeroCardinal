@@ -153,6 +153,12 @@ class DatabaseManager {
         return this.db.prepare('SELECT * FROM messages WHERE is_incoming = 1 AND processed = 0 ORDER BY created_at ASC').all();
     }
 
+    claimMessage(id) {
+        const stmt = this.db.prepare('UPDATE messages SET processed = 1 WHERE id = ? AND processed = 0');
+        const result = stmt.run(id);
+        return result.changes > 0;
+    }
+
     markMessageProcessed(id) {
         return this.db.prepare('UPDATE messages SET processed = 1 WHERE id = ?').run(id);
     }

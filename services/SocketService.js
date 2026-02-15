@@ -46,6 +46,10 @@ class SocketService extends EventEmitter {
 
         this.server.on('error', (err) => {
             Logger.error(`Socket Server error: ${err.message}`);
+            if (err.code === 'EADDRINUSE') {
+                Logger.error(`Port ${this.port} is already in use. Another instance of the bot might be running.`);
+                process.exit(1);
+            }
         });
     }
 

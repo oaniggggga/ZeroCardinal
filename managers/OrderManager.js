@@ -44,6 +44,7 @@ class OrderManager {
             Logger.info('Socket Signal: New Message');
             this.checkMessages();
         });
+
     }
 
     async pollLoop() {
@@ -178,8 +179,9 @@ class OrderManager {
         try {
             const messages = DatabaseManager.getUnprocessedMessages();
             for (const msg of messages) {
-                await this.handleFunPayMessage(msg);
-                DatabaseManager.markMessageProcessed(msg.id);
+                if (DatabaseManager.claimMessage(msg.id)) {
+                    await this.handleFunPayMessage(msg);
+                }
             }
         } catch (e) {
             Logger.error('Error in checkMessages:', e);
