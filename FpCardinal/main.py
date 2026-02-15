@@ -1,5 +1,6 @@
 import sys
 import subprocess
+import importlib
 
 def install_package(package):
     print(f"Installing {package}...")
@@ -11,25 +12,24 @@ def install_package(package):
         except Exception as e:
             print(f"Failed to install {package}: {e}")
 
+def check_and_install(module_name, package_name):
+    attempts = 0
+    while attempts < 2:
+        try:
+            importlib.import_module(module_name)
+            return
+        except ImportError:
+            attempts += 1
+            if attempts >= 2:
+                print(f"Failed to load {module_name} after installation attempt. Please restart the script.")
+                sys.exit(1)
+            install_package(package_name)
+            importlib.invalidate_caches()
+
 # todo убрать когда-то
-while True:
-    try:
-        import lxml
-        break
-    except ImportError:
-        install_package("lxml>=5.3.0")
-while True:
-    try:
-        import bcrypt
-        break
-    except ImportError:
-        install_package("bcrypt>=4.2.0")
-while True:
-    try:
-        import requests_toolbelt
-        break
-    except ImportError:
-        install_package("requests-toolbelt==0.10.1")
+check_and_install("lxml", "lxml>=5.3.0")
+check_and_install("bcrypt", "bcrypt>=4.2.0")
+check_and_install("requests_toolbelt", "requests-toolbelt==0.10.1")
 import Utils.cardinal_tools
 import Utils.config_loader as cfg_loader
 from first_setup import first_setup
