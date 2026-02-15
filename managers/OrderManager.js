@@ -51,12 +51,43 @@ class OrderManager {
         if (this.isPolling) return; // Skip if previous loop hasn't finished
         this.isPolling = true;
         try {
+            await this.syncLegacyOrders();
             await this.checkNewOrders();
             await this.checkMessages();
         } catch (e) {
             Logger.error('Error in poll loop:', e);
         } finally {
             this.isPolling = false;
+        }
+    }
+
+    async syncLegacyOrders() {
+        const fs = require('fs');
+        const ordersPath = path.join(__dirname, '..', config.paths.sharedDir, 'orders.json');
+        if (!fs.existsSync(ordersPath)) return;
+
+        try {
+            const data = fs.readFileSync(ordersPath, 'utf8');
+            const orders = JSON.parse(data);
+            for (const order of orders) {
+                if (!DatabaseManager.getOrder(order.id)) {
+                    Logger.info(`Syncing legacy/manual order: #${order.id}`);
+                    DatabaseManager.createOrder({
+                        id: order.id,
+                        username: order.username,
+                        amount: order.amount,
+                        description: order.description,
+                        status: order.status || 'pending',
+                        createdAt: order.timestamp * 1000 || Date.now(),
+                        updatedAt: Date.now()
+                    });
+                } else if (order.status === 'processing' || order.status === 'completed') {
+                    // Update status if changed in JSON (for manual testing via JSON edit)
+                    DatabaseManager.updateOrder(order.id, { status: order.status });
+                }
+            }
+        } catch (e) {
+            Logger.error('Error syncing orders.json:', e);
         }
     }
 

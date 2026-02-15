@@ -13,6 +13,11 @@ class SocketService extends EventEmitter {
 
     start() {
         this.server = net.createServer((socket) => {
+            if (this.sockets.size > 0) {
+                Logger.warn('Python Bridge connection rejected (only one bridge allowed)');
+                socket.end('One bridge already connected\n');
+                return;
+            }
             Logger.info('Python Bridge connected via Socket');
             this.sockets.add(socket);
 

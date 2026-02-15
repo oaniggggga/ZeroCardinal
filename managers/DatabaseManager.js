@@ -43,7 +43,8 @@ class DatabaseManager {
                 is_incoming INTEGER DEFAULT 1,
                 processed INTEGER DEFAULT 0,
                 created_at INTEGER,
-                node_id INTEGER
+                node_id INTEGER,
+                UNIQUE(username, message, created_at)
             );
             
             CREATE TABLE IF NOT EXISTS requests (
