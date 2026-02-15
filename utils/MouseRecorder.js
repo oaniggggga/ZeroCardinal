@@ -1,5 +1,3 @@
-const { Easing } = require('bezier-easing'); // No, let's stick to simple math to avoid deps
-
 /**
  * Generates a human-like look path.
  * Simulates:
@@ -9,28 +7,43 @@ const { Easing } = require('bezier-easing'); // No, let's stick to simple math t
  */
 function generateHumanFallPath(startYaw, startPitch, durationMs = 3000) {
     const path = [];
-    const steps = Math.floor(durationMs / 50); // 50ms ticks
+    const avgStep = 60; // Average 60ms per packet
+    const steps = Math.floor(durationMs / avgStep);
 
-    // Target: Look down (~80 degrees / 1.4 rads) and slightly change yaw
-    // Randomize target slightly
-    const targetPitch = 1.3 + (Math.random() * 0.2);
-    const targetYaw = startYaw + (Math.random() - 0.5) * 1.0; // +/- ~30 degrees
+    // Target: Look down (~80 degrees / 1.4 rads) and close to current yaw (maybe slight pan)
+    // Looking down is the most natural reaction to falling
+    const targetPitch = 1.35 + (Math.random() * 0.15); // Almost straight down
+    const targetYaw = startYaw + (Math.random() - 0.5) * 0.5; // Slight yaw drift
 
-    // Simple Cubic Ease-Out
-    // t: 0..1
+    // Simple Cubic Ease-Out for pitch (look down fast, then settle)
     const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
+    let currentTime = 0;
+
+    // 1. REACTION DELAY: Stay still for ~300-600ms
+    const reactionDelay = 300 + Math.random() * 300;
+    let delaySteps = Math.floor(reactionDelay / avgStep);
+    for (let i = 0; i < delaySteps; i++) {
+        path.push({
+            yaw: startYaw,
+            pitch: startPitch,
+            delay: 40 + Math.random() * 40 // variable polling 40-80ms
+        });
+    }
+
+    // 2. ACTION: Look down
     for (let i = 0; i <= steps; i++) {
         const t = i / steps;
         const easedT = easeOutCubic(t);
 
-        // Add noise (hand tremor)
-        const noiseYaw = (Math.random() - 0.5) * 0.02;
-        const noisePitch = (Math.random() - 0.5) * 0.02;
+        // Add varying "hand tremor" noise
+        const noiseYaw = (Math.random() - 0.5) * 0.015;
+        const noisePitch = (Math.random() - 0.5) * 0.015;
 
         path.push({
             yaw: startYaw + ((targetYaw - startYaw) * easedT) + noiseYaw,
-            pitch: startPitch + ((targetPitch - startPitch) * easedT) + noisePitch
+            pitch: startPitch + ((targetPitch - startPitch) * easedT) + noisePitch,
+            delay: 35 + Math.random() * 50 // Variable delay 35-85ms (simulating OS/mouse poll variance)
         });
     }
     return path;
@@ -40,34 +53,42 @@ class MouseRecorder {
     static async play(bot, path) {
         if (!bot || !path || path.length === 0) return;
 
+        // Clear any existing playback
+        if (bot._mousePlaybackTimeout) {
+            clearTimeout(bot._mousePlaybackTimeout);
+            bot._mousePlaybackTimeout = null;
+        }
+
         let index = 0;
-        return new Promise((resolve) => {
-            const interval = setInterval(() => {
-                if (!bot.entity || index >= path.length) {
-                    clearInterval(interval);
-                    resolve();
-                    return;
-                }
 
-                const point = path[index++];
-                bot.look(point.yaw, point.pitch, true).catch(() => { });
-            }, 50);
+        const nextStep = () => {
+            if (!bot.entity || index >= path.length) {
+                bot._mousePlaybackTimeout = null;
+                return;
+            }
 
-            // Store interval on bot to allow cancellation
-            bot._mousePlaybackInterval = interval;
-        });
+            const point = path[index++];
+            // Send look packet
+            bot.look(point.yaw, point.pitch, true).catch(() => { });
+
+            // Schedule next update with variable delay
+            bot._mousePlaybackTimeout = setTimeout(nextStep, point.delay || 50);
+        };
+
+        // Start immediate
+        nextStep();
     }
 
     static stop(bot) {
-        if (bot._mousePlaybackInterval) {
-            clearInterval(bot._mousePlaybackInterval);
-            bot._mousePlaybackInterval = null;
+        if (bot._mousePlaybackTimeout) {
+            clearTimeout(bot._mousePlaybackTimeout);
+            bot._mousePlaybackTimeout = null;
         }
     }
 
     static generateHumanFall(bot) {
         if (!bot || !bot.entity) return [];
-        return generateHumanFallPath(bot.entity.yaw, bot.entity.pitch, 4000);
+        return generateHumanFallPath(bot.entity.yaw, bot.entity.pitch, 3500);
     }
 }
 
