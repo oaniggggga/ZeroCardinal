@@ -48,7 +48,7 @@ class MinecraftService extends EventEmitter {
             Logger.info('Bot spawned.');
             this.ready = true;
             this.emit('spawn');
-            this._emulateLookAround();
+            // _emulateLookAround removed to prevent kicks on join
         });
 
         this.bot.on('error', (err) => {
@@ -103,25 +103,13 @@ class MinecraftService extends EventEmitter {
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.info('Verification in progress. Keeping humanizer active...');
-            // this.stopHumanizer(); // User requested to keep it running
+            Logger.warn('Verification in progress. Pausing humanizer...');
+            this.stopHumanizer(); // MUST pause to avoid kick
         }
 
         if (text.includes('Вы провалили проверку')) {
             Logger.error('FAILED VERIFICATION! Bot was kicked.');
         }
-    }
-
-    async _emulateLookAround() {
-        if (!this.bot.entity) return;
-        try {
-            for (let i = 0; i < 2; i++) {
-                const yaw = this.bot.entity.yaw + (Math.random() - 0.5) * 2;
-                const pitch = (Math.random() - 0.5) * 0.5;
-                await this.bot.look(yaw, pitch, true);
-                await new Promise(r => setTimeout(r, 800));
-            }
-        } catch (e) { }
     }
 
     chat(message) {
