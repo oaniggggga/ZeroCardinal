@@ -5,7 +5,17 @@
         "humanizer": {
             "enabled": true,
             "jitterInterval": 200,
-            "actionInterval": 7000
+            "actionInterval": 7000,
+            "microJitter": {
+                "enabled": true,
+                "interval": 100,
+                "amount": 0.02
+            },
+            "breathing": {
+                "enabled": true,
+                "interval": 2000,
+                "amount": 0.005
+            }
         },
         "socketPort": 19132
     },

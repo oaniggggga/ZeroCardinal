@@ -177,38 +177,91 @@ class MinecraftService extends EventEmitter {
         if (!config.bot.humanizer.enabled) return;
         this.stopHumanizer();
 
-        this.jitterInterval = setInterval(() => {
-            if (!this.bot || !this.bot.entity) return;
-            const yawJitter = (Math.random() - 0.5) * 0.03;
-            const pitchJitter = (Math.random() - 0.5) * 0.03;
-            this.bot.look(this.bot.entity.yaw + yawJitter, this.bot.entity.pitch + pitchJitter, true);
-        }, config.bot.humanizer.jitterInterval || 200);
+        Logger.info('Starting Humanizer with Jitter...');
 
-        // ... simplified mimic logic for brevity, can check index.js for full logic if needed ...
-        // Keeping it simple to ensure stability first.
+        // 1. Micro Jitter (Simulates hand trembling / mouse micro-movements)
+        if (config.bot.humanizer.microJitter && config.bot.humanizer.microJitter.enabled) {
+            const jitterTask = () => {
+                if (!this.bot || !this.bot.entity) return;
 
-        // Periodic actions
-        this.actionInterval = setInterval(() => {
+                // Randomize interval slightly (+- 20%)
+                const interval = config.bot.humanizer.microJitter.interval * (0.8 + Math.random() * 0.4);
+
+                const amount = config.bot.humanizer.microJitter.amount;
+                const yawJitter = (Math.random() - 0.5) * amount;
+                const pitchJitter = (Math.random() - 0.5) * amount;
+
+                // Smoothly apply or just set? Set is fine for micro jitter.
+                const newYaw = this.bot.entity.yaw + yawJitter;
+                const newPitch = this.bot.entity.pitch + pitchJitter;
+
+                this.bot.look(newYaw, newPitch, true).catch(() => { });
+
+                this.jitterInterval = setTimeout(jitterTask, interval);
+            };
+            jitterTask();
+        }
+
+        // 2. Breathing (Slow, rhythmic pitch movement)
+        if (config.bot.humanizer.breathing && config.bot.humanizer.breathing.enabled) {
+            let breathDir = 1;
+            const breathTask = () => {
+                if (!this.bot || !this.bot.entity) return;
+
+                const amount = config.bot.humanizer.breathing.amount;
+                // Slowly change pitch up and down
+                const newPitch = this.bot.entity.pitch + (amount * breathDir);
+
+                // Reverse direction occasionally or based on limit? 
+                // Simple version: just oscillate small amount around "center" - but we don't know center.
+                // Just add small drift, but user corrects it. 
+                // Let's just do random very slow drift.
+
+                this.bot.look(this.bot.entity.yaw, newPitch, true).catch(() => { });
+
+                breathDir *= -1; // Inhale/Exhale
+
+                this.flyingInterval = setTimeout(breathTask, config.bot.humanizer.breathing.interval);
+            };
+            breathTask();
+        }
+
+        // 3. Occasional larger actions (Look around, jump)
+        const actionTask = () => {
             if (!this.bot || !this.bot.entity) return;
             const rand = Math.random();
+
             if (rand < 0.3) {
-                this.bot.look(this.bot.entity.yaw + (Math.random() - 0.5) * 1.5, this.bot.entity.pitch, true);
-            } else if (rand < 0.5) {
+                // Look at a random nearby point (simulates checking surroundings)
+                const yawChange = (Math.random() - 0.5) * 1.0; // wider look
+                const pitchChange = (Math.random() - 0.5) * 0.5;
+                this.bot.look(this.bot.entity.yaw + yawChange, this.bot.entity.pitch + pitchChange, true).catch(() => { });
+            } else if (rand < 0.4) {
+                // Tiny jump
                 this.bot.setControlState('jump', true);
                 setTimeout(() => {
                     this.bot.setControlState('jump', false);
-                    try { this.bot.swingArm(); } catch (e) { }
-                }, 150);
+                    // Sometimes swing arm while jumping
+                    if (Math.random() < 0.5) try { this.bot.swingArm(); } catch (e) { }
+                }, 100 + Math.random() * 100);
             }
-        }, config.bot.humanizer.actionInterval || 7000);
+
+            // Schedule next action
+            const nextAction = config.bot.humanizer.actionInterval * (0.5 + Math.random());
+            this.actionInterval = setTimeout(actionTask, nextAction);
+        };
+        actionTask(); // Start action loop
     }
 
     stopHumanizer() {
-        if (this.jitterInterval) clearInterval(this.jitterInterval);
-        if (this.actionInterval) clearInterval(this.actionInterval);
-        if (this.flyingInterval) clearInterval(this.flyingInterval);
+        if (this.jitterInterval) clearTimeout(this.jitterInterval); // Now it's a timeout
+        if (this.actionInterval) clearTimeout(this.actionInterval); // Now it's a timeout
+        if (this.flyingInterval) clearTimeout(this.flyingInterval);
         this.mimicTimeouts.forEach(clearTimeout);
         this.mimicTimeouts = [];
+        this.jitterInterval = null;
+        this.actionInterval = null;
+        this.flyingInterval = null;
     }
 }
 
