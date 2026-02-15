@@ -110,8 +110,8 @@ class MinecraftService extends EventEmitter {
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.info('Verification in progress. Pausing Mimic to avoid freeze-kick...');
-            if (this.bot.mimic) this.bot.mimic.stop();
+            Logger.info('Verification in progress. Switching Mimic to HOVER mode (KeepAlive)...');
+            if (this.bot.mimic) this.bot.mimic.hover();
         }
 
         if (text.includes('Вы провалили проверку')) {
@@ -218,7 +218,19 @@ class MinecraftService extends EventEmitter {
             Logger.info('[Mimic] Started packet-level emulation.');
         }
 
-        bot.mimic = { start, stop };
+        function hover() {
+            // Stop arm animations but KEEP flying packets (Heartbeat)
+            for (const t of state.timeouts) clearTimeout(t);
+            state.timeouts.length = 0;
+
+            if (!state.flyingTicker) {
+                const flyingInterval = 760 + Math.floor(Math.random() * 80);
+                state.flyingTicker = setInterval(sendFlying, flyingInterval);
+            }
+            Logger.info('[Mimic] Hover mode: Keeping connection alive.');
+        }
+
+        bot.mimic = { start, stop, hover };
 
         bot.__mimicEnabled = true;
 
