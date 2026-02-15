@@ -68,30 +68,8 @@ class MinecraftService extends EventEmitter {
         });
 
         this.bot.on('forcedMove', () => {
-            Logger.info('Server forced rotation. Yielding control for 2s...');
-
-            // Pause custom rotation to respect server authority
-            this.rotationPaused = true;
-            if (this.rotationPauseTimeout) clearTimeout(this.rotationPauseTimeout);
-            this.rotationPauseTimeout = setTimeout(() => {
-                this.rotationPaused = false;
-                Logger.info('Resuming Spookytime rotation.');
-            }, 2000);
-
-            // Sync SpookyRotation state to accept server's authority
-            if (this.bot.entity) {
-                const yawDeg = (this.bot.entity.yaw * 180) / Math.PI;
-                const pitchDeg = (this.bot.entity.pitch * 180) / Math.PI;
-                SpookyRotation.rotate.x = yawDeg;
-                SpookyRotation.rotate.y = pitchDeg;
-                SpookyRotation.lastYaw = 0;
-                SpookyRotation.lastPitch = 0;
-            }
-
-            if (MouseRecorder.isPlaying(this.bot)) {
-                Logger.info('Stopping Mouse Recorder to comply.');
-                MouseRecorder.stop(this.bot);
-            }
+            // Dumb Strategy: Server turned -> Bot accepted -> Silence
+            Logger.info('Server forced rotation. Accepting. Doing nothing.');
         });
 
         this.bot.on('end', () => {
@@ -161,76 +139,50 @@ class MinecraftService extends EventEmitter {
         }
     }
 
-    _startVerificationActionRandomizer() {
-        if (this.actionRandomizerInterval) return;
-        Logger.info('Starting Spookytime Humanizer (Rotation + Actions)...');
+    _startDumbVerification() {
+        if (this.dumbVerificationTimeout) return;
+        Logger.info('Starting "Dumb" Verification Mode (Rare Inputs + Long Pauses)...');
 
-        // 1. Rotation Loop (Every 50ms / 1 tick)
-        this.rotationInterval = setInterval(() => {
-            if (!this.bot || !this.bot.entity) return;
-            // YIELD: If server forced rotation, stop fighting!
-            if (this.rotationPaused) return;
-
-            // Virtual Target: Look down and slightly forward (to check landing)
-            // Offset: x=0.5, y=-2.0, z=0.5 (Ground in front)
-            const targetPos = this.bot.entity.position.offset(0.5, -3.0, 0.5);
-
-
-            // Calculate Next Rotation using Spooky Logic
-            const nextRot = SpookyRotation.getNextRotation(this.bot, targetPos);
-
-            if (nextRot) {
-                // Apply rotation
-                this.bot.look(nextRot.yaw, nextRot.pitch, true); // Force = true to snap (since we calculated steps)
-            }
-        }, 50);
-
-        // 2. Action Loop (Random delays)
-        const performRandomAction = () => {
+        const performDumbAction = () => {
             if (!this.bot) return;
 
-            const rand = Math.random();
-            const delay = 300 + Math.random() * 1200; // 0.3s - 1.5s
+            // Random Interval: 5s - 12s (5000 - 12000 ms)
+            let nextDelay = 5000 + Math.random() * 7000;
 
-            // Action Weights:
-            // 0.0 - 0.3: Switch Slot (30%)
-            // 0.3 - 0.6: Swing Arm (30%)
-            // 0.6 - 0.7: Open Inventory (10%)
-            // 0.7 - 0.8: Sneak (10%)
-            // 0.8 - 1.0: Idle (20%)
+            const rand = Math.random();
 
             try {
-                if (rand < 0.3) {
-                    // Switch Slot
-                    const slot = Math.floor(Math.random() * 9);
-                    this.bot.setQuickBarSlot(slot);
-                } else if (rand < 0.6) {
-                    // Swing Arm
-                    this.bot.swingArm();
-                } else if (rand < 0.7) {
-                    // Open Inventory Packet (Client Command 1)
-                    this.bot._client.write('client_command', { actionId: 1 });
-                } else if (rand < 0.8) {
-                    // Sneak
+                if (rand < 0.1) {
+                    // 10% Chance: Long Pause (15-25s) "Human Idle"
+                    Logger.info('[Dumb] Doing nothing for 15-25s...');
+                    nextDelay = 15000 + Math.random() * 10000;
+                } else if (rand < 0.2) {
+                    // 10% Chance: "Human Fail" (Double action?) - actually user said "sometimes 2 actions with 50ms pause"
+                    // Let's keep it simple: Just swing (or sneak) twice?
+                    // Implementing: Short Sneak
                     this.bot.setControlState('sneak', true);
-                    setTimeout(() => { if (this.bot) this.bot.setControlState('sneak', false); }, 100 + Math.random() * 100);
+                    setTimeout(() => { if (this.bot) this.bot.setControlState('sneak', false); }, 80 + Math.random() * 60);
+                } else if (rand < 0.6) {
+                    // 40% Chance: Single Swing
+                    this.bot.swingArm();
+                } else {
+                    // 40% Chance: Short Sneak (80-140ms)
+                    this.bot.setControlState('sneak', true);
+                    setTimeout(() => { if (this.bot) this.bot.setControlState('sneak', false); }, 80 + Math.random() * 60);
                 }
             } catch (e) { }
 
-            this.actionRandomizerInterval = setTimeout(performRandomAction, delay);
+            this.dumbVerificationTimeout = setTimeout(performDumbAction, nextDelay);
         };
 
-        performRandomAction();
+        // Start first action after initial delay
+        this.dumbVerificationTimeout = setTimeout(performDumbAction, 2000 + Math.random() * 3000);
     }
 
-    _stopVerificationActionRandomizer() {
-        if (this.rotationInterval) {
-            clearInterval(this.rotationInterval);
-            this.rotationInterval = null;
-        }
-        if (this.actionRandomizerInterval) {
-            clearTimeout(this.actionRandomizerInterval);
-            this.actionRandomizerInterval = null;
+    _stopDumbVerification() {
+        if (this.dumbVerificationTimeout) {
+            clearTimeout(this.dumbVerificationTimeout);
+            this.dumbVerificationTimeout = null;
         }
     }
 
