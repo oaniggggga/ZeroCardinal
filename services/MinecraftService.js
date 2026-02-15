@@ -98,8 +98,15 @@ class MinecraftService extends EventEmitter {
 
         if ((text.includes('Успешная авторизация') || text.includes('Приятной игры'))) {
             Logger.info('Auth successful. Joining Anarchy 401...');
+
+            // Stop Mimic as per user code logic
+            if (this.bot.__mimicEnabled) {
+                this.bot.__mimicEnabled = false;
+                this.bot.mimic?.stop?.();
+                Logger.info('[Mimic] Stopped on successful auth.');
+            }
+
             setTimeout(() => this.chat(config.bot.serverJoinCommand || '/an401'), 2000);
-            // Mimic is already running from login/spawn events
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
@@ -158,69 +165,64 @@ class MinecraftService extends EventEmitter {
         });
     }
 
-    // --- Packet-Level Humanizer (Vanilla Mimic) ---
-
+    // --- Packet-Level Humanizer (Exact User Copy) ---
     _attachVanillaMimic() {
         const bot = this.bot;
         if (bot.mimic) return;
 
         const state = { timeouts: [], flyingTicker: null, active: false };
 
-        const stop = () => {
+        function stop() {
             for (const t of state.timeouts) clearTimeout(t);
             state.timeouts.length = 0;
             if (state.flyingTicker) { clearInterval(state.flyingTicker); state.flyingTicker = null; }
             state.active = false;
-        };
+        }
 
-        const schedule = (fn, delay) => {
+        function schedule(fn, delay) {
             const t = setTimeout(() => {
                 const idx = state.timeouts.indexOf(t);
                 if (idx !== -1) state.timeouts.splice(idx, 1);
                 try { fn(); } catch { }
             }, delay);
             state.timeouts.push(t);
-        };
+        }
 
-        const sendArm = (hand) => {
+        function sendArm(hand) {
             if (!bot?._client || bot._client.ended) return;
             try { bot._client.write('arm_animation', { hand }); } catch { }
-        };
+        }
 
-        const sendFlying = () => {
-            // Sending 'flying' packet tells server we are "active" / updating position
+        function sendFlying() {
             if (!bot?._client || bot._client.ended) return;
             const onGround = !!bot.entity?.onGround;
             try { bot._client.write('flying', { onGround }); } catch { }
-        };
+        }
 
-        const start = () => {
+        function start() {
             if (state.active) return;
             stop();
             state.active = true;
 
-            // Schedule arm swings with jitter
             const jitter = Math.floor(Math.random() * 30);
             schedule(() => sendArm(0), 280 + jitter);
             schedule(() => sendArm(1), 320 + jitter);
-
-            // Schedule flying packets (alive signals)
             schedule(sendFlying, 420 + jitter);
             schedule(sendFlying, 480 + jitter);
             schedule(sendFlying, 540 + jitter);
 
-            // Periodic flying packet (heartbeat of movement)
             const flyingInterval = 760 + Math.floor(Math.random() * 80);
             state.flyingTicker = setInterval(sendFlying, flyingInterval);
 
-            Logger.info('Packet-Level Humanizer (Mimic) started.');
-        };
+            Logger.info('[Mimic] Started packet-level emulation.');
+        }
 
         bot.mimic = { start, stop };
 
-        // Attach events
-        bot.on('login', () => setTimeout(() => { try { bot.mimic?.start(); } catch { } }, 200));
-        bot.on('spawn', () => { try { bot.mimic?.start(); } catch { } });
+        bot.__mimicEnabled = true;
+
+        bot.on('login', () => setTimeout(() => { try { if (bot.__mimicEnabled) bot.mimic?.start(); } catch { } }, 200));
+        bot.on('spawn', () => { try { if (bot.__mimicEnabled) bot.mimic?.start(); } catch { } });
         bot.on('kicked', () => { try { bot.mimic?.stop(); } catch { } });
         bot.on('end', () => { try { bot.mimic?.stop(); } catch { } });
     }
