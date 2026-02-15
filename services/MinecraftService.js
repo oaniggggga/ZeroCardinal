@@ -110,9 +110,9 @@ class MinecraftService extends EventEmitter {
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.info('Verification: Enabling PHYSICS (falling) + KeepAlive (Hover)...');
+            Logger.info('Verification: Enabling PHYSICS (falling). Stopping Mimic to prevent packet conflicts...');
             this.bot.physicsEnabled = true; // Ensure gravity works
-            if (this.bot.mimic) this.bot.mimic.hover(); // Stop waving, keep connection alive
+            if (this.bot.mimic) this.bot.mimic.stop(); // Stop manual packets, let physics handle "KeepAlive" via movement
         }
 
         if (text.includes('Вы провалили проверку')) {
