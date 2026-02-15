@@ -41,7 +41,7 @@ class MinecraftService extends EventEmitter {
         this.bot.on('login', () => {
             Logger.info(`Bot ${this.bot.username} logged in.`);
             this.emit('login');
-            this.startHumanizer();
+            // this.startHumanizer(); // Moved to auth success to avoid moving in lobby/verification
         });
 
         this.bot.on('spawn', () => {
@@ -99,6 +99,16 @@ class MinecraftService extends EventEmitter {
         if ((text.includes('Успешная авторизация') || text.includes('Приятной игры'))) {
             Logger.info('Auth successful. Joining Anarchy 401...');
             setTimeout(() => this.chat(config.bot.serverJoinCommand || '/an401'), 2000);
+            this.startHumanizer(); // Start here, not on login
+        }
+
+        if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
+            Logger.warn('Verification in progress. Pausing humanizer...');
+            this.stopHumanizer();
+        }
+
+        if (text.includes('Вы провалили проверку')) {
+            Logger.error('FAILED VERIFICATION! Bot was kicked.');
         }
     }
 
