@@ -168,9 +168,12 @@ class MinecraftService extends EventEmitter {
         // 1. Rotation Loop (Every 50ms / 1 tick)
         this.rotationInterval = setInterval(() => {
             if (!this.bot || !this.bot.entity) return;
+            // YIELD: If server forced rotation, stop fighting!
+            if (this.rotationPaused) return;
 
             // Virtual Target: Look down and slightly forward (to check landing)
             // Offset: x=0.5, y=-2.0, z=0.5 (Ground in front)
+            const targetPos = this.bot.entity.position.offset(0.5, -3.0, 0.5);
             const targetPos = this.bot.entity.position.offset(0.5, -3.0, 0.5);
 
             // Calculate Next Rotation using Spooky Logic
