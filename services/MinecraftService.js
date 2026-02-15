@@ -67,7 +67,7 @@ class MinecraftService extends EventEmitter {
         this.bot.on('end', () => {
             this.ready = false;
             Logger.warn('Connection closed.');
-            this.stopHumanizer();
+            // Mimic stops itself on 'end'
             this.emit('end');
 
             // Auto reconnect
@@ -99,12 +99,11 @@ class MinecraftService extends EventEmitter {
         if ((text.includes('Успешная авторизация') || text.includes('Приятной игры'))) {
             Logger.info('Auth successful. Joining Anarchy 401...');
             setTimeout(() => this.chat(config.bot.serverJoinCommand || '/an401'), 2000);
-            this.startHumanizer(); // Start here, not on login
+            // Mimic is already running from login/spawn events
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.info('Verification in progress. Keeping smooth humanizer active...');
-            // Do NOT stop humanizer. Movement is required.
+            Logger.info('Verification in progress. Letting Mimic handle it...');
         }
 
         if (text.includes('Вы провалили проверку')) {
@@ -159,136 +158,71 @@ class MinecraftService extends EventEmitter {
         });
     }
 
-    // --- Smooth Look Logic ---
-    async smoothLook(targetYaw, targetPitch, duration = 600) {
-        if (!this.bot || !this.bot.entity) return;
+    // --- Packet-Level Humanizer (Vanilla Mimic) ---
 
-        const startYaw = this.bot.entity.yaw;
-        const startPitch = this.bot.entity.pitch;
+    _attachVanillaMimic() {
+        const bot = this.bot;
+        if (bot.mimic) return;
 
-        // Handle Yaw wrap-around (shortest path)
-        let deltaYaw = targetYaw - startYaw;
-        while (deltaYaw < -Math.PI) deltaYaw += 2 * Math.PI;
-        while (deltaYaw > Math.PI) deltaYaw -= 2 * Math.PI;
+        const state = { timeouts: [], flyingTicker: null, active: false };
 
-        const startTime = Date.now();
-
-        return new Promise((resolve) => {
-            const step = () => {
-                if (!this.bot || !this.bot.entity) {
-                    resolve();
-                    return;
-                }
-
-                const elapsed = Date.now() - startTime;
-                if (elapsed >= duration) {
-                    this.bot.look(startYaw + deltaYaw, targetPitch, true).catch(() => { });
-                    resolve();
-                    return;
-                }
-
-                // Easing function (Quadratic Ease-Out for natural feel)
-                const t = elapsed / duration;
-                const ease = t * (2 - t);
-
-                const newYaw = startYaw + (deltaYaw * ease);
-                const newPitch = startPitch + ((targetPitch - startPitch) * ease);
-
-                this.bot.look(newYaw, newPitch, true).catch(() => { });
-                setTimeout(step, 50); // ~20 ticks per second updates
-            };
-            step();
-        });
-    }
-
-    // --- Humanizer ---
-
-    startHumanizer() {
-        if (!config.bot.humanizer.enabled) return;
-        this.stopHumanizer();
-
-        Logger.info('Starting Advanced Humanizer (Smooth Mode)...');
-
-        // 1. Micro Jitter (Kept but smoother)
-        /*
-        if (config.bot.humanizer.microJitter && config.bot.humanizer.microJitter.enabled) {
-             // ... kept same or reduced? 
-             // Actually, micro-jitter is better handled by just adding noise to smooth looks.
-             // But for idle, let's keep a very slow drift instead of "jitter".
-        }
-        */
-
-        // 2. Breathing (DISABLED for stability)
-        /*
-        if (config.bot.humanizer.breathing && config.bot.humanizer.breathing.enabled) {
-            let breathDir = 1;
-            const breathTask = () => {
-                if (!this.bot || !this.bot.entity) return;
-
-                const amount = config.bot.humanizer.breathing.amount;
-                const newPitch = this.bot.entity.pitch + (amount * breathDir);
-                
-                this.bot.look(this.bot.entity.yaw, newPitch, true).catch(() => {});
-                
-                breathDir *= -1; // Inhale/Exhale
-                
-            this.flyingInterval = setTimeout(breathTask, config.bot.humanizer.breathing.interval);
-            };
-            breathTask();
-        }
-        */
-
-        // 3. Realistic Actions (RESTORED but using smoothLook)
-        const actionTask = async () => {
-            if (!this.bot || !this.bot.entity) return;
-            const rand = Math.random();
-
-            // Dynamic intervals 
-            let nextActionDelay = config.bot.humanizer.actionInterval * (0.8 + Math.random() * 1.5);
-
-            if (rand < 0.6) {
-                // 60% - Casual Look Around
-                const yawChange = (Math.random() - 0.5) * (Math.PI / 1.5); // ~60 degrees
-                const pitchChange = (Math.random() - 0.5) * (Math.PI / 3); // ~30 degrees
-
-                const targetYaw = this.bot.entity.yaw + yawChange;
-                const targetPitch = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, this.bot.entity.pitch + pitchChange));
-
-                // Look takes 0.5 - 1.5 seconds
-                await this.smoothLook(targetYaw, targetPitch, 500 + Math.random() * 1000);
-            }
-            else if (rand < 0.8) {
-                // 20% - Arm Swing
-                const swings = Math.floor(Math.random() * 2) + 1;
-                const swingInternal = () => {
-                    try { this.bot.swingArm(); } catch (e) { }
-                };
-                for (let i = 0; i < swings; i++) {
-                    setTimeout(swingInternal, i * (150 + Math.random() * 100));
-                }
-                nextActionDelay = 1000;
-            }
-            else {
-                // 20% - Inventory/Bored Check (Look slightly down)
-                const targetPitch = (Math.random() * 0.3) + 0.2; // Look down 0.2-0.5 rads
-                await this.smoothLook(this.bot.entity.yaw, targetPitch, 800);
-            }
-
-            // Schedule next
-            this.actionInterval = setTimeout(actionTask, nextActionDelay);
+        const stop = () => {
+            for (const t of state.timeouts) clearTimeout(t);
+            state.timeouts.length = 0;
+            if (state.flyingTicker) { clearInterval(state.flyingTicker); state.flyingTicker = null; }
+            state.active = false;
         };
-        actionTask();
-    }
 
-    stopHumanizer() {
-        if (this.jitterInterval) clearTimeout(this.jitterInterval); // Now it's a timeout
-        if (this.actionInterval) clearTimeout(this.actionInterval); // Now it's a timeout
-        if (this.flyingInterval) clearTimeout(this.flyingInterval);
-        this.mimicTimeouts.forEach(clearTimeout);
-        this.mimicTimeouts = [];
-        this.jitterInterval = null;
-        this.actionInterval = null;
-        this.flyingInterval = null;
+        const schedule = (fn, delay) => {
+            const t = setTimeout(() => {
+                const idx = state.timeouts.indexOf(t);
+                if (idx !== -1) state.timeouts.splice(idx, 1);
+                try { fn(); } catch { }
+            }, delay);
+            state.timeouts.push(t);
+        };
+
+        const sendArm = (hand) => {
+            if (!bot?._client || bot._client.ended) return;
+            try { bot._client.write('arm_animation', { hand }); } catch { }
+        };
+
+        const sendFlying = () => {
+            // Sending 'flying' packet tells server we are "active" / updating position
+            if (!bot?._client || bot._client.ended) return;
+            const onGround = !!bot.entity?.onGround;
+            try { bot._client.write('flying', { onGround }); } catch { }
+        };
+
+        const start = () => {
+            if (state.active) return;
+            stop();
+            state.active = true;
+
+            // Schedule arm swings with jitter
+            const jitter = Math.floor(Math.random() * 30);
+            schedule(() => sendArm(0), 280 + jitter);
+            schedule(() => sendArm(1), 320 + jitter);
+
+            // Schedule flying packets (alive signals)
+            schedule(sendFlying, 420 + jitter);
+            schedule(sendFlying, 480 + jitter);
+            schedule(sendFlying, 540 + jitter);
+
+            // Periodic flying packet (heartbeat of movement)
+            const flyingInterval = 760 + Math.floor(Math.random() * 80);
+            state.flyingTicker = setInterval(sendFlying, flyingInterval);
+
+            Logger.info('Packet-Level Humanizer (Mimic) started.');
+        };
+
+        bot.mimic = { start, stop };
+
+        // Attach events
+        bot.on('login', () => setTimeout(() => { try { bot.mimic?.start(); } catch { } }, 200));
+        bot.on('spawn', () => { try { bot.mimic?.start(); } catch { } });
+        bot.on('kicked', () => { try { bot.mimic?.stop(); } catch { } });
+        bot.on('end', () => { try { bot.mimic?.stop(); } catch { } });
     }
 }
 
