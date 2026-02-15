@@ -2,14 +2,14 @@
   "bot": {
     "host": "spookytime.net",
     "port": 25565,
-    "username": "nickname",
+    "username": "",
+    "password": "",
     "version": "1.18.2"
   },
   "orders": {
     "checkInterval": 5000
   },
   "admins": [
-    "",
     ""
   ]
 }
