@@ -2,8 +2,7 @@ const mineflayer = require('mineflayer');
 const EventEmitter = require('events');
 const Logger = require('../utils/Logger');
 const config = require('../config/default.json');
-const MouseRecorder = require('../utils/MouseRecorder');
-const SpookyRotation = require('../utils/SpookyRotation');
+const config = require('../config/default.json');
 // Dynamic import for bot config (since it might be in config.json in root if not fully migrated, but I'll use the one I created or load from root if needed.
 // For now, I'll assume config/default.json has the structure, but wait, I didn't put the credentials there to avoid hardcoding secrets in potential git artifacts if this was a real repo.
 // I should load the root config.json for credentials.
@@ -33,8 +32,12 @@ class MinecraftService extends EventEmitter {
             port: rootConfig.bot.port,
             username: rootConfig.bot.username,
             version: rootConfig.bot.version,
-            password: rootConfig.bot.password, // Added password here just in case it's needed for auth immediately or via plugins
-            hideErrors: true
+            password: rootConfig.bot.password,
+            auth: 'offline',
+            brand: 'vanilla',
+            viewDistance: 'normal',
+            enableTextFiltering: true,
+            hideErrors: false // Changed to false to help troubleshooting
         });
 
         this._bindEvents();
@@ -90,9 +93,6 @@ class MinecraftService extends EventEmitter {
         this.bot.on('end', () => {
             this.ready = false;
             Logger.warn('Connection closed.');
-            // Mimic stops itself on 'end'
-            MouseRecorder.stop(this.bot);
-            MouseRecorder.stop(this.bot);
             // this._stopDumbVerification();
             // this._stopMicroJitter();
             this.verificationStrafeDone = false;
@@ -109,6 +109,7 @@ class MinecraftService extends EventEmitter {
             const text = msg.toString().trim();
             if (!text) return;
             Logger.log('CHAT', text);
+            Logger.chat(text); // Dedicated chat log file
             this._handleAuth(text);
             this.emit('chat', text, msg);
         });
@@ -135,8 +136,6 @@ class MinecraftService extends EventEmitter {
             }
 
             // Stop Mouse Playback
-            MouseRecorder.stop(this.bot);
-            MouseRecorder.stop(this.bot);
             // this._stopDumbVerification();
             // this._stopMicroJitter();
             this.verificationStrafeDone = false; // Reset for next time
@@ -258,12 +257,13 @@ class MinecraftService extends EventEmitter {
 
             const balanceHandler = (msg) => {
                 const text = msg.toString();
-                const moneyRegex = /(?:balance|баланс|деньги|средства|money|баксов):\s*\$?\s*([\d,.]+)/i;
+                // More robust regex for balance
+                const moneyRegex = /(?:balance|баланс|деньги|средства|money|баксов|На счету|Счет|Ваш баланс):\s*\$?\s*([\d,.]+)/i;
                 const match = text.match(moneyRegex);
 
                 if (match) {
                     let balance = parseFloat(match[1].replace(/,/g, ''));
-                    // balance = Math.floor(balance / 1000000) * 1000000; // Removed rounding as it might be confusing
+                    Logger.info(`Parsed balance: ${balance} from "${text}"`);
 
                     this._balanceCache = balance;
                     this._balanceLastUpdate = Date.now();

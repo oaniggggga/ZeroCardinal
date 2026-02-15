@@ -77,6 +77,10 @@ function bind(bot) {
         startVanillaMimicTimers()
     })
 
+    bot.on('message', (message) => {
+        console.log(`[chat] ${message.toString()}`)
+    })
+
     // Preserving original logging but maybe we should use the project's Logger? 
     // For "fully copy", I'll stick to console.log or map it to Logger if I can, but user asked to COPY.
     // I will use console.log as requested, or maybe redirect to the Logger in the service file if I want to be cleaner.

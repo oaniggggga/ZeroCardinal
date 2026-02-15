@@ -52,9 +52,11 @@ class SocketService extends EventEmitter {
     handleMessage(message) {
         if (message.type === 'signal') {
             if (message.event === 'order') {
+                Logger.info('Python Bridge signal: New Order');
                 this.emit('order');
-                DatabaseManager.logMessage(data.username, data.message, true, data.node_id);
-                this.emit('message', data);
+            } else if (message.event === 'message') {
+                Logger.info('Python Bridge signal: New Message');
+                this.emit('message');
             }
         }
     }
