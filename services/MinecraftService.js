@@ -226,29 +226,75 @@ class MinecraftService extends EventEmitter {
             breathTask();
         }
 
-        // 3. Occasional larger actions (Look around, jump)
+        // 3. Realistic Actions (No jumping, emphasizes arm/head)
         const actionTask = () => {
             if (!this.bot || !this.bot.entity) return;
             const rand = Math.random();
 
-            if (rand < 0.3) {
-                // Look at a random nearby point (simulates checking surroundings)
-                const yawChange = (Math.random() - 0.5) * 1.0; // wider look
-                const pitchChange = (Math.random() - 0.5) * 0.5;
+            // Dynamic intervals for unpredictability
+            let nextActionDelay = config.bot.humanizer.actionInterval * (0.5 + Math.random() * 1.5);
+
+            if (rand < 0.4) {
+                // 40% - Casual Look Around (Simulate checking environment)
+                // Smoothly look at a new target within 30-60 degrees yaw, 10-20 degrees pitch
+                const yawChange = (Math.random() - 0.5) * (Math.PI / 2);
+                const pitchChange = (Math.random() - 0.5) * (Math.PI / 4);
+
                 this.bot.look(this.bot.entity.yaw + yawChange, this.bot.entity.pitch + pitchChange, true).catch(() => { });
-            } else if (rand < 0.4) {
-                // Tiny jump
-                this.bot.setControlState('jump', true);
-                setTimeout(() => {
-                    this.bot.setControlState('jump', false);
-                    // Sometimes swing arm while jumping
-                    if (Math.random() < 0.5) try { this.bot.swingArm(); } catch (e) { }
-                }, 100 + Math.random() * 100);
+            }
+            else if (rand < 0.7) {
+                // 30% - Arm Swing (Punching air / clicking)
+                // Sometimes click once, sometimes spam 2-3 times (like hitting a block or player)
+                const swings = Math.floor(Math.random() * 3) + 1;
+                const swingInternal = () => {
+                    try { this.bot.swingArm(); } catch (e) { }
+                };
+
+                for (let i = 0; i < swings; i++) {
+                    setTimeout(swingInternal, i * (150 + Math.random() * 100)); // ~5-7 CPS speed simulation
+                }
+                nextActionDelay = 1000; // Reset quicker after swinging
+            }
+            else if (rand < 0.85) {
+                // 15% - "Bored" / Inventory check (Look down at feet/chest)
+                const currentYaw = this.bot.entity.yaw;
+                const lookDownPitch = -Math.PI / 6; // slightly down, not fully
+                this.bot.look(currentYaw, lookDownPitch, true).catch(() => { });
+            }
+            else {
+                // 15% - Head Shake / Nod (Communicating "No" or "Yes" or just fidgeting)
+                // Let's do a quick small shake
+                const startYaw = this.bot.entity.yaw;
+                const startPitch = this.bot.entity.pitch;
+
+                const shakeAmount = 0.2;
+                const isNod = Math.random() > 0.5;
+
+                let step = 0;
+                const shakeInterval = setInterval(() => {
+                    step++;
+                    if (step > 4) {
+                        clearInterval(shakeInterval);
+                        // Return roughly to start or stay? Stay is more human (distracted)
+                        return;
+                    }
+
+                    if (isNod) {
+                        // Pitch up/down
+                        const dir = step % 2 === 0 ? 1 : -1;
+                        this.bot.look(startYaw, startPitch + (shakeAmount * dir), true).catch(() => { });
+                    } else {
+                        // Yaw left/right
+                        const dir = step % 2 === 0 ? 1 : -1;
+                        this.bot.look(startYaw + (shakeAmount * dir), startPitch, true).catch(() => { });
+                    }
+                }, 80); // Fast shake
+
+                nextActionDelay = 2000;
             }
 
             // Schedule next action
-            const nextAction = config.bot.humanizer.actionInterval * (0.5 + Math.random());
-            this.actionInterval = setTimeout(actionTask, nextAction);
+            this.actionInterval = setTimeout(actionTask, nextActionDelay);
         };
         actionTask(); // Start action loop
     }
