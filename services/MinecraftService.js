@@ -174,7 +174,7 @@ class MinecraftService extends EventEmitter {
             // Virtual Target: Look down and slightly forward (to check landing)
             // Offset: x=0.5, y=-2.0, z=0.5 (Ground in front)
             const targetPos = this.bot.entity.position.offset(0.5, -3.0, 0.5);
-            const targetPos = this.bot.entity.position.offset(0.5, -3.0, 0.5);
+
 
             // Calculate Next Rotation using Spooky Logic
             const nextRot = SpookyRotation.getNextRotation(this.bot, targetPos);
