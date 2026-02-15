@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "C:\\Users\\mrmal\\Desktop\\projects\\java\\ZeroCardinal\\logs\\.68f0c6184605dfcda64ed8b0909afcb6244627de-audit.json",
+    "files": [
+        {
+            "date": 1771168553117,
+            "name": "C:\\Users\\mrmal\\Desktop\\projects\\java\\ZeroCardinal\\logs\\chat-2026-02-15.log",
+            "hash": "e917f7c9b8c73b1ff647616d3f17713854634b1c0eefeb92cafcba10630fd8fd"
+        }
+    ],
+    "hashType": "sha256"
+}

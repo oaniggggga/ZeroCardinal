@@ -1,0 +1,311 @@
+const mineflayer = require('mineflayer');
+const config = require('./config.json');
+const OrderHandler = require('./orderHandler');
+
+let bot;
+let orderHandler;
+
+function createBot() {
+  console.log('[ZeroCardinal] Подключение к серверу...');
+
+  bot = mineflayer.createBot({
+    host: config.bot.host,
+    port: config.bot.port,
+    username: config.bot.username,
+    version: config.bot.version,
+    hideErrors: true
+  });
+
+  if (!orderHandler) {
+    orderHandler = new OrderHandler(bot);
+  } else {
+    orderHandler.bot = bot;
+  }
+
+  // СОБЫТИЯ БОТА
+  bot.on('login', () => {
+    console.log(`[ZeroCardinal] Бот ${bot.username} залогинился в Minecraft`);
+    orderHandler.startProcessing();
+    startHumanizer();
+  });
+
+  bot.on('spawn', () => {
+    console.log('[ZeroCardinal] Бот заспавнился на сервере');
+
+    // Эмуляция осмотра окрестностей при заходе
+    setTimeout(async () => {
+      if (!bot.entity) return;
+      console.log('[ZeroCardinal] Эмуляция осмотра окрестностей...');
+
+      try {
+        for (let i = 0; i < 2; i++) {
+          const yaw = bot.entity.yaw + (Math.random() - 0.5) * 2;
+          const pitch = (Math.random() - 0.5) * 0.5;
+          await bot.look(yaw, pitch, true);
+          await new Promise(r => setTimeout(r, 800));
+        }
+
+        bot.setControlState('forward', true);
+        setTimeout(() => {
+          bot.setControlState('forward', false);
+          bot.swingArm();
+        }, 400);
+      } catch (e) { }
+    }, 1500);
+  });
+
+  bot.on('error', (err) => {
+    console.error('[ZeroCardinal] Ошибка:', err.message || err);
+    if (err.code === 'ECONNRESET') {
+      console.log('[ZeroCardinal] Соединение сброшено сервером. Переподключение...');
+    }
+  });
+
+  bot.on('kicked', (reason) => {
+    console.log('[ZeroCardinal] Бот кикнут:', reason);
+    try {
+      orderHandler.addRequest({
+        type: 'alert',
+        message: `⚠️ Бот кикнут с сервера!\nПричина: ${reason}`,
+        timestamp: Date.now()
+      });
+    } catch (e) { }
+  });
+
+  bot.on('end', () => {
+    console.log('[ZeroCardinal] Соединение закрыто. Переподключение через 20 секунд...');
+    stopHumanizer();
+
+    // Пытаемся корректно закрыть старый клиент
+    try {
+      if (bot && bot._client && !bot._client.ended) {
+        bot.end();
+      }
+    } catch (e) { }
+
+    setTimeout(() => {
+      console.log('[ZeroCardinal] Выполняю переподключение...');
+      createBot();
+    }, 20000);
+  });
+
+  // ГЛОБАЛЬНЫЙ ЛОГ СООБЩЕНИЙ И АВТО-АУТЕНТИФИКАЦИЯ
+  const handleMessage = (msg, type = 'CHAT') => {
+    const text = msg.toString().trim();
+    if (!text) return;
+
+    // Вывод в консоль
+    const ansi = typeof msg.toAnsi === 'function' ? msg.toAnsi() : text;
+    console.log(`[${type}] ${ansi}`);
+
+    // Анализ на необходимость логина/регистрации
+    const lowerText = text.toLowerCase();
+
+    // Ищем ключевые слова: /login, /l, /reg, /register, "авторизуйтесь", "пароль"
+    const isLoginPrompt = lowerText.includes('/login') ||
+      lowerText.includes('/l ') ||
+      (lowerText.includes('авторизуйтесь') && (lowerText.includes('пароль') || lowerText.includes('логин')));
+
+    const isRegPrompt = lowerText.includes('/register') ||
+      lowerText.includes('/reg ') ||
+      lowerText.includes('зарегистрируйтесь');
+
+    if (isLoginPrompt) {
+      console.log(`[ZeroCardinal] Обнаружен запрос логина в [${type}]. Отправляю пароль...`);
+      bot.chat(`/login ${config.bot.password}`);
+    } else if (isRegPrompt) {
+      console.log(`[ZeroCardinal] Обнаружен запрос регистрации в [${type}]. Регистрируюсь...`);
+      bot.chat(`/register ${config.bot.password} ${config.bot.password}`);
+    }
+
+    const now = Date.now();
+    if ((text.includes('Успешная авторизация') || text.includes('Приятной игры')) && (!bot._lastMoveTime || now - bot._lastMoveTime > 10000)) {
+      console.log('[ZeroCardinal] Авторизация пройдена успешно. Перехожу на Анархию 401...');
+      bot._lastMoveTime = now;
+      setTimeout(() => {
+        if (bot?._client && !bot._client.ended) bot.chat('/an401');
+      }, 2000);
+    }
+  };
+
+  // Слушаем обычный чат
+  bot.on('message', (msg) => handleMessage(msg, 'CHAT'));
+
+  // Слушаем Action Bar (часто используется для важных уведомлений)
+  bot.on('actionBar', (msg) => handleMessage(msg, 'ACTIONBAR'));
+
+  // Слушаем титры (редко, но бывает)
+  bot._client.on('title', (packet) => {
+    if (packet.text) {
+      try {
+        const titleText = JSON.parse(packet.text);
+        console.log(`[TITLE] ${titleText.text || packet.text}`);
+        // Пробуем тоже прогнать через обработчик
+        handleMessage(titleText.text || packet.text, 'TITLE');
+      } catch (e) {
+        console.log(`[TITLE] ${packet.text}`);
+      }
+    }
+  });
+
+  // Сырой перехват чат-пакетов (на случай если mineflayer что-то пропускает)
+  bot._client.on('packet', (data, metadata) => {
+    if (metadata.name === 'system_chat' || metadata.name === 'chat') {
+      // Если мы до сих пор не увидели ни одного [CHAT] в консоли, 
+      // значит mineflayer не вешает ивент на эти пакеты в этой версии.
+      // Но обычно вешает. Оставим для лога если будет совсем туго.
+    }
+  });
+
+  bot.on('chat', (username, message) => {
+    if (username === bot.username) return;
+
+    // Динамическая загрузка админов
+    let admins = [];
+    try {
+      const configData = JSON.parse(require('fs').readFileSync('./config.json', 'utf8'));
+      admins = (configData.admins || []).map(a => String(a).toLowerCase());
+    } catch (e) {
+      admins = (config.admins || []).map(a => String(a).toLowerCase());
+    }
+    const isAdmin = admins.includes(String(username).toLowerCase());
+
+    if (message.startsWith('!status') || message.startsWith('!статус')) {
+      const stats = orderHandler.getStats();
+      bot.chat(`📊 Статистика: ✅${stats.completed} | ❌${stats.failed} | ⏳${stats.queued}`);
+    }
+    else if (message.startsWith('!balance') || message.startsWith('!баланс')) {
+      orderHandler.getBotBalance().then(balance => {
+        bot.chat(`💰 Баланс: ${balance.toLocaleString()} валюты`);
+      }).catch(() => bot.chat('❌ Ошибка при проверке баланса'));
+    }
+    else if (message.startsWith('!info') || message.startsWith('!инфо')) {
+      bot.chat(`🤖 ZeroCardinal v1.2.0 | !status | !queue`);
+    }
+    else if (message.startsWith('!queue') || message.startsWith('!очередь')) {
+      const stats = orderHandler.getStats();
+      bot.chat(`📋 Очередь: ${stats.queued} | Обработка: ${stats.current > 0 ? '1' : '0'}`);
+    }
+    else if (message.startsWith('!reconnect') && isAdmin) {
+      bot.chat('🔄 Переподключаюсь...');
+      bot.end();
+    }
+    else if (message.startsWith('!stop') && isAdmin) {
+      bot.chat('🛑 Выключаюсь...');
+      process.exit(0);
+    }
+    else if (message.startsWith('!order') && isAdmin) {
+      const parts = message.split(' ');
+      let targetId = parts.length > 2 ? parts[1] : null;
+      let targetStatus = parts.length > 2 ? parts[2] : parts[1];
+
+      if (!targetId) targetId = orderHandler.orderQueue.getCurrent()?.id;
+
+      if (targetId && targetStatus) {
+        orderHandler.manualChangeStatus(targetId, targetStatus).then(res => {
+          if (res.success) bot.chat(`✅ Статус #${targetId} -> ${targetStatus}`);
+          else bot.chat(`❌ Ошибка: ${res.error}`);
+        });
+      } else {
+        bot.chat('ℹ️ Использование: !order [id] (статус)');
+      }
+    }
+    else if (message.startsWith('!change') && isAdmin) {
+      const parts = message.split(' ');
+      let targetId = parts.length > 2 ? parts[1] : null;
+      let targetNick = parts.length > 2 ? parts[2] : parts[1];
+
+      if (!targetId) targetId = orderHandler.orderQueue.getCurrent()?.id;
+
+      if (targetId && targetNick) {
+        orderHandler.manualChangeNick(targetId, targetNick).then(res => {
+          if (res.success) bot.chat(`✅ Ник #${targetId} -> ${res.nickname}`);
+          else bot.chat(`❌ Ошибка: ${res.error}`);
+        });
+      } else {
+        bot.chat('ℹ️ Использование: !change [id] (ник)');
+      }
+    }
+    else {
+      orderHandler.handleUserMessage(null, username, message);
+    }
+  });
+}
+
+// Продвинутая система обхода анти-ботов (Humanizer)
+let jitterInterval;
+let actionInterval;
+let flyingInterval;
+let mimicTimeouts = [];
+
+function startHumanizer() {
+  stopHumanizer();
+
+  // 1. Постоянный микро-джиттер головы
+  jitterInterval = setInterval(() => {
+    if (!bot || !bot.entity) return;
+    const yawJitter = (Math.random() - 0.5) * 0.03;
+    const pitchJitter = (Math.random() - 0.5) * 0.03;
+    bot.look(bot.entity.yaw + yawJitter, bot.entity.pitch + pitchJitter, true);
+  }, 200);
+
+  // 2. Vanilla Mimic
+  const sendArm = (hand) => {
+    if (!bot?._client || bot._client.ended) return;
+    try { bot._client.write('arm_animation', { hand }); } catch (e) { }
+  };
+
+  const sendFlying = () => {
+    if (!bot?._client || bot._client.ended) return;
+    const onGround = !!bot.entity?.onGround;
+    try { bot._client.write('flying', { onGround }); } catch (e) { }
+  };
+
+  const scheduleMimic = (fn, delay) => {
+    const t = setTimeout(() => {
+      mimicTimeouts = mimicTimeouts.filter(id => id !== t);
+      fn();
+    }, delay);
+    mimicTimeouts.push(t);
+  };
+
+  const jitter = Math.floor(Math.random() * 50);
+  scheduleMimic(() => sendArm(0), 200 + jitter);
+  scheduleMimic(() => sendArm(1), 350 + jitter);
+  scheduleMimic(sendFlying, 450 + jitter);
+  scheduleMimic(sendFlying, 600 + jitter);
+
+  flyingInterval = setInterval(sendFlying, 800 + Math.floor(Math.random() * 100));
+
+  // 3. Периодические действия
+  actionInterval = setInterval(() => {
+    if (!bot || !bot.entity) return;
+
+    const rand = Math.random();
+    if (rand < 0.3) {
+      bot.look(bot.entity.yaw + (Math.random() - 0.5) * 1.5, bot.entity.pitch, true);
+    } else if (rand < 0.5) {
+      bot.setControlState('jump', true);
+      setTimeout(() => {
+        bot.setControlState('jump', false);
+        bot.swingArm();
+      }, 150);
+    } else if (rand < 0.7) {
+      bot.setControlState('sneak', true);
+      setTimeout(() => bot.setControlState('sneak', false), 500);
+    } else if (rand < 0.85) {
+      sendArm(Math.random() > 0.5 ? 0 : 1);
+    }
+  }, 7000);
+}
+
+function stopHumanizer() {
+  if (jitterInterval) clearInterval(jitterInterval);
+  if (actionInterval) clearInterval(actionInterval);
+  if (flyingInterval) clearInterval(flyingInterval);
+  mimicTimeouts.forEach(clearTimeout);
+  mimicTimeouts = [];
+}
+
+// Запуск
+createBot();

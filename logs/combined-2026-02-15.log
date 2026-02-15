@@ -1,0 +1,41 @@
+[2026-02-15 17:15:53] [INFO] Starting ZeroCardinal...
+[2026-02-15 17:15:53] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-15 17:15:53] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-15 17:15:53] [INFO] Database tables verified.
+[2026-02-15 17:15:53] [INFO] Loaded 1 dialogs and 0 pending orders
+[2026-02-15 17:15:53] [INFO] Connecting to server...
+[2026-02-15 17:15:54] [INFO] Socket Server listening on port 19132
+[2026-02-15 17:15:54] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-15 17:15:54] [INFO] [CHAT] [✾] Войдите в игру ⇝ /login <Пароль>
+[2026-02-15 17:15:54] [INFO] Auth required. Sending password...
+[2026-02-15 17:15:54] [INFO] Bot ZeroCardinal logged in.
+[2026-02-15 17:15:55] [INFO] Bot spawned.
+[2026-02-15 17:15:55] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-15 17:15:55] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-15 17:15:56] [INFO] Bot ZeroCardinal logged in.
+[2026-02-15 17:15:56] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-15 17:15:56] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-15 17:15:56] [INFO] Bot spawned.
+[2026-02-15 17:15:58] [INFO] Bot ZeroCardinal logged in.
+[2026-02-15 17:15:58] [INFO] [CHAT] Вы уже подключены на этот сервер!
+[2026-02-15 17:15:58] [INFO] Bot spawned.
+[2026-02-15 17:15:58] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-15 17:16:02] [INFO] [CHAT] [$] Ваш баланс: $948,125
+[2026-02-15 17:16:15] [INFO] [CHAT] [$] Ваш баланс: $948,125
+[2026-02-15 17:16:27] [INFO] [CHAT] [$] Ваш баланс: $948,125
+[2026-02-15 17:16:39] [INFO] [CHAT] [$] Ваш баланс: $948,125
+[2026-02-15 17:16:45] [INFO] Stopping...

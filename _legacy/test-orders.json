@@ -1,0 +1,10 @@
+[
+  {
+    "id": "TEST001",
+    "username": "TestPlayer",
+    "amount": 10,
+    "status": "pending",
+    "timestamp": 1234567890,
+    "description": "Тестовый заказ валюты"
+  }
+]

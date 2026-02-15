@@ -1,0 +1,84 @@
+{
+    "bot": {
+        "reconnectInterval": 20000,
+        "serverJoinCommand": "/an401",
+        "humanizer": {
+            "enabled": true,
+            "jitterInterval": 200,
+            "actionInterval": 7000
+        },
+        "socketPort": 19132
+    },
+    "orders": {
+        "pollInterval": 1000,
+        "checkEpsilon": 5000,
+        "funpayCheckInterval": 3000,
+        "dialogTimeout": 300000,
+        "orderTimeout": 120000,
+        "queueNotifyThreshold": 30000,
+        "guestWelcomeTimeout": 86400000
+    },
+    "paths": {
+        "sharedDir": "FpCardinal/shared",
+        "ordersFile": "orders.json",
+        "requestsFile": "requests.json",
+        "dialogsFile": "dialogs.json",
+        "customersFile": "customers.json",
+        "messagesFile": "funpay_messages.json"
+    },
+    "messages": {
+        "greetings": [
+            "ку",
+            "привет",
+            "пр",
+            "прив",
+            "hi",
+            "hello",
+            "здравствуйте",
+            "тут",
+            "здесь",
+            "хей"
+        ],
+        "stopWords": [
+            "подарок",
+            "gift",
+            "не надо",
+            "don't need",
+            "dont need",
+            "спасибо",
+            "thx",
+            "thanks",
+            "спс",
+            "отмена",
+            "cancel",
+            "верни деньги"
+        ],
+        "dialog": {
+            "welcome": "👋 Привет! Ваш заказ #${id} получен.\n\n📍 Зайдите на сервер и перейдите на \"Анархию 401\".\n📝 Напишите ваш ник в Minecraft (только ник).",
+            "welcomeQueue": "🔔 Ваша очередь подошла! Спасибо за ожидание.\n\n👋 Привет! Ваш заказ #${id} получен.\n\n📍 Зайдите на сервер и перейдите на \"Анархию 401\".\n📝 Напишите ваш ник в Minecraft (только ник).",
+            "confirm": "✅ Ваш заказ #${id} получен.\n\nВыдать ${amount} валюты на ник \"${nickname}\"?\n\nНапишите \"да\" для подтверждения или \"!change\" для смены ника.",
+            "confirmNickname": "✅ Ник принят: ${nickname}\n\nВыдать ${amount} валюты?\nДа / !change",
+            "timeout": "⏰ Время ожидания истекло.\n\nВаш заказ #${id} перемещен в конец очереди.",
+            "queuePosition": "⏳ Бот занят обработкой другого заказа.\n\nВаш заказ #${id} помещен в очередь.\n📊 Ваша позиция: #${position}",
+            "success": "✅ Успешно переведено ${amount} валюты!",
+            "guestWelcome": "👋 Привет! Я — автоматический бот.\n💰 Оплатите лот, и я помогу с выдачей.\n📊 Команды: !status, !queue",
+            "stats": "📊 Статистика:\n✅ ${completed} | ⏳ ${queued}",
+            "unknownNickname": "⚠️ Не могу распознать ник. Ожидайте администратора.",
+            "adminAlert": "⚠️ Отказ от выдачи? Order #${id}: ${text}",
+            "retryNickname": "${error}\nПопробуйте еще раз.",
+            "askYesNo": "⚠️ Пожалуйста, ответьте 'да' или 'нет'.",
+            "cancel": "Хорошо. Напишите ник еще раз.",
+            "changeNickname": "🔄 Хорошо, давайте сменим ник. Напишите новый ник:",
+            "help": "📜 Доступные команды:\n!status - Статус бота\n!queue - Ваша позиция в очереди\n!change - Сменить ник (если ошиблись)\n!help - Показать это сообщение",
+            "queueEmpty": "📭 Очередь пуста. Вы можете сделать заказ прямо сейчас!",
+            "queueStatus": "📊 Ваша позиция в очереди: #${position}. Перед вами ${ahead} чел.",
+            "notInQueue": "❌ Вы не в очереди. Оплатите товар, чтобы попасть в очередь.",
+            "skipSuccess": "⏭️ Текущий заказ #${id} был пропущен администратором.",
+            "adminOnly": "⛔ У вас нет прав для выполнения этой команды."
+        },
+        "game": {
+            "stats": "📊 Статистика: ✅${completed} | ❌${failed} | ⏳${queued}",
+            "balance": "💰 Баланс: ${balance} валюты"
+        }
+    }
+}

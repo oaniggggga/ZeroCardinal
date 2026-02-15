@@ -1,0 +1,11 @@
+[
+    {
+        "id": "TEST-12345",
+        "username": "mullaxul1",
+        "buyer_id": 123456,
+        "amount": 20.0,
+        "status": "pending",
+        "timestamp": 1706466800,
+        "description": "Тестовый заказ 20кк"
+    }
+]

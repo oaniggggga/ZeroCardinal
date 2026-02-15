@@ -1,0 +1,175 @@
+[2026-02-11 17:33:29] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:30] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:31] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:32] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:33] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:34] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:36] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:37] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:38] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:39] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:40] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:41] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:42] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:43] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:44] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processTimers (node:internal/timers:538:9)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:45] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:46] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:47] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:48] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:49] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:50] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:51] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processTimers (node:internal/timers:538:9)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:52] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:53] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:54] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processTimers (node:internal/timers:538:9)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:55] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processTimers (node:internal/timers:538:9)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:56] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:57] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:58] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:33:59] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:34:00] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:34:01] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processTimers (node:internal/timers:538:9)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:34:02] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processTimers (node:internal/timers:538:9)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:34:03] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:34:04] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:34:05] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:34:06] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:34:07] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 17:34:08] [ERROR] Error in poll loop: TypeError: DatabaseManager.getActiveOrderForUser is not a function
+    at OrderManager.handleFunPayMessage (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:194:53)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at process.processTimers (node:internal/timers:538:9)
+    at async OrderManager.checkMessages (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:174:13)
+    at async OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:52:13)
+[2026-02-11 21:25:20] [ERROR] Bot error: client timed out after 30000 milliseconds
+[2026-02-11 21:25:20] [ERROR] Bot error: read ECONNRESET
+[2026-02-11 21:28:48] [ERROR] Bot error: read ECONNRESET
+[2026-02-11 21:41:22] [ERROR] Bot error: read ECONNRESET
+[2026-02-11 21:44:15] [ERROR] Socket error: read ECONNRESET

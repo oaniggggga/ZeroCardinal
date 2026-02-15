@@ -1,0 +1,1373 @@
+const fs = require('fs').promises;
+const path = require('path');
+const config = require('./config.json');
+const { Order, OrderQueue } = require('./Order');
+const MinecraftValidator = require('./MinecraftValidator');
+
+class OrderHandler {
+  constructor(bot) {
+    this.bot = bot;
+    this.orderQueue = new OrderQueue();
+    this.dialogStates = new Map(); // Хранит состояния диалогов с покупателями
+    this.customers = new Set(); // Хранит список уникальных покупателей
+    this.processedCount = 0;
+    this.isProcessing = false;
+
+    // Пути к файлам (абсолютные)
+    this.SHARED_DIR = path.join(__dirname, 'FpCardinal', 'shared');
+    this.ORDERS_FILE = path.join(this.SHARED_DIR, 'orders.json');
+    this.REQUESTS_FILE = path.join(this.SHARED_DIR, 'requests.json');
+    this.DIALOGS_FILE = path.join(this.SHARED_DIR, 'dialogs.json');
+    this.CUSTOMERS_FILE = path.join(this.SHARED_DIR, 'customers.json');
+    this.FUNPAY_MESSAGES_FILE = path.join(this.SHARED_DIR, 'funpay_messages.json');
+    this.guestWelcomeSent = new Set(); // Чтобы не спамить приветствием
+    this.processingOrders = new Set(); // Чтобы не запускать выдачу одного заказа дважды
+    this.servedUsers = new Set(); // Список пользователей, только что получивших заказ
+    this.requestQueue = Promise.resolve(); // Очередь для атомарной записи запросов
+  }
+
+  async startProcessing() {
+    if (this.isProcessing) {
+      console.log('[OrderHandler] Обработка уже запущена, пропускаю повторный старт');
+      return;
+    }
+    console.log('[OrderHandler] Запуск обработки заказов');
+    this.isProcessing = true;
+    await this.loadStates();
+    this.checkOrders();
+    this.checkFunPayMessages();
+  }
+
+  stopProcessing() {
+    this.isProcessing = false;
+  }
+
+  /**
+   * Загружает сохраненные состояния и список клиентов
+   */
+  async loadStates() {
+    try {
+      // Загрузка диалогов
+      if (await this.fileExists(this.DIALOGS_FILE)) {
+        const data = await fs.readFile(this.DIALOGS_FILE, 'utf8');
+        const saved = JSON.parse(data);
+
+        for (const [id, state] of Object.entries(saved)) {
+          const order = new Order(
+            state.order.id,
+            state.order.username,
+            state.order.amount,
+            state.order.description
+          );
+          Object.assign(order, state.order);
+          this.dialogStates.set(id, { step: state.step, order });
+        }
+      }
+
+      // Загрузка истории клиентов
+      if (await this.fileExists(this.CUSTOMERS_FILE)) {
+        const data = await fs.readFile(this.CUSTOMERS_FILE, 'utf8');
+        this.customers = new Set(JSON.parse(data));
+      }
+
+      console.log(`[OrderHandler] Загружено ${this.dialogStates.size} диалогов и ${this.customers.size} клиентов`);
+
+      // Очистка "мертвых" диалогов (которых нет в orders.json или они завершены)
+      await this.cleanupStaleDialogs();
+    } catch (error) {
+      console.error('[OrderHandler] Ошибка при загрузке состояний:', error.message);
+    }
+  }
+
+  async cleanupStaleDialogs() {
+    try {
+      const orders = await this.fetchOrders();
+      const activeIds = new Set(orders.map(o => o.id));
+      let changed = false;
+
+      for (const id of this.dialogStates.keys()) {
+        if (!activeIds.has(id)) {
+          console.log(`[OrderHandler] Удален устаревший диалог #${id}`);
+          this.dialogStates.delete(id);
+          changed = true;
+        }
+      }
+      if (changed) await this.saveStates();
+    } catch (e) {
+      console.error('[OrderHandler] Ошибка очистки диалогов:', e.message);
+    }
+  }
+
+  /**
+   * Сохраняет состояния и список клиентов
+   */
+  async saveStates() {
+    const tempDialogs = `${this.DIALOGS_FILE}.tmp.${Date.now()}`;
+    const tempCustomers = `${this.CUSTOMERS_FILE}.tmp.${Date.now()}`;
+    try {
+      // Сохранение диалогов
+      const statesToSave = {};
+      for (const [id, state] of this.dialogStates.entries()) {
+        const orderCopy = { ...state.order };
+        delete orderCopy.timeoutId;
+        statesToSave[id] = { step: state.step, order: orderCopy };
+      }
+      await fs.writeFile(tempDialogs, JSON.stringify(statesToSave, null, 2));
+      await fs.rename(tempDialogs, this.DIALOGS_FILE);
+
+      // Сохранение клиентов
+      await fs.writeFile(tempCustomers, JSON.stringify([...this.customers], null, 2));
+      await fs.rename(tempCustomers, this.CUSTOMERS_FILE);
+    } catch (error) {
+      console.error('[OrderHandler] Ошибка при сохранении состояний:', error.message);
+      await Promise.all([
+        this.fileExists(tempDialogs).then(exists => exists && fs.unlink(tempDialogs)),
+        this.fileExists(tempCustomers).then(exists => exists && fs.unlink(tempCustomers))
+      ]).catch(() => { });
+    }
+  }
+
+  async fileExists(filePath) {
+    try {
+      await fs.access(filePath);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  async checkOrders() {
+    if (!this.isProcessing) return;
+    if (this.isCheckingOrders) return;
+
+    this.isCheckingOrders = true; // Защита от наложения циклов
+    try {
+      const orders = await this.fetchOrders();
+
+      for (const orderData of orders) {
+        // Проверяем, не в очереди ли уже этот заказ
+        const inQueue = this.orderQueue.findOrder(orderData.id);
+        const inDialog = this.dialogStates.has(orderData.id);
+
+        if (inQueue || inDialog) {
+          continue;
+        }
+
+        // Создаем новый заказ
+        const order = new Order(
+          orderData.id,
+          orderData.username,
+          orderData.amount,
+          orderData.description
+        );
+
+        // Восстанавливаем данные, если они уже были в JSON
+        if (orderData.nickname) order.nickname = orderData.nickname;
+        if (orderData.status) order.status = orderData.status;
+
+        // Добавляем в очередь
+        const position = this.orderQueue.add(order);
+
+        if (position === 0) {
+          await this.startOrderDialog(order);
+        } else {
+          await this.notifyQueuePosition(order, position);
+        }
+      }
+    } catch (error) {
+      console.error('[OrderHandler] Ошибка при проверке заказов:', error.message);
+    } finally {
+      this.isCheckingOrders = false;
+      setTimeout(() => this.checkOrders(), config.orders.checkInterval || 5000);
+    }
+  }
+
+  async fetchOrders() {
+    try {
+      if (!(await this.fileExists(this.ORDERS_FILE))) {
+        return [];
+      }
+
+      const data = await fs.readFile(this.ORDERS_FILE, 'utf8');
+      const orders = JSON.parse(data);
+
+      return orders.filter(order => ['pending', 'contacted', 'confirming', 'delivering'].includes(order.status));
+    } catch (error) {
+      console.error('[OrderHandler] Ошибка чтения файла заказов:', error.message);
+      return [];
+    }
+  }
+
+  async calculateTotalDelivered() {
+    try {
+      if (!(await this.fileExists(this.ORDERS_FILE))) return 0;
+
+      const data = await fs.readFile(this.ORDERS_FILE, 'utf8');
+      const orders = JSON.parse(data);
+
+      return orders
+        .filter(o => o.status === 'completed' || o.status === 'refunded') // Учитываем refunded как завершенные взаимодействия, но сумму берем только у completed
+        .filter(o => o.status === 'completed') // Фактически нас интересует только выданное, refunded не выдавали денег
+        .reduce((sum, o) => sum + (parseFloat(o.amount) || 0), 0);
+    } catch (error) {
+      console.error('[OrderHandler] Ошибка подсчета общей суммы:', error.message);
+      return 0;
+    }
+  }
+
+  /**
+   * Отправляет сообщение пользователю через FunPay (через bridge)
+   */
+  async sendFunPayMessage(username, message, orderId = null) {
+    try {
+      // Никогда не отправляем сообщение самому себе (это вызывает ошибку в мосте)
+      if (config.username && String(username).toLowerCase() === String(config.username).toLowerCase()) {
+        console.log(`[OrderHandler] Пропущена отправка сообщения самому себе (${username})`);
+        return;
+      }
+
+      const request = {
+        type: 'message',
+        username: username,
+        message: message,
+        order_id: orderId,
+        timestamp: Date.now()
+      };
+
+      await this.addRequest(request);
+      console.log(`[OrderHandler] Запрос на отправку сообщения для ${username} добавлен`);
+    } catch (error) {
+      console.error('[OrderHandler] Ошибка при отправке сообщения в FunPay:', error.message);
+    }
+  }
+
+  /**
+   * Добавляет запрос в файл запросов для Python бота
+   * Использует очередь обещаний для предотвращения состояний гонки
+   */
+  async addRequest(request) {
+    this.requestQueue = this.requestQueue.then(async () => {
+      const tempFile = `${this.REQUESTS_FILE}.tmp.${Date.now()}`;
+      try {
+        let requests = [];
+        if (await this.fileExists(this.REQUESTS_FILE)) {
+          try {
+            const data = await fs.readFile(this.REQUESTS_FILE, 'utf8');
+            const trimmed = data.trim();
+            if (trimmed) {
+              requests = JSON.parse(trimmed);
+            }
+          } catch (parseError) {
+            console.error('[OrderHandler] Файл запросов был поврежден, сбрасываю:', parseError.message);
+            requests = [];
+          }
+        }
+
+        if (!Array.isArray(requests)) requests = [];
+        requests.push(request);
+
+        const jsonContent = JSON.stringify(requests, null, 2);
+
+        // Атомарная запись
+        await fs.writeFile(tempFile, jsonContent, 'utf8');
+        await fs.rename(tempFile, this.REQUESTS_FILE);
+      } catch (error) {
+        console.error('[OrderHandler] Фатальная ошибка при добавлении запроса:', error.message);
+        if (await this.fileExists(tempFile)) await fs.unlink(tempFile).catch(() => { });
+      }
+    });
+
+    return this.requestQueue;
+  }
+
+  /**
+   * Начинает диалог с покупателем для подтверждения заказа
+   */
+  async startOrderDialog(order) {
+    console.log(`[OrderHandler] Начат диалог для заказа #${order.id}. Текущий статус: ${order.status}`);
+
+    // Если ник уже известен (был в JSON или введён ранее)
+    if (order.nickname) {
+      this.dialogStates.set(order.id, { step: 'waiting_confirmation', order });
+
+      // Если мы еще не спрашивали подтверждение
+      if (order.status !== 'confirming') {
+        order.status = 'confirming';
+        await this.updateOrderStatus(order.id, 'confirming', { nickname: order.nickname });
+
+        const confirmMsg = `✅ Ваш заказ #${order.id} получен.\n\nВыдать ${MinecraftValidator.formatAmount(order.amount * 1000000)} валюты на ник "${order.nickname}"?\n\nНапишите "да" для подтверждения или "нет" для смены ника.`;
+        await this.sendFunPayMessage(order.username, confirmMsg, order.id);
+      }
+    }
+    // Если мы еще не связывались с клиентом (или статус технический 'processing')
+    else if (order.status === 'pending' || order.status === 'processing' || !order.status) {
+      order.status = 'contacted';
+      await this.updateOrderStatus(order.id, 'contacted');
+
+      let welcomeMsg = `👋 Привет! Ваш заказ #${order.id} получен.\n\n📍 Зайдите на сервер и перейдите на "Анархию 401".\n📝 Напишите ваш ник в Minecraft (только ник).`;
+
+      // Если пользователь ждал в очереди более 30 секунд, уведомляем его
+      if (Date.now() - order.createdAt > 30000) {
+        welcomeMsg = `🔔 Ваша очередь подошла! Спасибо за ожидание.\n\n${welcomeMsg}`;
+      }
+
+      await this.sendFunPayMessage(order.username, welcomeMsg, order.id);
+
+      this.dialogStates.set(order.id, { step: 'waiting_nickname', order });
+    }
+    // Если уже связались, но ник еще не введён (восстановление после рестарта)
+    else if (order.status === 'contacted') {
+      this.dialogStates.set(order.id, { step: 'waiting_nickname', order });
+    }
+
+    await this.saveStates();
+
+    // Таймаут 5 минут
+    if (order.timeoutId) clearTimeout(order.timeoutId);
+    order.timeoutId = setTimeout(() => this.handleOrderTimeout(order), 300000);
+  }
+
+  /**
+   * Обновляет статус и данные заказа в orders.json
+   */
+  async updateOrderStatus(orderId, status, extraData = {}) {
+    const tempFile = `${this.ORDERS_FILE}.tmp.${Date.now()}`;
+    try {
+      if (!(await this.fileExists(this.ORDERS_FILE))) return;
+      const data = await fs.readFile(this.ORDERS_FILE, 'utf8');
+      const orders = JSON.parse(data);
+      const order = orders.find(o => o.id === orderId);
+      if (order) {
+        if (status) order.status = status;
+        Object.assign(order, extraData);
+        await fs.writeFile(tempFile, JSON.stringify(orders, null, 2), 'utf8');
+        await fs.rename(tempFile, this.ORDERS_FILE);
+        console.log(`[OrderHandler] Данные заказа #${orderId} обновлены. Статус: ${order.status}`);
+      }
+    } catch (e) {
+      console.error(`[OrderHandler] Ошибка обновления статуса #${orderId}:`, e.message);
+      if (await this.fileExists(tempFile)) await fs.unlink(tempFile).catch(() => { });
+    }
+  }
+
+  /**
+   * Периодически проверяет входящие сообщения из FunPay
+   */
+  async checkFunPayMessages() {
+    if (!this.isProcessing) return;
+
+    try {
+      if (await this.fileExists(this.FUNPAY_MESSAGES_FILE)) {
+        const data = await fs.readFile(this.FUNPAY_MESSAGES_FILE, 'utf8');
+        const messages = JSON.parse(data);
+
+        if (messages.length > 0) {
+          console.log(`[OrderHandler] Получено ${messages.length} сообщений из FunPay`);
+
+          for (const msg of messages) {
+            const admins = (config.admins || []).map(a => a.toLowerCase());
+            const isAdmin = admins.includes(String(msg.username).toLowerCase());
+
+            // Пытаемся найти, к какому покупателю относится это сообщение
+            let targetOrderId = null;
+            let buyerUsername = null;
+
+            // 1. Если пишет сам покупатель (msg.username)
+            // 2. Если пишет админ, мы ищем диалог по полю chat_with (если мост его передает) 
+            //    или пытаемся найти активный диалог этого админа
+            const searchName = (isAdmin && (msg.chat_with || msg.counterpart)) ? (msg.chat_with || msg.counterpart) : msg.username;
+
+            for (const [orderId, state] of this.dialogStates.entries()) {
+              if (state.order.username === searchName) {
+                targetOrderId = orderId;
+                buyerUsername = state.order.username;
+                break;
+              }
+            }
+
+            if (targetOrderId) {
+              const isCommand = await this.processFunPayCommand(msg.username, msg.text, targetOrderId);
+              if (!isCommand && !isAdmin) { // Админские "не команды" не вводим как данные в диалог
+                await this.handleUserMessage(targetOrderId, msg.username, msg.text);
+              }
+            } else {
+              // Если это не активный заказ, проверяем на команду
+              const isCommand = await this.processFunPayCommand(msg.username, msg.text);
+
+              if (!isCommand) {
+                // Проверяем, не завершал ли пользователь заказ недавно (чтобы не спамить "Привет, я бот" в ответ на "Спасибо")
+                const hasRecentOrder = await this.hasRecentCompletedOrder(msg.username);
+
+                if (hasRecentOrder) {
+                  console.log(`[OrderHandler] Пропущено приветствие для недавнего клиента ${msg.username}`);
+                } else {
+                  console.log(`[OrderHandler] Сообщение от гостя ${msg.username}: ${msg.text}`);
+                  await this.handleGuestMessage(msg.username);
+                }
+              }
+            }
+          }
+
+          // Очищаем файл после обработки
+          await fs.writeFile(this.FUNPAY_MESSAGES_FILE, '[]', 'utf8');
+        }
+      }
+    } catch (error) {
+      console.error('[OrderHandler] Ошибка при проверке сообщений FunPay:', error.message);
+    }
+
+    setTimeout(() => this.checkFunPayMessages(), 3000); // Опрос каждые 3 сек
+  }
+
+  /**
+   * Приветствует потенциального покупателя
+   */
+  async handleGuestMessage(username) {
+    if (this.guestWelcomeSent.has(username) || this.servedUsers.has(username)) return;
+
+    const guestMessage = `👋 Привет! Я — автоматический бот по выдаче валюты. 
+✅ Я на связи и готов к работе!
+
+💰 Чтобы получить валюту, просто оплатите нужный лот. Как только заказ появится в системе, я сразу напишу вам здесь и помогу с выдачей.
+
+📊 Доступные команды:
+• !status — статистика бота
+• !balance — общий баланс
+• !queue — позиция в очереди
+• !support — вызвать техподдержку
+
+Жду вашего заказа! 😊`;
+
+    await this.sendFunPayMessage(username, guestMessage);
+    this.guestWelcomeSent.add(username);
+
+    // Сбрасываем флаг через 24 часа (чтобы не спамить вообще)
+    setTimeout(() => this.guestWelcomeSent.delete(username), 86400000);
+  }
+
+  /**
+   * Обрабатывает команды из FunPay
+   */
+  async processFunPayCommand(username, text, orderId = null) {
+    const cmd = text.trim().toLowerCase();
+
+    // Динамическая загрузка админов
+    let admins = [];
+    try {
+      const configPath = path.join(__dirname, 'config.json');
+      const configData = JSON.parse(require('fs').readFileSync(configPath, 'utf8'));
+      admins = (configData.admins || []).map(a => String(a).toLowerCase());
+    } catch (e) {
+      admins = (config.admins || []).map(a => String(a).toLowerCase());
+    }
+    const senderIsAdmin = admins.includes(String(username).toLowerCase());
+
+    // Определяем, ЧЕЙ это статус/очередь/баланс и КУДА слать ответ
+    let contextOrder = orderId ? this.dialogStates.get(orderId)?.order : null;
+    let replyTo = username;
+
+    // Если админ пишет самому себе или мосту, пробуем найти заказ
+    if (senderIsAdmin && !contextOrder) {
+      // Ищем любой активный заказ, если админ пишет в "общий" чат или себе
+      const current = this.orderQueue.getCurrent();
+      if (current) contextOrder = current;
+    }
+
+    // Если это админ в контексте заказа - всегда шлем покупателю
+    if (senderIsAdmin && contextOrder) {
+      replyTo = contextOrder.username;
+    }
+
+    // Но если покупателя нет (гость), отвечаем отправителю
+    // Доп. защита: не пишем самому себе, ЕСЛИ это не команда
+    if (String(replyTo).toLowerCase() === String(config.bot.username || config.username).toLowerCase()) {
+      const current = this.orderQueue.getCurrent();
+      if (current) replyTo = current.username;
+      else if (!text.startsWith('!')) return true; // Поглощаем обычные сообщения себе
+      // Команды себе (!status и т.д.) разрешаем - replyTo останется username (админом)
+    }
+
+    if (cmd === '!status' || cmd === '!статус') {
+      const stats = this.getStats();
+      const totalDelivered = await this.calculateTotalDelivered();
+      const formattedTotal = MinecraftValidator.formatAmount(totalDelivered * 1000000);
+
+      const msg = `📊 Статистика (сессия):
+✅ Выполнено: ${stats.completed}
+❌ Неудачно: ${stats.failed}
+⏳ В очереди: ${stats.queued}
+
+💰 Всего выдано за всё время: ${formattedTotal}`;
+      await this.sendFunPayMessage(replyTo, msg, orderId);
+      return true;
+    }
+
+    if (cmd === '!balance' || cmd === '!баланс') {
+      const balance = await this.getBotBalance();
+      const msg = `💰 Баланс: ${MinecraftValidator.formatAmount(balance)} валюты`;
+      await this.sendFunPayMessage(replyTo, msg, orderId);
+      return true;
+    }
+
+    if (cmd === '!support' || cmd === '!помощь' || cmd === '/support') {
+      await this.sendFunPayMessage(replyTo, "🆘 Запрос в техподдержку отправлен. Оператор свяжется с вами в ближайшее время!", orderId);
+
+      // Отправляем системный алерт для Telegram бота
+      await this.addRequest({
+        type: 'alert',
+        message: `Пользователь ${replyTo} запросил помощь!\nЗаказ: #${orderId || 'гость/ЛС'}`,
+        timestamp: Date.now()
+      });
+      return true;
+    }
+
+    if (cmd === '!queue' || cmd === '!очередь') {
+      const stats = this.getStats();
+      let statusMsg = `📋 Состояние очереди:\n🤖 В обработке: ${stats.current > 0 ? '1' : '0'} заказ\n⏳ Ожидают: ${stats.queued} чел.`;
+
+      // Если мы в контексте какого-то заказа (даже если админ спросил) - показываем позицию ЭТОГО заказа
+      if (orderId) {
+        const pos = this.orderQueue.getPosition(orderId);
+        statusMsg += `\n\n🎯 Позиция заказа #${orderId}: ${pos === 0 ? 'обрабатывается' : '#' + pos}`;
+      }
+
+      await this.sendFunPayMessage(replyTo, statusMsg, orderId);
+      return true;
+    }
+
+    if (cmd === '!help' || cmd === '!помощь' || cmd === '/help') {
+      const msg = `📊 Доступные команды:
+• !status — статистика бота
+• !balance — общий баланс
+• !queue — позиция в очереди
+• !support — вызвать техподдержку`;
+      await this.sendFunPayMessage(replyTo, msg, orderId);
+      return true;
+    }
+
+    // Команды управления (только для админов)
+    if (senderIsAdmin) {
+      if (cmd === '!skip' || cmd === '!скип') {
+        if (orderId && this.dialogStates.has(orderId)) {
+          await this.handleOrderTimeout(this.dialogStates.get(orderId).order);
+          await this.sendFunPayMessage(replyTo, "⏩ Заказ пропущен администратором.");
+        }
+        return true;
+      }
+
+      if (cmd === '!cancel' || cmd === '!отмена') {
+        const parts = text.split(' ');
+        const idToCancel = parts[1] || orderId;
+
+        if (idToCancel) {
+          const res = await this.manualChangeStatus(idToCancel, 'cancelled');
+          if (res.success) {
+            await this.sendFunPayMessage(replyTo, `⛔ Заказ #${idToCancel} отменен.`);
+          } else {
+            await this.sendFunPayMessage(replyTo, `❌ Не удалось отменить заказ #${idToCancel}: ${res.error}`);
+          }
+        } else {
+          await this.sendFunPayMessage(replyTo, `ℹ️ Использование: !cancel [id]`);
+        }
+        return true;
+      }
+
+      if (cmd.startsWith('!refund')) {
+        const parts = text.split(' ');
+        const idToRefund = parts[1] || orderId;
+
+        if (idToRefund) {
+          try {
+            const data = await fs.readFile(this.ORDERS_FILE, 'utf8');
+            const allOrders = JSON.parse(data);
+            const orderToRefund = allOrders.find(o => o.id === idToRefund);
+
+            if (orderToRefund) {
+              // 1. Отправляем запрос на возврат в FunPay
+              await this.refundOrder(orderToRefund);
+
+              // 2. Останавливаем обработку заказа у бота
+              await this.finalizeOrder(idToRefund, 'refunded');
+
+              await this.sendFunPayMessage(replyTo, `💸 Возврат для #${idToRefund} инициирован.`);
+            } else {
+              await this.sendFunPayMessage(replyTo, `❌ Заказ #${idToRefund} не найден.`);
+            }
+          } catch (e) {
+            console.error(e);
+            await this.sendFunPayMessage(replyTo, `❌ Ошибка при возврате: ${e.message}`);
+          }
+        }
+        return true;
+      }
+
+      // Команда !resume (возобновить заказ)
+      if (cmd.startsWith('!resume') || cmd.startsWith('!continue')) {
+        const parts = text.split(' ');
+        const idToResume = parts[1] || orderId;
+
+        if (idToResume) {
+          // Восстанавливаем статус 'contacted' и запускаем диалог
+          const res = await this.manualChangeStatus(idToResume, 'contacted');
+          if (res.success) {
+            await this.sendFunPayMessage(replyTo, `▶️ Заказ #${idToResume} возобновлен. Бот снова запросит ник.`);
+          } else {
+            await this.sendFunPayMessage(replyTo, `❌ Не удалось возобновить: ${res.error}`);
+          }
+        }
+        return true;
+      }
+
+      // Новая команда !order (состояние)
+      if (cmd.startsWith('!order')) {
+        const parts = text.split(' ');
+        // !order pending OR !order id pending
+        let targetId = parts.length > 2 ? parts[1] : (orderId || this.orderQueue.getCurrent()?.id);
+        let targetStatus = parts.length > 2 ? parts[2] : parts[1];
+
+        if (targetId && targetStatus) {
+          const res = await this.manualChangeStatus(targetId, targetStatus);
+          if (res.success) {
+            await this.sendFunPayMessage(replyTo, `✅ Статус заказа #${targetId} изменен на "${targetStatus}"`);
+            // Если статус изменился на подтвержденный или доставку, уведомляем юзера
+            const state = this.dialogStates.get(targetId);
+            if (state) {
+              await this.startOrderDialog(state.order);
+            }
+          } else {
+            await this.sendFunPayMessage(replyTo, `❌ Ошибка: ${res.error}`);
+          }
+        } else {
+          await this.sendFunPayMessage(replyTo, `ℹ️ Использование: !order [id] [статус]\n(Активный заказ не найден)`, orderId);
+        }
+        return true;
+      }
+
+      // Новая команда !change (ник)
+      if (cmd.startsWith('!change')) {
+        const parts = text.split(' ');
+        // !change nick OR !change id nick
+        let targetId = parts.length > 2 ? parts[1] : (orderId || this.orderQueue.getCurrent()?.id);
+        let targetNick = parts.length > 2 ? parts[2] : parts[1];
+
+        if (targetId && targetNick) {
+          const res = await this.manualChangeNick(targetId, targetNick);
+          if (res.success) {
+            await this.sendFunPayMessage(replyTo, `✅ Ник для заказа #${targetId} изменен на "${res.nickname}"`);
+          } else {
+            await this.sendFunPayMessage(replyTo, `❌ Ошибка: ${res.error}`);
+          }
+        } else {
+          await this.sendFunPayMessage(replyTo, `ℹ️ Использование: !change [id] [ник]\n(Активный заказ не найден)`, orderId);
+        }
+        return true;
+      }
+    }
+
+    // Все сообщения на "!" считаем командами и поглощаем, чтобы они не ушли в чат/диалог
+    if (text.startsWith('!')) {
+      console.log(`[OrderHandler] Поглощена неизвестная или недоступная команда от ${username}: ${text}`);
+      return true;
+    }
+
+    return false; // На обычные фразы срабатывает приветствие или логика диалога
+  }
+
+  /**
+   * Обрабатывает сообщение от покупателя
+   */
+  async handleUserMessage(orderId, username, message) {
+    const dialogState = this.dialogStates.get(orderId);
+
+    if (!dialogState) {
+      // Ищем заказ по юзернейму, если orderId не передан
+      for (const state of this.dialogStates.values()) {
+        if (state.order.username === username) {
+          return this._handleStateMessage(state, message);
+        }
+      }
+      return;
+    }
+
+    await this._handleStateMessage(dialogState, message);
+  }
+
+  async _handleStateMessage(dialogState, message) {
+    const { step, order } = dialogState;
+
+    if (step === 'waiting_nickname') {
+      await this.handleNicknameInput(order, message);
+    } else if (step === 'waiting_confirmation') {
+      await this.handleConfirmation(order, message);
+    }
+  }
+
+  /**
+   * Обрабатывает ввод ника
+   */
+  async handleNicknameInput(order, nickname) {
+    const text = nickname.trim().toLowerCase();
+
+    // 1. SMART DETECTION: Если пользователь пишет "подарок", "не надо", "спасибо"
+    const stopWords = ['подарок', 'gift', 'не надо', 'don\'t need', 'dont need', 'спасибо', 'thx', 'thanks', 'спс', 'отмена', 'cancel', 'верни деньги'];
+    if (stopWords.some(word => text.includes(word)) && text.length > 3) {
+      console.log(`[OrderHandler] Обнаружены стоп-слова в сообщении от ${order.username}: ${text}`);
+
+      await this.sendFunPayMessage(
+        order.username,
+        `🤖 Вижу, что вам, возможно, не нужна выдача (или это подарок).
+Я приостановил бота и позвал администратора. Ожидайте ответа!`,
+        order.id
+      );
+
+      // Алерт админу
+      await this.addRequest({
+        type: 'alert',
+        message: `⚠️ Пользователь ${order.username} (Заказ #${order.id}) написал: "${text}". Возможно, отказ от выдачи.`,
+        timestamp: Date.now()
+      });
+
+      // Снимаем с диалога (пауза)
+      this.dialogStates.delete(order.id);
+      await this.saveStates();
+      return;
+    }
+
+    const greetings = ['ку', 'привет', 'пр', 'прив', 'hi', 'hello', 'здравствуйте', 'тут', 'здесь', 'хей'];
+
+    if (greetings.includes(text)) {
+      await this.sendFunPayMessage(order.username, `😊 Привет! Для выдачи валюты на "Анархии 401" мне нужен ваш ник в Minecraft. Пожалуйста, напишите его.`, order.id);
+      return;
+    }
+
+    const validation = MinecraftValidator.isValidUsername(nickname);
+
+    if (!validation.valid) {
+      // Инкрементируем счетчик неудачных попыток
+      order.attempts = (order.attempts || 0) + 1;
+
+      // Если клиент 3 раза ввел дичь - зовем админа и затыкаемся
+      if (order.attempts >= 3) {
+        await this.sendFunPayMessage(
+          order.username,
+          `⚠️ Не могу распознать ник. Я позвал человека на помощь, ожидайте администратора.`,
+          order.id
+        );
+        await this.addRequest({
+          type: 'alert',
+          message: `⚠️ Пользователь ${order.username} (Заказ #${order.id}) не может ввести ник (3 попытки). Последний ввод: "${text}"`,
+          timestamp: Date.now()
+        });
+        this.dialogStates.delete(order.id); // Пауза
+        await this.saveStates();
+        return;
+      }
+
+      // Если это похоже на вопрос или предложение (содержит знаки препинания или пробелы)
+      if (nickname.includes('?') || nickname.includes(' ') || nickname.length > 20) {
+        await this.sendFunPayMessage(order.username, `😊 Я — автоматический бот. Пожалуйста, напишите ТОЛЬКО ваш ник в Minecraft (английскими буквами), чтобы я мог выдать валюту на "Анархии 401".`, order.id);
+        return;
+      }
+
+      const errorMessage = `${MinecraftValidator.getErrorMessage(validation)}
+
+Попробуйте еще раз. Напишите корректный ник в Minecraft.`;
+
+      console.log(`[OrderHandler] Ошибка валидации ника для заказа #${order.id}:`, validation.error);
+      await this.sendFunPayMessage(order.username, errorMessage, order.id);
+      return;
+    }
+
+    // Ник валиден, сбрасываем попытки
+    order.attempts = 0;
+
+    // Ник валиден, сохраняем и запрашиваем подтверждение
+    order.nickname = validation.username;
+    order.status = 'confirming';
+    await this.updateOrderStatus(order.id, 'confirming', { nickname: order.nickname });
+
+    const confirmMessage = `✅ Ник принят: ${order.nickname}
+
+Выдать ${MinecraftValidator.formatAmount(order.amount * 1000000)} валюты на этот ник?
+
+Напишите:
+• "да" - подтвердить выдачу
+• "нет" - изменить ник`;
+
+    console.log(`[OrderHandler] Запрос подтверждения для заказа #${order.id}`);
+    await this.sendFunPayMessage(order.username, confirmMessage, order.id);
+
+    // Обновляем состояние диалога
+    this.dialogStates.set(order.id, {
+      step: 'waiting_confirmation',
+      order: order
+    });
+    await this.saveStates();
+  }
+
+  /**
+   * Обрабатывает подтверждение от покупателя
+   */
+  async handleConfirmation(order, message) {
+    // Очищаем от всех видов пробелов и невидимых символов
+    const response = message.toLowerCase().replace(/[\s\uFEFF\xA0\u200B\u200C\u200D\u2060\u180E]+/g, '');
+    console.log(`[OrderHandler] Ответ на подтверждение (raw: '${message}', clean: '${response}')`);
+
+    if (['да', 'yes', 'д', 'y', 'ага', 'угу', '+'].includes(response)) {
+      order.confirmed = true;
+      await this.processOrder(order);
+    } else if (['нет', 'no', 'н', 'n', 'отмена', 'cancel', '-'].includes(response)) {
+      const retryMessage = `Хорошо. Напишите свой ник в Minecraft еще раз.`;
+      console.log(`[OrderHandler] Повторный запрос ника для заказа #${order.id}`);
+      await this.sendFunPayMessage(order.username, retryMessage, order.id);
+
+      order.status = 'contacted';
+      await this.updateOrderStatus(order.id, 'contacted', { nickname: null });
+
+      this.dialogStates.set(order.id, {
+        step: 'waiting_nickname',
+        order: order
+      });
+      await this.saveStates();
+    } else {
+      const reminderMessage = `⚠️ Пожалуйста, ответьте "да" или "нет".
+
+Выдать валюту на ник "${order.nickname}"?`;
+      console.log(`[OrderHandler] Неправильный ответ для заказа #${order.id}`);
+      await this.sendFunPayMessage(order.username, reminderMessage, order.id);
+    }
+  }
+
+  /**
+   * Обрабатывает таймаут заказа
+   */
+  async handleOrderTimeout(order) {
+    console.log(`[OrderHandler] Таймаут для заказа #${order.id}`);
+
+    // Если заказ уже обработан (нет в активных диалогах), игнорируем
+    if (!this.dialogStates.has(order.id)) return;
+
+    // ЗАЩИТА: Проверяем актуальный статус в БД перед сбросом
+    // Вдруг его успели завершить, но таймер еще висел (если баг не полностью исправлен)
+    try {
+      const orders = await this.fetchOrders();
+      const current = orders.find(o => o.id === order.id);
+      if (current && ['completed', 'refunded', 'cancelled', 'failed'].includes(current.status)) {
+        console.log(`[OrderHandler] Таймаут отменен: заказ #${order.id} уже имеет статус ${current.status}`);
+        this.dialogStates.delete(order.id);
+        return;
+      }
+    } catch (e) { }
+
+    const timeoutMessage = `⏰ Время ожидания истекло.
+
+Ваш заказ #${order.id} перемещен в конец очереди.`;
+
+    await this.sendFunPayMessage(order.username, timeoutMessage, order.id);
+
+    // Перемещаем в конец очереди
+    const nextOrder = this.orderQueue.moveCurrentToEnd();
+
+    // Сбрасываем статус в JSON
+    await this.updateOrderStatus(order.id, 'pending');
+
+    // Удаляем состояние диалога (таймер уже сработал, чистить не надо)
+    this.dialogStates.delete(order.id);
+    await this.saveStates();
+
+    // НЕ вызываем здесь startOrderDialog, так как мы вызовем его ниже для nextOrder
+    if (nextOrder) {
+      await this.startOrderDialog(nextOrder);
+    }
+
+    // Уведомляем о новой позиции
+    const position = this.orderQueue.getPosition(order.id);
+    if (position > 0) {
+      await this.notifyQueuePosition(order, position);
+    }
+
+    // Если есть следующий заказ, начинаем его обработку
+    if (nextOrder) {
+      await this.startOrderDialog(nextOrder);
+    }
+  }
+
+  /**
+   * Уведомляет о позиции в очереди
+   */
+  async notifyQueuePosition(order, position) {
+    const queueMessage = `⏳ Бот занят обработкой другого заказа.
+
+Ваш заказ #${order.id} помещен в очередь.
+📊 Ваша позиция: #${position}
+
+Мы уведомим вас, когда подойдет ваша очередь.`;
+
+    console.log(`[OrderHandler] Заказ #${order.id} в очереди, позиция #${position}`);
+    await this.sendFunPayMessage(order.username, queueMessage, order.id);
+  }
+
+  /**
+   * Обрабатывает заказ (выдача валюты)
+   */
+  async processOrder(order) {
+    if (this.processingOrders.has(order.id)) {
+      console.log(`[OrderHandler] Заказ #${order.id} уже в процессе выдачи, игнорирую повторный вызов`);
+      return;
+    }
+
+    try {
+      this.processingOrders.add(order.id);
+      console.log(`[OrderHandler] Обработка заказа #${order.id} для ${order.username}`);
+
+      // Проверка: не выполнен ли заказ уже кем-то другим/ранее
+      const ordersInFile = await this.fetchOrders();
+      const currentInFile = ordersInFile.find(o => o.id === order.id);
+      if (!currentInFile) {
+        console.log(`[OrderHandler] Заказ #${order.id} больше не требует обработки (уже завершен или удален)`);
+        this.processingOrders.delete(order.id);
+        return;
+      }
+
+      order.status = 'delivering';
+      await this.updateOrderStatus(order.id, 'delivering');
+
+      const botBalance = await this.getBotBalance();
+      let requiredAmount = order.amount * 1000000;
+      let bonusAmount = 0;
+
+      // Проверка на бонус (если не первая покупка и сумма >= 15кк)
+      const isReturningCustomer = this.customers.has(order.username);
+      if (isReturningCustomer && order.amount >= 15) {
+        bonusAmount = 1000000;
+        requiredAmount += bonusAmount;
+        console.log(`[OrderHandler] Начислен бонус постоянному клиенту ${order.username}: +1,000,000`);
+      }
+
+      // 1. Проверка баланса перед началом
+      if (botBalance < requiredAmount) {
+        console.error(`[OrderHandler] Недостаточно баланса для заказа #${order.id}. Баланс: ${botBalance}, нужно: ${requiredAmount}`);
+
+        const errorMessage = `❌ Упс! У бота временно не хватает валюты для выдачи (нужно ${MinecraftValidator.formatAmount(requiredAmount)}).
+💰 Средства будут возвращены автоматически прямо сейчас.
+Приносим извинения за неудобства, заходите позже!`;
+
+        await this.sendFunPayMessage(order.username, errorMessage, order.id);
+
+        // Выполняем реальный возврат
+        await this.refundOrder(order);
+
+        // ВАЖНО: Ставим статус "refunded", чтобы бот не пытался выдать заказ снова
+        // Добавляем completedAt, чтобы этот заказ считался "недавним" и не вызывал спам приветствием
+        await this.updateOrderStatus(order.id, 'refunded', { completedAt: Date.now() });
+
+        this.orderQueue.completeCurrent(false);
+        this.dialogStates.delete(order.id);
+        this.processingOrders.delete(order.id);
+        await this.saveStates();
+
+        const nextOrder = this.orderQueue.getCurrent();
+        if (nextOrder) await this.startOrderDialog(nextOrder);
+        return;
+      }
+
+      // 2. Проверка присутствия игрока на сервере через /m (tell)
+      const isOnline = await this.isPlayerOnline(order.nickname);
+
+      if (!isOnline) {
+        console.log(`[OrderHandler] Игрок ${order.nickname} не в сети или на другой анархии. Ждем...`);
+
+        // Отправляем сообщение только раз в 5 минут, чтобы не спамить
+        const now = Date.now();
+        if (!order.lastWaitNotify || now - order.lastWaitNotify > 300000) {
+          const waitMessage = `⌛ Игрока "${order.nickname}" нет на Анархии 401.
+
+Пожалуйста, зайдите в игру и перейдите на Анархию 401, чтобы бот смог выдать вам валюту.
+Бот будет проверять ваше присутствие автоматически.`;
+          await this.sendFunPayMessage(order.username, waitMessage, order.id);
+          order.lastWaitNotify = now;
+        }
+
+        // Ждем 20 секунд и пробуем снова
+        this.processingOrders.delete(order.id);
+        setTimeout(() => this.processOrder(order), 20000);
+        return;
+      }
+
+      // 3. Выдача
+      const startBalance = await this.getBotBalance();
+      const command = `/pay ${order.nickname} ${requiredAmount}`;
+      console.log(`[OrderHandler] Попытка выдачи: ${command} | Баланс до: ${startBalance}`);
+
+      let detectedSuccess = false;
+      let confirmationSending = false;
+
+      const successHandler = (msg) => {
+        const txt = msg.toString().toLowerCase();
+
+        // Успешная выдача
+        if (['успешно', 'отправлено', 'successfully', 'sent', 'вы перевели'].some(m => txt.includes(m))) {
+          detectedSuccess = true;
+        }
+
+        // Запрос подтверждения (введите команду повторно)
+        if ((txt.includes('введите команду повторно') || txt.includes('type the command again')) && detectedSuccess === false && confirmationSending === false) {
+          confirmationSending = true;
+          console.log('[OrderHandler] Сервер запросил подтверждение перевода. Отправляю повторно...');
+          this.bot.chat(command);
+        }
+      };
+
+      this.bot.on('message', successHandler);
+      this.bot.chat(command);
+
+      // Ждем 5 секунд для обработки, так как может потребоваться повторная отправка
+      await new Promise(r => setTimeout(r, 5000));
+      this.bot.removeListener('message', successHandler);
+
+      const endBalance = await this.getBotBalance();
+      const hasBalanceDropped = (startBalance - endBalance) >= (requiredAmount * 0.9);
+
+      console.log(`[OrderHandler] Результат: Чат=${detectedSuccess}, Баланс=${hasBalanceDropped} (было ${startBalance} -> стало ${endBalance})`);
+
+      if (!detectedSuccess && !hasBalanceDropped) {
+        console.error(`[OrderHandler] Выдача не подтверждена ни чатом, ни балансом. Повтор через 10 сек...`);
+        this.processingOrders.delete(order.id);
+        setTimeout(() => this.processOrder(order), 10000);
+        return;
+      }
+
+      let successMessage = `✅ Успешно переведено ${MinecraftValidator.formatAmount(requiredAmount)} валюты на ник ${order.nickname}!`;
+
+      if (bonusAmount > 0) {
+        successMessage += `\n\n💝 Вы получили бонус ${MinecraftValidator.formatAmount(bonusAmount)} как наш постоянный клиент!`;
+      } else if (!isReturningCustomer) {
+        successMessage += `\n\n🎁 Для постоянных клиентов у нас действуют бонусы при заказе от 15кк!`;
+      }
+
+      successMessage += `\n\nПодтвердите заказ и оставьте отзыв, если вам все понравилось! 😊`;
+
+      await this.sendFunPayMessage(order.username, successMessage, order.id);
+      await this.confirmOrder(order.id);
+
+      // Добавляем в список клиентов после успешной выдачи
+      this.customers.add(order.username);
+
+      this.orderQueue.completeCurrent(true);
+      this.dialogStates.delete(order.id);
+      this.processingOrders.delete(order.id);
+
+      // Не приветствуем как гостя в ближайшие 5 минут
+      this.servedUsers.add(order.username);
+      setTimeout(() => this.servedUsers.delete(order.username), 300000);
+
+      await this.saveStates();
+      this.processedCount++;
+
+      // ВАЖНО: completeCurrent уже вызвал processNext внутри себя в Order.js
+      // Поэтому мы просто берем текущий из очереди
+      const nextOrder = this.orderQueue.getCurrent();
+      if (nextOrder) {
+        await this.startOrderDialog(nextOrder);
+      }
+
+    } catch (error) {
+      console.error(`[OrderHandler] Ошибка при обработке заказа #${order.id}:`, error);
+
+      this.orderQueue.completeCurrent(false);
+      this.dialogStates.delete(order.id);
+      this.processingOrders.delete(order.id);
+      await this.saveStates();
+
+      // Proceed to the next order even if the current one failed!
+      const nextOrder = this.orderQueue.getCurrent();
+      if (nextOrder) {
+        await this.startOrderDialog(nextOrder);
+      }
+    }
+  }
+
+  async _processNextInQueue() {
+    const nextOrder = this.orderQueue.processNext();
+    if (nextOrder) {
+      await this.startOrderDialog(nextOrder);
+    }
+  }
+
+  /**
+   * Проверяет онлайн игрока через команду /m
+   */
+  async isPlayerOnline(nickname) {
+    if (!this.bot || !this.bot.entity || !this.bot._client || this.bot._client.ended) {
+      console.log('[OrderHandler] Бот не подключен к серверу, проверка онлайна невозможна');
+      return false;
+    }
+    return new Promise((resolve) => {
+      const checkCommand = `/m ${nickname} [ZeroCardinal] Ожидайте выдачу...`;
+      this.bot.chat(checkCommand);
+
+      let detectedOffline = false;
+      const offlineHandler = (msg) => {
+        const text = msg.toString().toLowerCase();
+        // Список частых сообщений об отсутствии игрока
+        const offlineMarkers = ['не в сети', 'не найден', 'offline', 'not found', 'ни одного игрока не найдено'];
+
+        if (offlineMarkers.some(marker => text.includes(marker))) {
+          detectedOffline = true;
+          this.bot.removeListener('message', offlineHandler);
+          resolve(false);
+        }
+      };
+
+      this.bot.on('message', offlineHandler);
+
+      // Если за 3 секунды не пришло сообщения об ошибке, считаем что игрок онлайн
+      setTimeout(() => {
+        if (!detectedOffline) {
+          this.bot.removeListener('message', offlineHandler);
+          resolve(true);
+        }
+      }, 3000);
+    });
+  }
+
+  /**
+   * Получает баланс бота через чат Minecraft
+   */
+  async getBotBalance() {
+    return new Promise((resolve) => {
+      const balanceCommand = config.bot.balanceCommand || '/bal';
+      this.bot.chat(balanceCommand);
+
+      const balanceHandler = (msg) => {
+        const text = msg.toString();
+        // Улучшенная регулярка: ищем ключевое слово, затем двоеточие, возможный пробел, возможный $ и число
+        const moneyRegex = /(?:balance|баланс|деньги|средства|money|баксов):\s*\$?\s*([\d,.]+)/i;
+        const match = text.match(moneyRegex);
+
+        if (match) {
+          let balance = parseFloat(match[1].replace(/,/g, ''));
+          balance = Math.floor(balance / 1000000) * 1000000;
+
+          this.bot.removeListener('message', balanceHandler); // Возвращаем на message
+          resolve(balance);
+        }
+      };
+
+      this.bot.on('message', balanceHandler);
+
+      // Таймаут на случай, если сервер не ответил
+      setTimeout(() => {
+        this.bot.removeListener('message', balanceHandler);
+        resolve(0); // Возвращаем 0 вместо бесконечности
+      }, 5000);
+    });
+  }
+
+  /**
+   * Возвращает средства за заказ (через мост)
+   */
+  async refundOrder(order) {
+    console.log(`[OrderHandler] Возврат средств для заказа #${order.id}`);
+    const request = {
+      type: 'refund',
+      username: order.username,
+      order_id: order.id,
+      timestamp: Date.now()
+    };
+    await this.addRequest(request);
+  }
+
+  async confirmOrder(orderId) {
+    const tempFile = `${this.ORDERS_FILE}.tmp.${Date.now()}`;
+    try {
+      if (!(await this.fileExists(this.ORDERS_FILE))) {
+        return;
+      }
+
+      const data = await fs.readFile(this.ORDERS_FILE, 'utf8');
+      const orders = JSON.parse(data);
+
+      const order = orders.find(o => o.id === orderId);
+      if (order) {
+        order.status = 'completed';
+        order.completedAt = Date.now();
+
+        await fs.writeFile(tempFile, JSON.stringify(orders, null, 2), 'utf8');
+        await fs.rename(tempFile, this.ORDERS_FILE);
+        console.log(`[OrderHandler] Заказ #${orderId} подтвержден и сохранен`);
+      }
+    } catch (error) {
+      console.error(`[OrderHandler] Ошибка при подтверждении заказа #${orderId}:`, error.message);
+      if (await this.fileExists(tempFile)) await fs.unlink(tempFile).catch(() => { });
+    }
+  }
+
+  getProcessedCount() {
+    return this.processedCount;
+  }
+
+  getStats() {
+    return this.orderQueue.getStats();
+  }
+
+  /**
+   * Вручную изменяет ник игрока в заказе
+   */
+  async manualChangeNick(targetId, newNick) {
+    const validation = MinecraftValidator.isValidUsername(newNick);
+    if (!validation.valid) return { success: false, error: validation.error };
+
+    await this.updateOrderStatus(targetId, null, { nickname: validation.username });
+
+    const state = this.dialogStates.get(targetId);
+    if (state) {
+      state.order.nickname = validation.username;
+      await this.saveStates();
+    }
+    return { success: true, nickname: validation.username };
+  }
+
+  /**
+   * Проверяет, был ли у пользователя завершенный заказ за последние 15 минут
+   */
+  async hasRecentCompletedOrder(username) {
+    try {
+      if (this.servedUsers.has(username)) return true;
+
+      if (await this.fileExists(this.ORDERS_FILE)) {
+        const data = await fs.readFile(this.ORDERS_FILE, 'utf8');
+        const orders = JSON.parse(data);
+        const now = Date.now();
+
+        // Ищем заказы этого юзера, завершенные менее 15 минут назад
+        const recentOrder = orders.find(o =>
+          o.username === username &&
+          (o.status === 'completed' || o.status === 'refunded') &&
+          (now - (o.completedAt || 0)) < 900000 // 15 мин = 900000 мс
+        );
+
+        if (recentOrder) return true;
+      }
+    } catch (e) {
+      console.error('[OrderHandler] Ошибка проверки недавних заказов:', e.message);
+    }
+    return false;
+  }
+
+  /**
+   * Полностью завершает заказ, очищая все таймеры и состояния
+   */
+  async finalizeOrder(orderId, status, extraData = {}) {
+    const state = this.dialogStates.get(orderId);
+
+    // 1. Очищаем таймер ожидания
+    if (state && state.order && state.order.timeoutId) {
+      clearTimeout(state.order.timeoutId);
+      state.order.timeoutId = null;
+    }
+
+    // 2. Обновляем статус в JSON
+    const updateData = { ...extraData };
+    if (status === 'completed' || status === 'refunded' || status === 'cancelled') {
+      updateData.completedAt = Date.now();
+    }
+    // Для отмены используем статус refunded, чтобы бот не трогал заказ
+    const jsonStatus = status === 'cancelled' ? 'refunded' : status;
+    await this.updateOrderStatus(orderId, jsonStatus, updateData);
+
+    // 3. Удаляем из всех списков
+    this.orderQueue.remove(orderId);
+    this.dialogStates.delete(orderId);
+    this.processingOrders.delete(orderId);
+
+    // 4. Добавляем в анти-спам лист (если успешно)
+    if (status === 'completed') {
+      // Находим имя пользователя (либо из state, либо из orders.json)
+      let username = state?.order?.username;
+      if (!username) {
+        try {
+          const orders = await this.fetchOrders();
+          const o = orders.find(x => x.id === orderId);
+          if (o) username = o.username;
+        } catch (e) { }
+      }
+      if (username) {
+        this.servedUsers.add(username);
+        setTimeout(() => this.servedUsers.delete(username), 300000);
+      }
+    }
+
+    await this.saveStates();
+    console.log(`[OrderHandler] Заказ #${orderId} финализирован со статусом ${status}`);
+  }
+
+  /**
+   * Находит заказ по ID или Username
+   */
+  findOrderState(orderId, username) {
+    if (orderId && this.dialogStates.has(orderId)) return this.dialogStates.get(orderId);
+    if (username) {
+      for (const state of this.dialogStates.values()) {
+        if (state.order.username === username) return state;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Вручную изменяет статус заказа
+   */
+  async manualChangeStatus(targetId, newStatus) {
+    const validStatuses = ['pending', 'contacted', 'confirming', 'delivering', 'completed', 'failed', 'refunded', 'cancelled'];
+    if (!validStatuses.includes(newStatus)) {
+      return { success: false, error: `Недопустимый статус. Разрешены: ${validStatuses.join(', ')}` };
+    }
+
+    // Если статус финальный - используем finalizeOrder
+    if (['completed', 'failed', 'refunded', 'cancelled'].includes(newStatus)) {
+      await this.finalizeOrder(targetId, newStatus);
+      return { success: true, status: newStatus };
+    }
+
+    // Иначе - обычная логика смены состояния
+    await this.updateOrderStatus(targetId, newStatus);
+
+    const state = this.dialogStates.get(targetId);
+    if (state) {
+      state.order.status = newStatus;
+
+      if (newStatus === 'delivering') {
+        // Запускаем выдачу
+        this.processOrder(state.order);
+      }
+      await this.saveStates();
+    } else {
+      // Если заказа нет в активных диалогах, пробуем восстановить его из orders.json
+      try {
+        const orders = await this.fetchOrders();
+        const found = orders.find(o => o.id === targetId);
+        if (found) {
+          const order = new Order(found.id, found.username, found.amount, found.description);
+          Object.assign(order, found);
+
+          if (['pending', 'contacted', 'confirming', 'delivering'].includes(newStatus)) {
+            this.dialogStates.set(targetId, { step: 'waiting_nickname', order });
+            if (newStatus === 'confirming' && order.nickname) {
+              this.dialogStates.get(targetId).step = 'waiting_confirmation';
+            } else if (newStatus === 'delivering') {
+              this.processOrder(order);
+            }
+            await this.saveStates();
+          }
+        }
+      } catch (e) {
+        console.error('[OrderHandler] Ошибка восстановления заказа:', e.message);
+      }
+    }
+
+    return { success: true, status: newStatus };
+  }
+}
+
+module.exports = OrderHandler;

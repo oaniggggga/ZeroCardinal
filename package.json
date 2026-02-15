@@ -1,0 +1,30 @@
+{
+  "name": "zerocardinal",
+  "version": "1.0.0",
+  "description": "Автоматическая выдача валюты через Minecraft бота",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "migrate": "node scripts/migrate_orders.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop ecosystem.config.js",
+    "pm2:logs": "pm2 logs ZeroCardinal"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.6.2",
+    "express": "^5.2.1",
+    "mineflayer": "^4.20.1",
+    "socket.io": "^4.8.3",
+    "winston": "^3.19.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  },
+  "keywords": [
+    "minecraft",
+    "bot",
+    "mineflayer",
+    "auto-delivery"
+  ],
+  "author": "",
+  "license": "MIT"
+}

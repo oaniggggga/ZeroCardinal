@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroCardinal Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent: #38bdf8;
+            --text: #f1f5f9;
+            --text-dim: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--accent), #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status-badge {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .card-label {
+            color: var(--text-dim);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .last-order {
+            grid-column: 1 / -1;
+            margin-top: 1rem;
+        }
+
+        .order-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .buyer {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .amount {
+            color: var(--success);
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .loading {
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">ZeroCardinal</div>
+        <div class="status-badge">
+            <div class="status-dot"></div>
+            Online
+        </div>
+    </header>
+
+    <div class="grid">
+        <div class="card">
+            <div class="card-label">Всего заказов</div>
+            <div id="totalOrders" class="card-value">-</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Постоянных клиентов</div>
+            <div id="uniqueCustomers" class="card-value">-</div>
+        </div>
+        <div class="card">
+            <div class="card-label">В очереди</div>
+            <div id="pendingOrders" class="card-value">-</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Выполнено</div>
+            <div id="completedOrders" class="card-value">-</div>
+        </div>
+
+        <div class="card last-order">
+            <div class="card-label">Последняя активность</div>
+            <div id="lastOrderContainer">
+                <div class="card-value" style="font-size: 1.25rem;">Ожидание данных...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function updateStats() {
+            try {
+                const res = await fetch('/api/stats');
+                const data = await res.json();
+
+                document.getElementById('totalOrders').textContent = data.totalOrders;
+                document.getElementById('uniqueCustomers').textContent = data.uniqueCustomers;
+                document.getElementById('pendingOrders').textContent = data.pendingOrders;
+                document.getElementById('completedOrders').textContent = data.completedOrders;
+
+                if (data.lastOrder) {
+                    document.getElementById('lastOrderContainer').innerHTML = `
+                        <div class="order-info">
+                            <div>Заказ <span class="buyer">#${data.lastOrder.id}</span> от <span class="buyer">${data.lastOrder.username}</span></div>
+                            <div class="amount">${data.lastOrder.amount} млн</div>
+                        </div>
+                    `;
+                }
+            } catch (e) {
+                console.error('Update failed', e);
+            }
+        }
+
+        setInterval(updateStats, 5000);
+        updateStats();
+    </script>
+</body>
+</html>

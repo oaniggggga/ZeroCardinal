@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroCardinal Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="dark-mode">
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div class="sidebar-heading">ZERO CARDINAL</div>
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action bg-transparent text-white active"
+                    data-target="dashboard">
+                    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent text-white"
+                    data-target="orders">
+                    <i class="fas fa-shopping-cart me-2"></i> Orders
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent text-white" data-target="logs">
+                    <i class="fas fa-terminal me-2"></i> Live Console
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent text-white"
+                    onclick="restartBot()">
+                    <i class="fas fa-power-off me-2 text-danger"></i> Restart Bot
+                </a>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" class="w-100">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary mb-4">
+                <div class="container-fluid">
+                    <span class="navbar-text text-white ms-3" id="status-span">
+                        Status: <span class="badge bg-secondary" id="bot-status">Checking...</span>
+                    </span>
+                    <span class="navbar-text text-white me-3" id="balance-span">
+                        Balance: <span class="fw-bold" id="bot-balance">0</span>
+                    </span>
+                </div>
+            </nav>
+
+            <div class="container-fluid px-4" id="content-area">
+                <!-- Content injected via JS -->
+                <div id="view-dashboard">
+                    <div class="row g-4">
+                        <div class="col-md-3">
+                            <div class="card bg-dark text-white border-secondary h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-muted">Orders Today</h5>
+                                    <h2 class="fw-bold" id="stat-completed">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-dark text-white border-secondary h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-muted">Changes</h5>
+                                    <h2 class="fw-bold text-success" id="stat-queued">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-dark text-white border-secondary h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-muted">Failed</h5>
+                                    <h2 class="fw-bold text-danger" id="stat-failed">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card bg-dark text-white border-secondary h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-muted">Uptime</h5>
+                                    <h2 class="fw-bold" id="stat-uptime">0s</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-orders" style="display:none;">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="text-white m-0">Recent Orders</h3>
+                        <button class="btn btn-primary bg-primary text-white border-0" onclick="showCreateOrderModal()">
+                            <i class="fas fa-plus me-2"></i> New Order
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover border-secondary">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Buyer</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table-body">
+                                <!-- Rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Create Order Modal -->
+                <div class="modal fade" id="createOrderModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content glass-panel text-white">
+                            <div class="modal-header border-bottom border-secondary">
+                                <h5 class="modal-title">Create Manual Order</h5>
+                                <button type="button" class="btn-close btn-close-white"
+                                    onclick="hideCreateOrderModal()"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="createOrderForm">
+                                    <div class="mb-3">
+                                        <label class="form-label">Username</label>
+                                        <input type="text" class="form-control bg-dark text-white border-secondary"
+                                            id="newOrderUser" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Amount</label>
+                                        <input type="number" class="form-control bg-dark text-white border-secondary"
+                                            id="newOrderAmount" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Description</label>
+                                        <input type="text" class="form-control bg-dark text-white border-secondary"
+                                            id="newOrderDesc" value="Manual Order">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer border-top border-secondary">
+                                <button type="button" class="btn btn-secondary"
+                                    onclick="hideCreateOrderModal()">Cancel</button>
+                                <button type="button" class="btn btn-primary"
+                                    onclick="submitCreateOrder()">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-logs" style="display:none;">
+                    <div class="card bg-black text-monospace border-secondary" style="height: 70vh;">
+                        <div class="card-header border-secondary text-white">
+                            Live Logs
+                        </div>
+                        <div class="card-body overflow-auto p-2" id="console-logs"
+                            style="font-family: monospace; font-size: 0.9rem;">
+                            <!-- Logs -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

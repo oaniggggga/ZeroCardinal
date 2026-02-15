@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Users\\mrmal\\Desktop\\projects\\java\\ZeroCardinal\\logs\\.7f080ca9e3976cf77e7fb89cabb02d6b9cea0f29-audit.json",
+    "files": [
+        {
+            "date": 1770820617343,
+            "name": "C:\\Users\\mrmal\\Desktop\\projects\\java\\ZeroCardinal\\logs\\combined-2026-02-11.log",
+            "hash": "726955a40516c2efe229263de0a823c8a49125bdc84f900d55f7b81371888716"
+        },
+        {
+            "date": 1771168553109,
+            "name": "C:\\Users\\mrmal\\Desktop\\projects\\java\\ZeroCardinal\\logs\\combined-2026-02-15.log",
+            "hash": "0dc0c8b2417c0bfed7773eaadd0659b7293555f5492c32ecbbc824caada972ad"
+        }
+    ],
+    "hashType": "sha256"
+}

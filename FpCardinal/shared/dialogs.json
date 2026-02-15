@@ -1,0 +1,16 @@
+{
+  "TSEJZFGJ": {
+    "step": "waiting_nickname",
+    "order": {
+      "id": "TSEJZFGJ",
+      "username": "hainboost",
+      "amount": 1,
+      "description": "👽SpookyTime Валюта  🔥1kk = 2.15₽🔥 😶‍🌫️АВТОВЫДАЧА ЧЕРЕЗ /PAY 😶‍🌫️, SpookyTime (цена за 1кк), 1 шт.",
+      "status": "contacted",
+      "createdAt": 1770325313172,
+      "nickname": null,
+      "confirmed": false,
+      "attempts": 2
+    }
+  }
+}
