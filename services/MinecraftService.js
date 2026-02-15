@@ -2,6 +2,7 @@ const mineflayer = require('mineflayer');
 const EventEmitter = require('events');
 const Logger = require('../utils/Logger');
 const config = require('../config/default.json');
+const MouseRecorder = require('../utils/MouseRecorder');
 // Dynamic import for bot config (since it might be in config.json in root if not fully migrated, but I'll use the one I created or load from root if needed.
 // For now, I'll assume config/default.json has the structure, but wait, I didn't put the credentials there to avoid hardcoding secrets in potential git artifacts if this was a real repo.
 // I should load the root config.json for credentials.
@@ -68,7 +69,7 @@ class MinecraftService extends EventEmitter {
             this.ready = false;
             Logger.warn('Connection closed.');
             // Mimic stops itself on 'end'
-            this._stopVerificationJitter();
+            MouseRecorder.stop(this.bot);
             this.emit('end');
 
             // Auto reconnect
@@ -100,25 +101,26 @@ class MinecraftService extends EventEmitter {
         if ((text.includes('Успешная авторизация') || text.includes('Приятной игры'))) {
             Logger.info('Auth successful. Joining Anarchy 401...');
 
-            // Stop Mimic as per user code logic
+            // Stop Mimic
             if (this.bot.__mimicEnabled) {
                 this.bot.__mimicEnabled = false;
-                this.bot.mimic?.stop?.();
                 this.bot.mimic?.stop?.();
                 Logger.info('[Mimic] Stopped on successful auth.');
             }
 
-            this._stopVerificationJitter();
+            // Stop Mouse Playback
+            MouseRecorder.stop(this.bot);
 
             setTimeout(() => this.chat(config.bot.serverJoinCommand || '/an401'), 2000);
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.info('Verification: Enabling PHYSICS (falling). Stopping Mimic to prevent packet conflicts...');
-            this.bot.physicsEnabled = true; // Ensure gravity works
-            if (this.bot.mimic) this.bot.mimic.stop(); // Stop manual packets, let physics handle "KeepAlive" via movement
+            Logger.info('Verification: Enabling PHYSICS + Playing MOUSE RECORDING (Human Fall)...');
+            this.bot.physicsEnabled = true;
+            if (this.bot.mimic) this.bot.mimic.stop();
 
-            this._startVerificationJitter(); // Add slight head movement
+            // Play recorded human-like fall (Look down + slight shake)
+            MouseRecorder.play(this.bot, MouseRecorder.generateHumanFall(this.bot));
         }
 
         if (text.includes('Вы провалили проверку')) {
@@ -171,27 +173,6 @@ class MinecraftService extends EventEmitter {
                 resolve(this._balanceCache || 0);
             }, 5000);
         });
-    }
-
-    // --- Verification Head Jitter ---
-    _startVerificationJitter() {
-        if (this.verificationJitter) return;
-        Logger.info('Starting Verification Head Jitter (Human-like falling)...');
-        this.verificationJitter = setInterval(() => {
-            if (!this.bot || !this.bot.entity) return;
-            // Very subtle jitter: +/- 0.05 to 0.1 radians (~3-6 degrees)
-            // Just enough to show "life" while falling
-            const yaw = this.bot.entity.yaw + (Math.random() - 0.5) * 0.1;
-            const pitch = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, this.bot.entity.pitch + (Math.random() - 0.5) * 0.1));
-            this.bot.look(yaw, pitch, true).catch(() => { });
-        }, 150);
-    }
-
-    _stopVerificationJitter() {
-        if (this.verificationJitter) {
-            clearInterval(this.verificationJitter);
-            this.verificationJitter = null;
-        }
     }
 
     // --- Packet-Level Humanizer (Exact User Copy) ---
