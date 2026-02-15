@@ -127,7 +127,8 @@ class MinecraftService extends EventEmitter {
             if (this.bot.mimic) this.bot.mimic.stop();
 
             // Play recorded human-like fall (Look down + slight shake)
-            MouseRecorder.play(this.bot, MouseRecorder.generateHumanFall(this.bot));
+            // MouseRecorder.play(this.bot, MouseRecorder.generateHumanFall(this.bot));
+            Logger.info('Verification: Mouse Recorder DISABLED per user request.');
         }
 
         if (text.includes('Вы провалили проверку')) {
