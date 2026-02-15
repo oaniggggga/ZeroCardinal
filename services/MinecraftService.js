@@ -8,6 +8,7 @@ const SpookyRotation = require('../utils/SpookyRotation');
 // For now, I'll assume config/default.json has the structure, but wait, I didn't put the credentials there to avoid hardcoding secrets in potential git artifacts if this was a real repo.
 // I should load the root config.json for credentials.
 const rootConfig = require('../config.json');
+const AntiBotBypass = require('../utils/AntiBotBypass');
 
 class MinecraftService extends EventEmitter {
     constructor() {
@@ -37,6 +38,7 @@ class MinecraftService extends EventEmitter {
         });
 
         this._bindEvents();
+        AntiBotBypass.bind(this.bot);
     }
 
     _bindEvents() {
@@ -80,9 +82,9 @@ class MinecraftService extends EventEmitter {
             this.emit('spawn');
 
             // Start Always-On Micro-Jitter (The "Noisy Client")
-            this._startMicroJitter();
+            // this._startMicroJitter();
             // Start Dumb Actions in background
-            this._startDumbVerification();
+            // this._startDumbVerification();
         });
 
         this.bot.on('end', () => {
@@ -90,8 +92,9 @@ class MinecraftService extends EventEmitter {
             Logger.warn('Connection closed.');
             // Mimic stops itself on 'end'
             MouseRecorder.stop(this.bot);
-            this._stopDumbVerification();
-            this._stopMicroJitter();
+            MouseRecorder.stop(this.bot);
+            // this._stopDumbVerification();
+            // this._stopMicroJitter();
             this.verificationStrafeDone = false;
             this.emit('end');
 
@@ -133,8 +136,9 @@ class MinecraftService extends EventEmitter {
 
             // Stop Mouse Playback
             MouseRecorder.stop(this.bot);
-            this._stopDumbVerification();
-            this._stopMicroJitter();
+            MouseRecorder.stop(this.bot);
+            // this._stopDumbVerification();
+            // this._stopMicroJitter();
             this.verificationStrafeDone = false; // Reset for next time
 
             setTimeout(() => this.chat(config.bot.serverJoinCommand || '/an401'), 2000);
@@ -147,8 +151,9 @@ class MinecraftService extends EventEmitter {
 
         if (text.includes('Вы провалили проверку')) {
             Logger.error('FAILED VERIFICATION! Bot was kicked.');
-            this._stopDumbVerification();
-            this._stopMicroJitter();
+            Logger.error('FAILED VERIFICATION! Bot was kicked.');
+            // this._stopDumbVerification();
+            // this._stopMicroJitter();
         }
     }
 
@@ -278,78 +283,7 @@ class MinecraftService extends EventEmitter {
     }
 
     // --- Packet-Level Humanizer (Exact User Copy) ---
-    _attachVanillaMimic() {
-        const bot = this.bot;
-        if (bot.mimic) return;
-
-        const state = { timeouts: [], flyingTicker: null, active: false };
-
-        function stop() {
-            for (const t of state.timeouts) clearTimeout(t);
-            state.timeouts.length = 0;
-            if (state.flyingTicker) { clearInterval(state.flyingTicker); state.flyingTicker = null; }
-            state.active = false;
-        }
-
-        function schedule(fn, delay) {
-            const t = setTimeout(() => {
-                const idx = state.timeouts.indexOf(t);
-                if (idx !== -1) state.timeouts.splice(idx, 1);
-                try { fn(); } catch { }
-            }, delay);
-            state.timeouts.push(t);
-        }
-
-        function sendArm(hand) {
-            if (!bot?._client || bot._client.ended) return;
-            try { bot._client.write('arm_animation', { hand }); } catch { }
-        }
-
-        function sendFlying() {
-            if (!bot?._client || bot._client.ended) return;
-            const onGround = !!bot.entity?.onGround;
-            try { bot._client.write('flying', { onGround }); } catch { }
-        }
-
-        function start() {
-            if (state.active) return;
-            stop();
-            state.active = true;
-
-            const jitter = Math.floor(Math.random() * 30);
-            schedule(() => sendArm(0), 280 + jitter);
-            schedule(() => sendArm(1), 320 + jitter);
-            schedule(sendFlying, 420 + jitter);
-            schedule(sendFlying, 480 + jitter);
-            schedule(sendFlying, 540 + jitter);
-
-            const flyingInterval = 760 + Math.floor(Math.random() * 80);
-            state.flyingTicker = setInterval(sendFlying, flyingInterval);
-
-            Logger.info('[Mimic] Started packet-level emulation.');
-        }
-
-        function hover() {
-            // Stop arm animations but KEEP flying packets (Heartbeat)
-            for (const t of state.timeouts) clearTimeout(t);
-            state.timeouts.length = 0;
-
-            if (!state.flyingTicker) {
-                const flyingInterval = 760 + Math.floor(Math.random() * 80);
-                state.flyingTicker = setInterval(sendFlying, flyingInterval);
-            }
-            Logger.info('[Mimic] Hover mode: Keeping connection alive.');
-        }
-
-        bot.mimic = { start, stop, hover };
-
-        bot.__mimicEnabled = true;
-
-        bot.on('login', () => setTimeout(() => { try { if (bot.__mimicEnabled) bot.mimic?.start(); } catch { } }, 200));
-        bot.on('spawn', () => { try { if (bot.__mimicEnabled) bot.mimic?.start(); } catch { } });
-        bot.on('kicked', () => { try { bot.mimic?.stop(); } catch { } });
-        bot.on('end', () => { try { bot.mimic?.stop(); } catch { } });
-    }
+    // _attachVanillaMimic removed in favor of utils/AntiBotBypass.js
 }
 
 module.exports = new MinecraftService();
