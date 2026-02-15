@@ -110,8 +110,9 @@ class MinecraftService extends EventEmitter {
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.info('Verification in progress. Switching Mimic to HOVER mode (KeepAlive)...');
-            if (this.bot.mimic) this.bot.mimic.hover();
+            Logger.info('Verification: Enabling PHYSICS (falling) + KeepAlive (Hover)...');
+            this.bot.physicsEnabled = true; // Ensure gravity works
+            if (this.bot.mimic) this.bot.mimic.hover(); // Stop waving, keep connection alive
         }
 
         if (text.includes('Вы провалили проверку')) {
