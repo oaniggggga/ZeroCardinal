@@ -3,6 +3,7 @@ const EventEmitter = require('events');
 const Logger = require('../utils/Logger');
 const config = require('../config/default.json');
 const MouseRecorder = require('../utils/MouseRecorder');
+const SpookyRotation = require('../utils/SpookyRotation');
 // Dynamic import for bot config (since it might be in config.json in root if not fully migrated, but I'll use the one I created or load from root if needed.
 // For now, I'll assume config/default.json has the structure, but wait, I didn't put the credentials there to avoid hardcoding secrets in potential git artifacts if this was a real repo.
 // I should load the root config.json for credentials.
@@ -68,6 +69,16 @@ class MinecraftService extends EventEmitter {
 
         this.bot.on('forcedMove', () => {
             Logger.info('Server forced rotation (Teleport/Look).');
+            // Sync SpookyRotation state to accept server's authority
+            if (this.bot.entity) {
+                const yawDeg = (this.bot.entity.yaw * 180) / Math.PI;
+                const pitchDeg = (this.bot.entity.pitch * 180) / Math.PI;
+                SpookyRotation.rotate.x = yawDeg;
+                SpookyRotation.rotate.y = pitchDeg;
+                SpookyRotation.lastYaw = 0;
+                SpookyRotation.lastPitch = 0;
+            }
+
             if (MouseRecorder.isPlaying(this.bot)) {
                 Logger.info('Stopping Mouse Recorder to comply.');
                 MouseRecorder.stop(this.bot);
@@ -79,7 +90,7 @@ class MinecraftService extends EventEmitter {
             Logger.warn('Connection closed.');
             // Mimic stops itself on 'end'
             MouseRecorder.stop(this.bot);
-            this._stopVerificationSlotRandomizer();
+            this._stopVerificationActionRandomizer();
             this.verificationStrafeDone = false;
             this.emit('end');
 
@@ -121,7 +132,7 @@ class MinecraftService extends EventEmitter {
 
             // Stop Mouse Playback
             MouseRecorder.stop(this.bot);
-            this._stopVerificationSlotRandomizer();
+            this._stopVerificationActionRandomizer();
             this.verificationStrafeDone = false; // Reset for next time
 
             setTimeout(() => this.chat(config.bot.serverJoinCommand || '/an401'), 2000);
@@ -132,39 +143,82 @@ class MinecraftService extends EventEmitter {
             this.bot.physicsEnabled = true;
             if (this.bot.mimic) this.bot.mimic.stop();
             MouseRecorder.stop(this.bot); // Ensure recorder is stopped
-            this._startVerificationSlotRandomizer();
+            this._startVerificationActionRandomizer();
         }
 
         if (text.includes('Вы провалили проверку')) {
             Logger.error('FAILED VERIFICATION! Bot was kicked.');
-            this._stopVerificationSlotRandomizer();
+            this._stopVerificationActionRandomizer();
         }
     }
 
-    _startVerificationSlotRandomizer() {
-        if (this.slotRandomizerInterval) return;
-        Logger.info('Starting Verification Slot Randomizer...');
+    _startVerificationActionRandomizer() {
+        if (this.actionRandomizerInterval) return;
+        Logger.info('Starting Spookytime Humanizer (Rotation + Actions)...');
 
-        const randomize = () => {
+        // 1. Rotation Loop (Every 50ms / 1 tick)
+        this.rotationInterval = setInterval(() => {
+            if (!this.bot || !this.bot.entity) return;
+
+            // Virtual Target: Look down and slightly forward (to check landing)
+            // Offset: x=0.5, y=-2.0, z=0.5 (Ground in front)
+            const targetPos = this.bot.entity.position.offset(0.5, -3.0, 0.5);
+
+            // Calculate Next Rotation using Spooky Logic
+            const nextRot = SpookyRotation.getNextRotation(this.bot, targetPos);
+
+            if (nextRot) {
+                // Apply rotation
+                this.bot.look(nextRot.yaw, nextRot.pitch, true); // Force = true to snap (since we calculated steps)
+            }
+        }, 50);
+
+        // 2. Action Loop (Random delays)
+        const performRandomAction = () => {
             if (!this.bot) return;
-            const slot = Math.floor(Math.random() * 9);
-            // Use a try-catch to allow server overrides/prevent crashes
+
+            const rand = Math.random();
+            const delay = 300 + Math.random() * 1200; // 0.3s - 1.5s
+
+            // Action Weights:
+            // 0.0 - 0.3: Switch Slot (30%)
+            // 0.3 - 0.6: Swing Arm (30%)
+            // 0.6 - 0.7: Open Inventory (10%)
+            // 0.7 - 0.8: Sneak (10%)
+            // 0.8 - 1.0: Idle (20%)
+
             try {
-                this.bot.setQuickBarSlot(slot);
+                if (rand < 0.3) {
+                    // Switch Slot
+                    const slot = Math.floor(Math.random() * 9);
+                    this.bot.setQuickBarSlot(slot);
+                } else if (rand < 0.6) {
+                    // Swing Arm
+                    this.bot.swingArm();
+                } else if (rand < 0.7) {
+                    // Open Inventory Packet (Client Command 1)
+                    this.bot._client.write('client_command', { actionId: 1 });
+                } else if (rand < 0.8) {
+                    // Sneak
+                    this.bot.setControlState('sneak', true);
+                    setTimeout(() => { if (this.bot) this.bot.setControlState('sneak', false); }, 100 + Math.random() * 100);
+                }
             } catch (e) { }
 
-            // Schedule next switch (variable 0.5s - 1.5s)
-            const delay = 500 + Math.random() * 1000;
-            this.slotRandomizerInterval = setTimeout(randomize, delay);
+            this.actionRandomizerInterval = setTimeout(performRandomAction, delay);
         };
 
-        randomize();
+        performRandomAction();
     }
 
-    _stopVerificationSlotRandomizer() {
-        if (this.slotRandomizerInterval) {
-            clearTimeout(this.slotRandomizerInterval);
-            this.slotRandomizerInterval = null;
+    _stopVerificationActionRandomizer() {
+        if (this.rotationInterval) {
+            clearInterval(this.rotationInterval);
+            this.rotationInterval = null;
+        }
+        if (this.actionRandomizerInterval) {
+            clearTimeout(this.actionRandomizerInterval);
+            this.actionRandomizerInterval = null;
         }
     }
 
