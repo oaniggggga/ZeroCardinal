@@ -103,8 +103,8 @@ class MinecraftService extends EventEmitter {
         }
 
         if (text.includes('Идёт проверка') || text.includes('проверка, пожалуйста, подождите')) {
-            Logger.warn('Verification in progress. Pausing humanizer...');
-            this.stopHumanizer();
+            Logger.info('Verification in progress. Keeping humanizer active...');
+            // this.stopHumanizer(); // User requested to keep it running
         }
 
         if (text.includes('Вы провалили проверку')) {
