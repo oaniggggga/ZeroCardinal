@@ -10,6 +10,7 @@ class SocketService extends EventEmitter {
         this.sockets = new Set();
         this.messageBuffer = []; // Buffer for messages sent while bridge is offline
         this.port = config.bot.socketPort || 19132;
+        this.lastConnectionTime = 0;
     }
 
     start() {
@@ -18,9 +19,17 @@ class SocketService extends EventEmitter {
             socket.setKeepAlive(true, 10000);
 
             if (this.sockets.size > 0) {
+                const now = Date.now();
                 const remote = socket.remoteAddress;
                 // If it's a local reconnection, assume the old one is a ghost and replace it
                 if (remote === '127.0.0.1' || remote === '::1' || remote === '::ffff:127.0.0.1') {
+                    // Prevention against rapid reconnection loops (fighting processes)
+                    if (now - this.lastConnectionTime < 2000) {
+                        Logger.warn('Connection spam detected. Rejecting rapid local reconnection.');
+                        socket.destroy();
+                        return;
+                    }
+
                     Logger.warn('Local reconnection detected. Closing old ghost bridge socket.');
                     for (const s of this.sockets) {
                         s.destroy();
@@ -32,6 +41,7 @@ class SocketService extends EventEmitter {
                     return;
                 }
             }
+            this.lastConnectionTime = Date.now();
             Logger.info('Python Bridge connected via Socket');
             this.sockets.add(socket);
 

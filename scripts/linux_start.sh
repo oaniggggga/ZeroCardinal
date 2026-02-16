@@ -16,6 +16,9 @@ pkill -9 -f "python3.*FpCardinal/main.py" || true
 pkill -9 -f "zerocardinal_bridge" || true
 pkill -9 -f "FpCardinal/main.py" || true
 
+echo "⏳ Waiting for OS to release sockets..."
+sleep 2
+
 # 3. Clear Python Bytecode Cache (fixes EOFError: marshal data too short)
 echo "Clearing Python bytecode cache..."
 find . -name "*.pyc" -delete
