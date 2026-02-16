@@ -126,7 +126,15 @@ class OrderManager {
                 this.orderQueue.add(order);
             }
         }
-        Logger.info(`Loaded ${this.dialogStates.size} dialogs and ${this.orderQueue.queue.length} pending orders`);
+
+        Logger.info(`Loaded ${this.dialogStates.size} dialogs and ${this.orderQueue.queue.length + (this.orderQueue.current ? 1 : 0)} pending orders`);
+
+        // Resolve deadlock: If there is a current order in queue but no dialog state, start it.
+        const current = this.orderQueue.getCurrent();
+        if (current && !this.dialogStates.has(current.id)) {
+            Logger.info(`Starting dialog for current order #${current.id} found after loadState`);
+            this.startOrderDialog(current);
+        }
     }
 
     formatMessage(template, vars) {
@@ -158,6 +166,13 @@ class OrderManager {
                     if (existingInQueue.username !== row.username) {
                         Logger.info(`Order #${row.id} username changed in DB: ${existingInQueue.username} -> ${row.username}. Updating queue.`);
                         existingInQueue.username = row.username;
+                    }
+
+                    // Resolve deadlock: If order is in queue and is CURRENT but has no dialog, start it.
+                    const current = this.orderQueue.getCurrent();
+                    if (current && current.id === row.id && !this.dialogStates.has(row.id)) {
+                        Logger.info(`Order #${row.id} is current in queue but has no dialog state. Starting now.`);
+                        await this.startOrderDialog(current);
                     }
                     continue;
                 }
@@ -338,24 +353,11 @@ class OrderManager {
             }
         }
 
-        // Admin commands
-        const admins = require('../config.json').bot.admins || [];
-        if (admins.includes(username) && message.trim().toLowerCase().startsWith('!skip')) {
-            const current = this.orderQueue.getCurrent();
-            if (current) {
-                Logger.info(`Admin ${username} skipped order #${current.id}`);
-                this.orderQueue.completeCurrent(false); // Fail current
-                this.sendFunPayMessage(username, `⏭️ Заказ #${current.id} пропущен.`, current.id);
-                this.dialogStates.delete(current.id);
-                DatabaseManager.deleteDialog(current.id);
-
-                const next = this.orderQueue.getCurrent();
-                if (next) await this.startOrderDialog(next);
-                return;
-            } else {
-                this.sendFunPayMessage(username, "❌ Нет активного заказа для пропуска.");
-                return;
-            }
+        // Admin commands check (BEFORE dialog handling)
+        const admins = require('../config.json').admins || [];
+        if (admins.includes(username)) {
+            const isCommand = await this.processCommand(username, message);
+            if (isCommand) return;
         }
 
         if (!state) return;
@@ -710,22 +712,17 @@ class OrderManager {
         } else if (cmd === '!help' || cmd === '!помощь') {
             this.sendFunPayMessage(username, config.messages.dialog.help);
             return true;
-        } else if (text === '!skip') {
+        } else if (cmd === '!skip') {
             // Check admin
-            if (rootConfig.admins && rootConfig.admins.includes(username)) {
+            const isAdmin = rootConfig.admins && rootConfig.admins.includes(username);
+            if (isAdmin) {
                 const currentOrder = this.orderQueue.getCurrent();
-                if (currentOrder && currentOrder.status === 'delivering') {
-                    Logger.info(`Admin ${username} skipped order #${currentOrder.id}`);
-                    currentOrder._abort = true; // Signal to abort loop
+                if (currentOrder) {
+                    Logger.info(`Admin ${username} skipped order #${currentOrder.id} (Status: ${currentOrder.status})`);
+                    currentOrder._abort = true; // Signal to abort loop if in delivering
+                    currentOrder.interruptAttempts = true; // Signal to abort loop if in delivering
 
                     this.sendFunPayMessage(username, this.formatMessage(config.messages.dialog.skipSuccess, { id: currentOrder.id }));
-
-                    // Logic to move to next is handled by the loop exiting or we force completion handling?
-                    // The loop usually sets status = 'completed' on success. 
-                    // If we abort, we should probably mark it as skipped or failed?
-                    // For now, let's treat "skip" as "cancel processing and move on", maybe mark as manual intervention needed or just effectively "cancelled".
-                    // But usually "skip" means "mark as done/ignore and go next". 
-                    // Let's set status to 'skipped' and move next.
 
                     DatabaseManager.updateOrder(currentOrder.id, { status: 'skipped' });
                     this.orderQueue.completeCurrent(false); // Remove from queue
@@ -739,7 +736,7 @@ class OrderManager {
                     }, 1000);
 
                 } else {
-                    this.sendFunPayMessage(username, "⛔ Сейчас нет активного заказа в процессе выдачи.");
+                    this.sendFunPayMessage(username, "⛔ Сейчас нет активного заказа для пропуска.");
                 }
             } else {
                 this.sendFunPayMessage(username, config.messages.dialog.adminOnly);
