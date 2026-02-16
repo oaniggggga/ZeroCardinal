@@ -877,3 +877,5 @@ class OrderManager {
 }
 
 module.exports = new OrderManager();
+
+console.log('OrderManager loaded');
