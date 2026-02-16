@@ -1,3 +1,4 @@
+const path = require('path');
 const MinecraftService = require('../services/MinecraftService');
 const DatabaseManager = require('../managers/DatabaseManager');
 const Logger = require('../utils/Logger');
@@ -16,6 +17,7 @@ class OrderManager {
         this.isProcessing = false;
         this.isPolling = false; // Prevents overlapping poll loops
         this.isCheckingMessages = false; // Locking for message processing
+        this.isCheckingOrders = false; // Locking for order processing
         this.pollInterval = null;
     }
 
@@ -81,9 +83,14 @@ class OrderManager {
                         createdAt: order.timestamp * 1000 || Date.now(),
                         updatedAt: Date.now()
                     });
-                } else if (order.status === 'processing' || order.status === 'completed') {
-                    // Update status if changed in JSON (for manual testing via JSON edit)
-                    DatabaseManager.updateOrder(order.id, { status: order.status });
+                } else {
+                    // Update existing order if details changed in JSON (for manual adjustments)
+                    DatabaseManager.updateOrder(order.id, {
+                        username: order.username,
+                        amount: order.amount,
+                        description: order.description,
+                        status: order.status
+                    });
                 }
             }
         } catch (e) {
@@ -98,6 +105,15 @@ class OrderManager {
             const order = new Order(orderData.id, orderData.username, orderData.amount, orderData.description);
             Object.assign(order, orderData);
             this.dialogStates.set(d.order_id, { step: d.step, order });
+
+            // Restore to queue
+            if (!this.orderQueue.findOrder(order.id)) {
+                this.orderQueue.add(order);
+            }
+
+            // Proactively remind the user that the bot is back and waiting
+            const reminder = `👋 Я снова в сети! Ваш заказ #${order.id} в обработке.\n\n📍 Напоминаю: вы должны быть на режиме "Anarchy 401".\n${order.nickname ? `Выдаем на ник: **${order.nickname}**? (Да/Нет)` : 'Пожалуйста, введите ваш ник в Minecraft:'}`;
+            this.sendFunPayMessage(order.username, reminder, order.id);
         }
 
         const pendingOrders = DatabaseManager.getPendingOrders();
@@ -118,22 +134,49 @@ class OrderManager {
     }
 
     async checkNewOrders() {
-        const pendingOrders = DatabaseManager.getPendingOrders();
-        for (const row of pendingOrders) {
-            if (this.dialogStates.has(row.id) || this.orderQueue.findOrder(row.id)) continue;
+        if (this.isCheckingOrders) return;
+        this.isCheckingOrders = true;
+        try {
+            const pendingOrders = DatabaseManager.getPendingOrders();
+            for (const row of pendingOrders) {
+                const existingInDialog = this.dialogStates.get(row.id);
+                const existingInQueue = this.orderQueue.findOrder(row.id);
 
-            Logger.info(`New order detected: #${row.id}`);
-            const order = new Order(row.id, row.username, row.amount, row.description);
-            order.status = row.status;
-            order.createdAt = row.created_at;
+                if (existingInDialog) {
+                    if (existingInDialog.order.username !== row.username) {
+                        Logger.info(`Order #${row.id} username changed in DB: ${existingInDialog.order.username} -> ${row.username}. Updating in-memory state and notifying.`);
+                        existingInDialog.order.username = row.username;
 
-            const position = this.orderQueue.add(order);
+                        // Notify user about the name change recognition
+                        const msg = `✅ Имя покупателя обновлено: **${row.username}**.\n\n📍 Напоминаю: для выдачи вы должны быть на режиме "Anarchy 401".\nЕсли всё верно, напишите "Да" или новый ник.`;
+                        this.sendFunPayMessage(row.username, msg, row.id);
+                    }
+                    continue;
+                }
 
-            if (position === 0) {
-                await this.startOrderDialog(order);
-            } else {
-                await this.notifyQueuePosition(order, position);
+                if (existingInQueue) {
+                    if (existingInQueue.username !== row.username) {
+                        Logger.info(`Order #${row.id} username changed in DB: ${existingInQueue.username} -> ${row.username}. Updating queue.`);
+                        existingInQueue.username = row.username;
+                    }
+                    continue;
+                }
+
+                Logger.info(`New order detected: #${row.id}`);
+                const order = new Order(row.id, row.username, row.amount, row.description);
+                order.status = row.status;
+                order.createdAt = row.created_at;
+
+                const position = this.orderQueue.add(order);
+
+                if (position === 0) {
+                    await this.startOrderDialog(order);
+                } else {
+                    await this.notifyQueuePosition(order, position);
+                }
             }
+        } finally {
+            this.isCheckingOrders = false;
         }
     }
 
@@ -167,6 +210,10 @@ class OrderManager {
             this.setDialogState(order.id, 'waiting_nickname', order);
         }
 
+        this.resetOrderTimeout(order);
+    }
+
+    resetOrderTimeout(order) {
         if (order.timeoutId) clearTimeout(order.timeoutId);
         order.timeoutId = setTimeout(() => this.handleOrderTimeout(order), config.orders.dialogTimeout);
     }
@@ -179,9 +226,16 @@ class OrderManager {
     }
 
     async handleOrderTimeout(order) {
-        Logger.info(`Timeout for order #${order.id}`);
         if (!this.dialogStates.has(order.id)) return;
 
+        // Skip timeout if this is the only order
+        if (this.orderQueue.getQueueSize() === 0) {
+            Logger.info(`Order #${order.id} is the only one. Postponing timeout by ${config.orders.dialogTimeout / 1000}s.`);
+            this.resetOrderTimeout(order);
+            return;
+        }
+
+        Logger.info(`Timeout for order #${order.id}`);
         const timeoutMessage = this.formatMessage(config.messages.dialog.timeout, { id: order.id });
         this.sendFunPayMessage(order.username, timeoutMessage, order.id);
 
@@ -209,6 +263,9 @@ class OrderManager {
         this.isCheckingMessages = true;
         try {
             const messages = DatabaseManager.getUnprocessedMessages();
+            if (messages.length > 0) {
+                Logger.info(`Processing ${messages.length} new messages from FunPay`);
+            }
             for (const msg of messages) {
                 if (DatabaseManager.claimMessage(msg.id)) {
                     await this.handleFunPayMessage(msg);
@@ -222,9 +279,10 @@ class OrderManager {
     }
 
     async handleFunPayMessage(msg) {
+        Logger.info(`Processing message from ${msg.username}: ${msg.message}`);
         let targetOrderId = null;
         for (const [orderId, state] of this.dialogStates.entries()) {
-            if (state.order.username === msg.username) {
+            if (state.order.username.toLowerCase() === msg.username.toLowerCase()) {
                 targetOrderId = orderId;
                 break;
             }
@@ -235,16 +293,22 @@ class OrderManager {
         } else {
             const isCommand = await this.processCommand(msg.username, msg.message);
             if (!isCommand) {
-                Logger.chat(`[${msg.username}] ${msg.message}`); // Log incoming message
+                Logger.chat(`[${msg.username}] ${msg.message}`);
 
-                // Check if user has ANY pending/processing orders even if not in dialogStates yet
                 const activeOrder = DatabaseManager.getActiveOrderForUser(msg.username);
-
                 if (activeOrder) {
-                    Logger.info(`Found active order for ${msg.username} (ID: ${activeOrder.id}, Status: ${activeOrder.status}). Triggering checkNewOrders.`);
-                    // Force pick up this order
+                    Logger.info(`Found active order for ${msg.username}. Triggering checkNewOrders.`);
                     await this.checkNewOrders();
-                } else if (!DatabaseManager.isCustomer(msg.username) && !this.guestWelcomeSent.has(msg.username)) {
+
+                    // Re-check if we now have a dialog state for this user (after checkNewOrders sync)
+                    for (const [orderId, state] of this.dialogStates.entries()) {
+                        if (state.order.username.toLowerCase() === msg.username.toLowerCase()) {
+                            await this.handleUserMessage(orderId, msg.username, msg.message);
+                            return;
+                        }
+                    }
+                } else {
+                    // No active order, send greeting if not sent recently
                     this.sendGuestWelcome(msg.username);
                 }
             }
@@ -254,20 +318,46 @@ class OrderManager {
     async handleUserMessage(orderId, username, message) {
         Logger.chat(`[${username}] ${message}`); // Log incoming message
 
-        // Handle !change command globally for any dialog state
-        if (message.trim().toLowerCase() === '!change' || message.trim().toLowerCase() === '!сменить') {
-            const state = this.dialogStates.get(orderId);
+        const state = this.dialogStates.get(orderId);
+        if (state) this.resetOrderTimeout(state.order);
+
+        // Global commands that should interrupt anything (like payment attempts)
+        const cmd = message.trim().toLowerCase();
+        const interruptCmds = ['!change', '!сменить', 'нет', 'no', 'отмена'];
+
+        if (interruptCmds.includes(cmd)) {
             if (state) {
                 const order = state.order;
+                order.interruptAttempts = true; // Signal processOrder to stop
                 this.sendFunPayMessage(order.username, config.messages.dialog.changeNickname, order.id);
                 order.status = 'contacted';
                 DatabaseManager.updateOrder(order.id, { status: 'contacted', nickname: null });
                 this.setDialogState(order.id, 'waiting_nickname', order);
+                state.isPaying = false; // Release lock if it was held
                 return;
             }
         }
 
-        const state = this.dialogStates.get(orderId);
+        // Admin commands
+        const admins = require('../config.json').bot.admins || [];
+        if (admins.includes(username) && message.trim().toLowerCase().startsWith('!skip')) {
+            const current = this.orderQueue.getCurrent();
+            if (current) {
+                Logger.info(`Admin ${username} skipped order #${current.id}`);
+                this.orderQueue.completeCurrent(false); // Fail current
+                this.sendFunPayMessage(username, `⏭️ Заказ #${current.id} пропущен.`, current.id);
+                this.dialogStates.delete(current.id);
+                DatabaseManager.deleteDialog(current.id);
+
+                const next = this.orderQueue.getCurrent();
+                if (next) await this.startOrderDialog(next);
+                return;
+            } else {
+                this.sendFunPayMessage(username, "❌ Нет активного заказа для пропуска.");
+                return;
+            }
+        }
+
         if (!state) return;
 
         if (state.step === 'waiting_nickname') {
@@ -279,6 +369,39 @@ class OrderManager {
 
     async handleNicknameInput(order, nickname) {
         const text = nickname.trim().toLowerCase();
+
+        // If user says "no" while we wait for nickname, they might be talking about a previous order or just confused.
+        // But more likely, if we ALREADY had a nickname (from DB) and are asking "Zeroanal? (Yes/No)", 
+        // the first message "нет" might hit handleNicknameInput if the state wasn't 'waiting_confirmation' yet.
+        const response = nickname.trim().toLowerCase().replace(/[?!.,]/g, '');
+        if (['да', 'yes', 'da', '+'].includes(response)) {
+            if (this.orderQueue.getCurrent()?.id !== order.id) {
+                const pos = this.orderQueue.getPosition(order.id);
+                this.sendFunPayMessage(order.username, `⏳ Пожалуйста, подождите своей очереди. Перед вами еще ${pos} заказ(ов). Я сообщу, когда настанет ваш черед!`, order.id);
+                return;
+            }
+
+            if (order.nickname) {
+                order.confirmed = true;
+                const state = this.dialogStates.get(order.id);
+                if (state) state.isPaying = true;
+                await this.processOrder(order);
+                if (state) state.isPaying = false;
+                return;
+            } else {
+                this.sendFunPayMessage(order.username, "📝 Пожалуйста, сначала введите ваш ник в Minecraft:", order.id);
+                return;
+            }
+        }
+
+        if (['нет', 'no', 'отмена'].includes(response)) {
+            this.sendFunPayMessage(order.username, config.messages.dialog.cancel, order.id);
+            order.status = 'contacted';
+            DatabaseManager.updateOrder(order.id, { status: 'contacted', nickname: null });
+            this.setDialogState(order.id, 'waiting_nickname', order);
+            return;
+        }
+
         if (config.messages.stopWords.some(w => text.includes(w)) && text.length > 3) {
             this.sendFunPayMessage(order.username, "🤖 Вижу, что вам, возможно, не нужна выдача. Я позвал администратора.", order.id);
             this.sendAlert(this.formatMessage(config.messages.dialog.adminAlert, { id: order.id, text: text }));
@@ -322,12 +445,18 @@ class OrderManager {
             return;
         }
 
-        const response = message.toLowerCase().replace(/[\s\uFEFF\xA0]+/g, '');
-        if (['да', 'yes', '+'].includes(response)) {
+        const response = message.toLowerCase().trim().replace(/[?!.,]/g, '');
+        if (['да', 'yes', '+', 'da'].includes(response)) {
+            if (this.orderQueue.getCurrent()?.id !== order.id) {
+                const pos = this.orderQueue.getPosition(order.id);
+                this.sendFunPayMessage(order.username, `⏳ Пожалуйста, подождите своей очереди. Перед вами еще ${pos} заказ(ов). Я сообщу, когда настанет ваш черед!`, order.id);
+                return;
+            }
+
             order.confirmed = true;
             if (state) state.isPaying = true; // Lock
             await this.processOrder(order);
-            if (state) state.isPaying = false; // Unlock (though usually order is done)
+            if (state) state.isPaying = false;
         } else if (['нет', 'no', '-', 'отмена'].includes(response)) {
             // ... rest same
             this.sendFunPayMessage(order.username, config.messages.dialog.cancel, order.id);
@@ -341,6 +470,26 @@ class OrderManager {
 
     async processOrder(order) {
         Logger.info(`Processing order #${order.id}`);
+        order.interruptAttempts = false; // Reset the interrupt flag at start
+
+        // 1. Wait for bot readiness (max 30s)
+        if (!MinecraftService.ready) {
+            Logger.info(`Waiting for MinecraftService to be ready for order #${order.id}...`);
+            const readinessStart = Date.now();
+            while (!MinecraftService.ready && Date.now() - readinessStart < 30000) {
+                if (order._abort || order.interruptAttempts) return;
+                await new Promise(r => setTimeout(r, 1000));
+            }
+            if (!MinecraftService.ready) {
+                Logger.error(`MinecraftService not ready after 30s for order #${order.id}. Aborting.`);
+                this.sendFunPayMessage(order.username, "❌ К сожалению, бот сейчас не подключен к серверу Minecraft. Пожалуйста, попробуйте позже.", order.id);
+                // Optionally, mark order as failed or return to contacted state
+                DatabaseManager.updateOrder(order.id, { status: 'contacted' });
+                this.dialogStates.delete(order.id);
+                DatabaseManager.deleteDialog(order.id);
+                return;
+            }
+        }
 
         try {
             DatabaseManager.updateOrder(order.id, { status: 'delivering' });
@@ -348,43 +497,56 @@ class OrderManager {
             const amount = order.amount * 1000000;
             const payCommand = `/pay ${order.nickname} ${amount}`;
 
+            // 2. Proactive balance check
+            if (MinecraftService.ready) {
+                Logger.info(`Checking balance before payment for order #${order.id}`);
+                const balance = await MinecraftService.getBalance();
+                // If balance is 0 and we need more, or if balance is less than needed
+                if (balance < amount) {
+                    // Only stop if we actually got a balance response (balance > 0 or explicit 0)
+                    // If balance returned is a result of a timeout (often 0), we might want to try once anyway?
+                    // But usually, if balance is 0, we can't pay.
+                    Logger.error(`Proactive check: Insufficient funds (${balance} < ${amount})`);
+                    const alertMsg = `🆘 **АЛЯРМ!** Недостаточно средств для заказа #${order.id} по результатам проверки /balance.\nНужно: ${MinecraftValidator.formatAmount(amount)}\nБаланс: ${MinecraftValidator.formatAmount(balance)}`;
+                    this.sendAlert(alertMsg);
+
+                    const userMsg = "❌ К сожалению, у меня временно закончились средства для выдачи вашего заказа.\n\nЯ уже уведомил администратора, он скоро пополнит мой баланс. Пожалуйста, не закрывайте заказ, мы выдадим его при первой возможности!";
+                    this.sendFunPayMessage(order.username, userMsg, order.id);
+
+                    order.status = 'paused';
+                    DatabaseManager.updateOrder(order.id, { status: 'paused' });
+                    this.dialogStates.delete(order.id);
+                    DatabaseManager.deleteDialog(order.id);
+                    return;
+                }
+            }
+
             let attempts = 0;
             const maxAttempts = 5;
             let success = false;
 
             while (attempts < maxAttempts && !success) {
-                if (order._abort) {
-                    Logger.info(`Order #${order.id} aborted by admin.`);
-                    return; // Stop processing immediately
+                if (order._abort || order.interruptAttempts) {
+                    Logger.info(`Order #${order.id} payment loop interrupted.`);
+                    return;
                 }
 
                 attempts++;
                 Logger.info(`Payment attempt ${attempts}/${maxAttempts} for order #${order.id}`);
-
-                MinecraftService.chat(payCommand);
 
                 // Verification Promise
                 const result = await new Promise((resolve) => {
                     if (!MinecraftService.bot) return resolve({ success: false, error: "Bot not connected" });
 
                     let resolved = false;
-                    let timeout = setTimeout(() => {
-                        if (!resolved) {
-                            resolved = true;
-                            MinecraftService.bot.removeListener('message', messageHandler);
-                            resolve({ success: false, error: "timeout" });
-                        }
-                    }, 5000);
-
                     const messageHandler = (msg) => {
-                        const text = msg.toString();
+                        const text = msg.toString().toLowerCase();
                         // Success patterns
-                        // [✔] Успешно! Игроку ... отправлено ...
                         if (text.includes('вы успешно отправили') ||
-                            text.includes('Вы успешно перевели') ||
-                            text.includes('Вы перевели') ||
-                            text.includes('Успешно переведено') ||
-                            (text.includes('Успешно!') && text.includes('отправлено'))) {
+                            text.includes('вы успешно перевели') ||
+                            text.includes('вы перевели') ||
+                            text.includes('успешно переведено') ||
+                            (text.includes('успешно!') && text.includes('отправлено'))) {
 
                             if (!resolved) {
                                 resolved = true;
@@ -394,7 +556,15 @@ class OrderManager {
                             }
                         }
                         // Failure patterns
-                        else if (text.includes('Игрок не найден') || text.includes('не найден') || text.includes('недостаточно средств')) {
+                        else if (text.includes('недостаточно денег') || text.includes('недостаточно средств')) {
+                            if (!resolved) {
+                                resolved = true;
+                                clearTimeout(timeout);
+                                MinecraftService.bot.removeListener('message', messageHandler);
+                                resolve({ success: false, error: "insufficient_funds" });
+                            }
+                        }
+                        else if (text.includes('игрок не найден') || text.includes('не найден')) {
                             if (!resolved) {
                                 resolved = true;
                                 clearTimeout(timeout);
@@ -403,9 +573,8 @@ class OrderManager {
                             }
                         }
                         // Confirmation pattern
-                        else if (text.includes('Введите команду повторно') || text.includes('[⟲]')) {
+                        else if (text.includes('введите команду повторно') || text.includes('[⟲]')) {
                             Logger.info(`Server asked for confirmation. Resending pay command for order #${order.id}`);
-                            // Extend timeout by 5 seconds
                             clearTimeout(timeout);
                             timeout = setTimeout(() => {
                                 if (!resolved) {
@@ -418,8 +587,24 @@ class OrderManager {
                         }
                     };
 
+                    let timeout = setTimeout(() => {
+                        if (!resolved) {
+                            resolved = true;
+                            MinecraftService.bot.removeListener('message', messageHandler);
+                            resolve({ success: false, error: "timeout" });
+                        }
+                    }, 5000);
+
+                    // ATTACH LISTENER FIRST, THEN SEND CHAT
                     MinecraftService.bot.on('message', messageHandler);
+                    MinecraftService.chat(payCommand);
                 });
+
+                // Immediate check if we were interrupted while waiting for the promise
+                if (order._abort || order.interruptAttempts) {
+                    Logger.info(`Order #${order.id} interrupted after payment attempt.`);
+                    return;
+                }
 
                 if (result.success) {
                     success = true;
@@ -436,26 +621,45 @@ class OrderManager {
                     const next = this.orderQueue.getCurrent();
                     if (next) await this.startOrderDialog(next);
                     return; // Exit function
+                } else if (result.error === 'insufficient_funds') {
+                    Logger.error(`Payment failed: Insufficient funds for order #${order.id}`);
+                    const alertMsg = `🆘 **АЛЯРМ!** У бота закончились деньги на балансе!\nЗаказ #${order.id} на сумму ${MinecraftValidator.formatAmount(amount)} не может быть выдан.`;
+                    this.sendAlert(alertMsg);
+
+                    const userMsg = "❌ К сожалению, у меня временно закончились средства для выдачи вашего заказа.\n\nЯ уже уведомил администратора, он скоро пополнит мой баланс. Пожалуйста, не закрывайте заказ, мы выдадим его при первой возможности!";
+                    this.sendFunPayMessage(order.username, userMsg, order.id);
+
+                    // Set status to paused so it doesn't loop
+                    order.status = 'paused';
+                    DatabaseManager.updateOrder(order.id, { status: 'paused' });
+                    this.dialogStates.delete(order.id);
+                    DatabaseManager.deleteDialog(order.id);
+                    return;
                 } else {
                     Logger.warn(`Payment attempt ${attempts} failed: ${result.error}`);
                     if (attempts < maxAttempts) {
-                        let waitMsg = `⏳ Не вижу вас на сервере. Попытка ${attempts}/${maxAttempts}. Проверю снова через 20 сек...`;
-
+                        let waitMsg;
                         if (result.error === 'timeout' || result.error === 'timeout_after_confirm') {
-                            waitMsg = `⏳ Сервер долго отвечает (лаги?). Попытка ${attempts}/${maxAttempts}. Пробую еще раз через 20 сек...`;
-                        } else if (result.error === 'not_found') {
-                            waitMsg = `⏳ Сервер пишет "Игрок не найден". Попытка ${attempts}/${maxAttempts}. Зайдите на Anarchy 401! Проверю через 20 сек...`;
+                            waitMsg = `⏳ Сервер задерживается с ответом. Попытка ${attempts}/${maxAttempts}. Пожалуйста, подождите...`;
+                        } else {
+                            waitMsg = this.formatMessage(config.messages.dialog.notFound, { attempts, maxAttempts });
                         }
 
                         this.sendFunPayMessage(order.username, waitMsg, order.id);
-                        await new Promise(r => setTimeout(r, 20000));
+
+                        // Interruptible sleep: check for abort every 500ms
+                        const sleepStart = Date.now();
+                        while (Date.now() - sleepStart < 20000) {
+                            if (order._abort || order.interruptAttempts) return;
+                            await new Promise(r => setTimeout(r, 500));
+                        }
                     }
                 }
             }
 
             // If we are here, all attempts failed
             Logger.warn(`All payment attempts failed for order #${order.id}`);
-            const errorMsg = "❌ Игрок не найден на сервере после 5 попыток. Пожалуйста, проверьте ник и зайдите на Anarchy 401.";
+            const errorMsg = "❌ К сожалению, за 5 попыток мне не удалось найти вас на сервере.\n\nПожалуйста, убедитесь, что вы зашли именно на Anarchy 401 и ввели правильный ник. Я временно вернул вас на этап ввода ника, чтобы вы могли его проверить или изменить.";
             this.sendFunPayMessage(order.username, errorMsg, order.id);
 
             // Reset to nickname step
@@ -469,10 +673,15 @@ class OrderManager {
     }
 
     sendGuestWelcome(username) {
-        if (this.guestWelcomeSent.has(username)) return;
+        const lowerUser = username.toLowerCase();
+        if (this.guestWelcomeSent.has(lowerUser)) return;
+
+        Logger.info(`Sending guest welcome to ${username}`);
         this.sendFunPayMessage(username, config.messages.dialog.guestWelcome);
-        this.guestWelcomeSent.add(username);
-        setTimeout(() => this.guestWelcomeSent.delete(username), config.orders.guestWelcomeTimeout || 86400000);
+        this.guestWelcomeSent.add(lowerUser);
+
+        // Reset welcome flag after 24h
+        setTimeout(() => this.guestWelcomeSent.delete(lowerUser), config.orders.guestWelcomeTimeout || 86400000);
     }
 
     async processCommand(username, text) {

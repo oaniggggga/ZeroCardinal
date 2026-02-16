@@ -1,0 +1,1797 @@
+[2026-02-16 15:44:16] [INFO] Starting ZeroCardinal...
+[2026-02-16 15:44:16] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 15:44:16] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 15:44:16] [INFO] Database tables verified.
+[2026-02-16 15:44:16] [INFO] Loaded 1 dialogs and 0 pending orders
+[2026-02-16 15:44:16] [INFO] Connecting to server...
+[2026-02-16 15:44:17] [INFO] Socket Server listening on port 19132
+[2026-02-16 15:44:17] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 15:44:17] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:17] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 15:44:17] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:17] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:44:17] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:44:18] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:18] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:19] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:19] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:19] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:19] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:44:19] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:44:19] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:20] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:20] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:44:20] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:44:20] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:21] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:21] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:22] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:22] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:44:22] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:44:23] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:23] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:24] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:24] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:25] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:25] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:25] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:44:25] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:44:25] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:25] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:44:25] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:44:25] [INFO] [CHAT] ➥ Вы успешно прошли проверку! :)
+[2026-02-16 15:44:25] [INFO] [CHAT] [✾] Войдите в игру ⇝ /login <Пароль>
+[2026-02-16 15:44:25] [INFO] Auth required. Sending password...
+[2026-02-16 15:44:25] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 15:44:25] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:25] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:25] [INFO] Bot spawned.
+[2026-02-16 15:44:25] [INFO] Bot spawned.
+[2026-02-16 15:44:26] [INFO] [CHAT] [✾] Вы ввели неправильный пароль, если Вас взломали, напишите сюда: vk.com/vladyaso
+[2026-02-16 15:44:26] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:27] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:28] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:29] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:29] [INFO] [CHAT] [✾] Войдите в игру ⇝ /login <Пароль>
+[2026-02-16 15:44:29] [INFO] Auth required. Sending password...
+[2026-02-16 15:44:30] [WARN] Bot kicked: {"extra":[{"color":"white","text":"["},{"color":"aqua","text":"✾"},{"color":"white","text":"] "},{"color":"white","text":"Вы ввели неправильный пароль, "},{"color":"green","text":"если Вас взломали, напишите сюда: "},{"color":"gold","clickEvent":{"action":"open_url","value":"http://vk.com/vladyaso"},"text":"vk.com/vladyaso"},{"color":"gold","text":""}],"text":""}
+[2026-02-16 15:44:30] [WARN] Connection closed.
+[2026-02-16 15:44:30] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:31] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:32] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:33] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:34] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:35] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:36] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:37] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:38] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:39] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:40] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:41] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:42] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:43] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:44] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:45] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:46] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:47] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:48] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:49] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:50] [INFO] Reconnecting...
+[2026-02-16 15:44:50] [INFO] Connecting to server...
+[2026-02-16 15:44:50] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 15:44:50] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:50] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:50] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:44:50] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:44:51] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:51] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:52] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:52] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:52] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:52] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:44:52] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:44:52] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:52] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:52] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:44:52] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:44:53] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:53] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:54] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:55] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:55] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:55] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:44:55] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:44:56] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:44:56] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:57] [INFO] Stopping...
+[2026-02-16 15:46:33] [INFO] Starting ZeroCardinal...
+[2026-02-16 15:46:33] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 15:46:33] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 15:46:33] [INFO] Database tables verified.
+[2026-02-16 15:46:33] [INFO] Loaded 1 dialogs and 0 pending orders
+[2026-02-16 15:46:33] [INFO] Connecting to server...
+[2026-02-16 15:46:33] [INFO] Socket Server listening on port 19132
+[2026-02-16 15:46:33] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 15:46:34] [INFO] Syncing legacy/manual order: #TEST123456
+[2026-02-16 15:46:34] [INFO] New order detected: #TEST123456
+[2026-02-16 15:46:34] [INFO] Starting dialog for order #TEST123456. Status: processing
+[2026-02-16 15:46:34] [INFO] [CHAT] [✾] Войдите в игру ⇝ /login <Пароль>
+[2026-02-16 15:46:34] [INFO] Auth required. Sending password...
+[2026-02-16 15:46:34] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 15:46:34] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:46:34] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:46:34] [INFO] Bot spawned.
+[2026-02-16 15:46:34] [INFO] [CHAT] [✾] Вы ввели неправильный пароль, если Вас взломали, напишите сюда: vk.com/vladyaso
+[2026-02-16 15:46:38] [INFO] [CHAT] [✾] Войдите в игру ⇝ /login <Пароль>
+[2026-02-16 15:46:38] [INFO] Auth required. Sending password...
+[2026-02-16 15:46:39] [WARN] Connection closed.
+[2026-02-16 15:46:39] [WARN] Bot kicked: {"extra":[{"color":"white","text":"["},{"color":"aqua","text":"✾"},{"color":"white","text":"] "},{"color":"white","text":"Вы ввели неправильный пароль, "},{"color":"green","text":"если Вас взломали, напишите сюда: "},{"color":"gold","clickEvent":{"action":"open_url","value":"http://vk.com/vladyaso"},"text":"vk.com/vladyaso"},{"color":"gold","text":""}],"text":""}
+[2026-02-16 15:46:40] [INFO] Stopping...
+[2026-02-16 15:46:51] [INFO] Starting ZeroCardinal...
+[2026-02-16 15:46:51] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 15:46:51] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 15:46:51] [INFO] Database tables verified.
+[2026-02-16 15:46:51] [INFO] Loaded 2 dialogs and 0 pending orders
+[2026-02-16 15:46:51] [INFO] Connecting to server...
+[2026-02-16 15:46:51] [INFO] Socket Server listening on port 19132
+[2026-02-16 15:46:51] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 15:46:52] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 15:46:52] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:46:52] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:46:52] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:46:53] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:46:53] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:46:54] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:46:54] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:46:54] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:46:54] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:46:55] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:46:55] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:46:55] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:46:56] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:46:57] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:46:57] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:46:57] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:46:58] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:47:00] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:47:00] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:47:00] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:47:00] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:47:00] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:47:00] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:47:00] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:47:00] [INFO] [CHAT] ➥ Вы успешно прошли проверку! :)
+[2026-02-16 15:47:00] [INFO] [CHAT] [✾] Зарегистрируйтесь ⇝ /reg <Пароль>
+[2026-02-16 15:47:00] [INFO] Registration required. Registering...
+[2026-02-16 15:47:00] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 15:47:00] [INFO] [CHAT] [✾] Успешная регистрация! Приятной игры!
+[2026-02-16 15:47:00] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 15:47:00] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:47:00] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:47:00] [INFO] Bot spawned.
+[2026-02-16 15:47:00] [INFO] Bot spawned.
+[2026-02-16 15:47:01] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 15:47:01] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:47:01] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:47:01] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 15:47:01] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 15:47:01] [INFO] Bot spawned.
+[2026-02-16 15:47:02] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 15:47:03] [INFO] [CHAT] [$] $10,000 было начислено вам.
+[2026-02-16 15:47:03] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:47:03] [INFO] Bot spawned.
+[2026-02-16 15:47:03] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:47:03] [INFO] Bot spawned.
+[2026-02-16 15:47:03] [INFO] [CHAT] Вы уже подключены на этот сервер!
+[2026-02-16 15:47:38] [INFO] [CHAT] ╔═════════════════════════════
+║ > ❤ Игрок никскрыт купил 10.000 Токенов
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚═════════════════════════════
+[2026-02-16 15:48:12] [INFO] [CHAT] Ⓖ [Глава] Midssu_0 Кун ⇨  LaminateDestroye сын хуни б***ь
+[2026-02-16 15:48:13] [INFO] [CHAT] Ⓛ <sham> [Глава] dimo1488 ⇨ го дуэль
+[2026-02-16 15:48:15] [INFO] [CHAT] Ⓖ ⊰Герцог⊱ kkromik Офф ⇨ спек
+[2026-02-16 15:48:17] [INFO] [CHAT] Ⓖ <daika> [Игрок] SasKe___ ⇨  all kupliu cordi bazi cena v ls
+[2026-02-16 15:48:20] [INFO] [CHAT] Ⓖ [Глава] Midssu_0 Кун ⇨  3х1 заебашили с софтом
+[2026-02-16 15:48:35] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 1 СУПЕР Кейс с Донатом
+║ > Проверь свою удачу у нас!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 15:48:45] [INFO] [CHAT] Ⓖ [Игрок] sucksawebtww ⇨ 1
+[2026-02-16 15:48:53] [INFO] [CHAT] ╔
+[2026-02-16 15:48:53] [INFO] [CHAT] ╠ Через нашего Телеграм Бота можно узнать:
+[2026-02-16 15:48:53] [INFO] [CHAT] ╠ /mines - список авто-шахт на всех анархиях
+[2026-02-16 15:48:53] [INFO] [CHAT] ╠ /events - список ивентов на всех анархиях
+[2026-02-16 15:48:53] [INFO] [CHAT] ╠ /beacons - список загадочных маяков на всех анархиях
+[2026-02-16 15:48:53] [INFO] [CHAT] ╠ И многое другое, что сделает игру ещё комфортнее
+[2026-02-16 15:48:53] [INFO] [CHAT] ╠ Ссылка: telegram.me/spookytimebot
+[2026-02-16 15:48:53] [INFO] [CHAT] ╚
+[2026-02-16 15:49:39] [INFO] [CHAT] Ⓖ [Глава] BeeZeen1xx ⇨ all кому нужен поставщик золота пишите в тг @Morphe_MS
+[2026-02-16 15:50:16] [INFO] Stopping...
+[2026-02-16 15:50:18] [INFO] Starting ZeroCardinal...
+[2026-02-16 15:50:18] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 15:50:18] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 15:50:18] [INFO] Database tables verified.
+[2026-02-16 15:50:18] [INFO] Loaded 2 dialogs and 0 pending orders
+[2026-02-16 15:50:18] [INFO] Connecting to server...
+[2026-02-16 15:50:19] [INFO] Socket Server listening on port 19132
+[2026-02-16 15:50:19] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 15:50:19] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 15:50:19] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:20] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:50:20] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:50:20] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:21] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:21] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:21] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:22] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:22] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:50:22] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:50:23] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:24] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:24] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:50:24] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:50:25] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:27] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:27] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:27] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:50:27] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:50:27] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:27] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 15:50:27] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 15:50:27] [INFO] [CHAT] ➥ Вы успешно прошли проверку! :)
+[2026-02-16 15:50:27] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 15:50:27] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 15:50:27] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 15:50:27] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:27] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:27] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 15:50:27] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 15:50:28] [INFO] Bot spawned.
+[2026-02-16 15:50:28] [INFO] Bot spawned.
+[2026-02-16 15:50:29] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 15:50:29] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 15:50:30] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:50:30] [INFO] Bot spawned.
+[2026-02-16 15:50:30] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 15:50:32] [INFO] [CHAT] Ⓛ [Глава] banan259 ⇨ кто тим пишите я
+[2026-02-16 15:50:50] [INFO] [CHAT] ╔═════════════════════════════
+║ > ❤ Игрок никскрыт купил 10.000 Токенов
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚═════════════════════════════
+[2026-02-16 15:50:50] [INFO] [CHAT] Ⓛ [Глава] banan259 ⇨ кто тим?
+[2026-02-16 15:50:53] [INFO] [CHAT] ╔
+[2026-02-16 15:50:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 15:50:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 15:50:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 15:50:53] [INFO] [CHAT] ╠
+[2026-02-16 15:50:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 15:50:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 15:50:53] [INFO] [CHAT] ╚
+[2026-02-16 15:50:57] [INFO] [CHAT] Ⓛ [Глава] banan259 ⇨ кто тим?
+[2026-02-16 15:51:13] [INFO] Python Bridge connected via Socket
+[2026-02-16 15:51:29] [INFO] Python Bridge signal: New Message
+[2026-02-16 15:51:29] [INFO] Socket Signal: New Message
+[2026-02-16 15:52:53] [INFO] [CHAT] ╔
+[2026-02-16 15:52:53] [INFO] [CHAT] ╠       ! НАБОР В КОМАНДУ ПРОЕКТА !
+[2026-02-16 15:52:53] [INFO] [CHAT] ╠ Открыт зимний набор в Команду Проекта
+[2026-02-16 15:52:53] [INFO] [CHAT] ╠ Давай бороться с читерами вместе!
+[2026-02-16 15:52:53] [INFO] [CHAT] ╠ Подавай заявку и ты: vk.cc/cCSS5u
+[2026-02-16 15:52:53] [INFO] [CHAT] ╚
+[2026-02-16 15:52:54] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 1 СУПЕР Кейс с Донатом
+║ > Проверь свою удачу у нас!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 15:53:03] [INFO] [CHAT] Ⓛ <sham> [Глава] dimo1488 ⇨ дуэль?
+[2026-02-16 15:53:31] [INFO] [CHAT] ╔═════════════════════════════
+║ > ❤ Игрок никскрыт купил 10.000 Токенов
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚═════════════════════════════
+[2026-02-16 15:53:32] [INFO] [CHAT] Ⓛ <wrong> [Глава] 88889988uuu ⇨ ?????
+[2026-02-16 15:53:54] [INFO] [CHAT] Ⓛ ﴾Элита﴿ TTS77 Лоля ⇨ h
+[2026-02-16 15:54:48] [INFO] [CHAT] ╔═════════════════════════════
+║ > ❤ Игрок никскрыт купил 10.000 Токенов
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚═════════════════════════════
+[2026-02-16 15:54:53] [INFO] [CHAT] ╔
+[2026-02-16 15:54:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 15:54:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 15:54:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 15:54:53] [INFO] [CHAT] ╠
+[2026-02-16 15:54:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 15:54:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 15:54:53] [INFO] [CHAT] ╚
+[2026-02-16 15:55:38] [INFO] [CHAT] ✞ MrCarapusio покинул игру во время PvP и был убит.
+[2026-02-16 15:56:53] [INFO] [CHAT] ╔
+[2026-02-16 15:56:53] [INFO] [CHAT] ╠ Токены можно приобрести на сайте shop.SpookyTime.net
+[2026-02-16 15:56:53] [INFO] [CHAT] ╚
+[2026-02-16 15:56:57] [INFO] [CHAT] [♨] super_america_bo забанил DEkira1339 за «2.2» на 15 м
+[2026-02-16 15:57:17] [INFO] [CHAT] ╔══╦══╦══╦══╦══╦══╦══╦══╗
+ ║
+ ║      |||   [Бикини Боттом]   |||
+ ║    Портал активируется через 3 минуты!
+ ║    Телепортация: /warp BikiniBottom
+ ║
+ ╚══╩══╩══╩══╩══╩══╩══╩══╝
+[2026-02-16 15:58:18] [INFO] Stopping...
+[2026-02-16 15:58:21] [INFO] Starting ZeroCardinal...
+[2026-02-16 15:58:21] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 15:58:21] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 15:58:21] [INFO] Database tables verified.
+[2026-02-16 15:58:21] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 15:58:21] [INFO] Connecting to server...
+[2026-02-16 15:58:22] [INFO] Socket Server listening on port 19132
+[2026-02-16 15:58:22] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 15:58:22] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 15:58:22] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 15:58:22] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 15:58:22] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:58:22] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:58:22] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 15:58:22] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 15:58:22] [INFO] Bot spawned.
+[2026-02-16 15:58:22] [INFO] [CHAT] ⚡ Наш ДС сервер discord.gg/spookytime
+[2026-02-16 15:58:23] [INFO] Python Bridge connected via Socket
+[2026-02-16 15:58:24] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 15:58:24] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 15:58:24] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:58:25] [INFO] Bot spawned.
+[2026-02-16 15:58:25] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 15:58:27] [INFO] [CHAT] Ⓖ <sefs> [Титан] loxse ⇨ как открыть магаз где афина продается
+[2026-02-16 15:58:29] [INFO] Python Bridge signal: New Message
+[2026-02-16 15:58:29] [INFO] Socket Signal: New Message
+[2026-02-16 15:58:29] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 15:58:29] [INFO] Processing message from mullaxul1: ку
+[2026-02-16 15:58:29] [INFO] Sending guest welcome to mullaxul1
+[2026-02-16 15:58:33] [INFO] [CHAT] Ⓖ <daika> [Игрок] SasKe___ ⇨  ./exrta
+[2026-02-16 15:58:52] [INFO] Stopping...
+[2026-02-16 15:59:20] [INFO] Starting ZeroCardinal...
+[2026-02-16 15:59:20] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 15:59:20] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 15:59:20] [INFO] Database tables verified.
+[2026-02-16 15:59:20] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 15:59:21] [INFO] Connecting to server...
+[2026-02-16 15:59:21] [INFO] Socket Server listening on port 19132
+[2026-02-16 15:59:21] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 15:59:21] [INFO] Python Bridge connected via Socket
+[2026-02-16 15:59:21] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 15:59:21] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 15:59:21] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 15:59:21] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:59:21] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:59:21] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 15:59:21] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 15:59:21] [INFO] Bot spawned.
+[2026-02-16 15:59:23] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 15:59:23] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 15:59:23] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 15:59:24] [INFO] Bot spawned.
+[2026-02-16 15:59:24] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 15:59:33] [INFO] Python Bridge signal: New Message
+[2026-02-16 15:59:33] [INFO] Socket Signal: New Message
+[2026-02-16 15:59:33] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 15:59:33] [INFO] Processing message from mullaxul1: .
+[2026-02-16 15:59:33] [INFO] Sending guest welcome to mullaxul1
+[2026-02-16 15:59:48] [INFO] [CHAT] Ⓖ <ABC> [Игрок] koger Дура ⇨ warp spongebob
+[2026-02-16 16:00:17] [INFO] [CHAT] ╔══╦══╦══╦══╦══╦══╦══╦══╗
+ ║
+ ║      |||   [Бикини Боттом]   |||
+ ║    Портал в мир Губки Боба активирован!
+ ║    Телепортация: /warp BikiniBottom
+ ║
+ ╚══╩══╩══╩══╩══╩══╩══╩══╝
+[2026-02-16 16:00:27] [INFO] [CHAT] Ⓛ <sham> [Глава] dimo1488 ⇨ что
+[2026-02-16 16:00:37] [INFO] [CHAT] Ⓖ [Аспид] Aunur5566 ⇨ 1
+[2026-02-16 16:00:38] [INFO] [CHAT] ╔═════════════════════════════
+║ > ❤ Игрок никскрыт купил 10.000 Токенов
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚═════════════════════════════
+[2026-02-16 16:00:53] [INFO] [CHAT] ╔
+[2026-02-16 16:00:53] [INFO] [CHAT] ╠          ! ГОЛОСОВОЙ ЧАТ !
+[2026-02-16 16:00:53] [INFO] [CHAT] ╠ Теперь на сервере можно говорить!
+[2026-02-16 16:00:53] [INFO] [CHAT] ╠ Подробная информация /voice
+[2026-02-16 16:00:53] [INFO] [CHAT] ╚
+[2026-02-16 16:01:40] [INFO] Stopping...
+[2026-02-16 16:01:42] [INFO] Starting ZeroCardinal...
+[2026-02-16 16:01:42] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 16:01:42] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 16:01:42] [INFO] Database tables verified.
+[2026-02-16 16:01:42] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 16:01:42] [INFO] Connecting to server...
+[2026-02-16 16:01:43] [INFO] Socket Server listening on port 19132
+[2026-02-16 16:01:43] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 16:01:43] [INFO] Python Bridge connected via Socket
+[2026-02-16 16:01:43] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 16:01:43] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:01:43] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:01:43] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:01:43] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:01:43] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 16:01:43] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:01:43] [INFO] Bot spawned.
+[2026-02-16 16:01:44] [INFO] [CHAT] ⚡ Вы играете на SpookyTime!
+[2026-02-16 16:01:45] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 16:01:45] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:01:46] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:01:46] [INFO] Bot spawned.
+[2026-02-16 16:01:46] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 16:02:26] [INFO] [CHAT] Ⓛ [Игрок] Dooretre123 ⇨ димо
+[2026-02-16 16:02:31] [INFO] [CHAT] Ⓛ [Игрок] Dooretre123 ⇨ давай в клан
+[2026-02-16 16:02:43] [INFO] [CHAT] Ⓛ <sham> [Глава] dimo1488 ⇨ ты софт
+[2026-02-16 16:02:53] [INFO] [CHAT] ╔
+[2026-02-16 16:02:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 16:02:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 16:02:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 16:02:53] [INFO] [CHAT] ╠
+[2026-02-16 16:02:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 16:02:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 16:02:53] [INFO] [CHAT] ╚
+[2026-02-16 16:03:04] [INFO] [CHAT] Ⓛ [Игрок] Dooretre123 ⇨ давай еще раз пвп просто проверить хочу я меч дам если тебе нужна это алма я отдам обратно
+[2026-02-16 16:03:17] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 30.000 Токенов
+║ > Потратить их можно в /tshop!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 16:03:25] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:03:25] [INFO] Socket Signal: New Message
+[2026-02-16 16:03:25] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:03:25] [INFO] Processing message from mullaxul1: ку
+[2026-02-16 16:03:25] [INFO] Found active order for mullaxul1. Triggering checkNewOrders.
+[2026-02-16 16:03:36] [INFO] [CHAT] Ⓛ <sham> [Глава] dimo1488 ⇨ я деньги потеряю все
+[2026-02-16 16:03:43] [INFO] [CHAT] Ⓛ [Игрок] Dooretre123 ⇨ я тебе верну
+[2026-02-16 16:04:01] [INFO] [CHAT] Ⓛ <sham> [Глава] dimo1488 ⇨ я не хочу
+[2026-02-16 16:04:01] [INFO] [CHAT] Ⓛ [Игрок] Dooretre123 ⇨ ладно кароче я ливать буду щас тебе база нужна моя там пару алмазок
+[2026-02-16 16:04:16] [INFO] [CHAT] Ⓛ [Игрок] Dooretre123 ⇨ просто мама компютер забирает
+[2026-02-16 16:04:22] [INFO] [CHAT] Ⓛ [Игрок] Dooretre123 ⇨ из за оценок
+[2026-02-16 16:04:33] [INFO] [CHAT] Ⓛ <sham> [Глава] dimo1488 ⇨ рил?
+[2026-02-16 16:04:33] [INFO] [CHAT] Ⓛ [Игрок] Dooretre123 ⇨ тп тогда ко мне
+[2026-02-16 16:04:37] [INFO] [CHAT] Ⓛ [Игрок] Dooretre123 ⇨ да
+[2026-02-16 16:04:41] [INFO] [CHAT] Ⓛ [Игрок] Dooretre123 ⇨ скидывай вещи
+[2026-02-16 16:04:47] [INFO] [CHAT] Ⓛ [Игрок] Dooretre123 ⇨ свои в ек
+[2026-02-16 16:04:53] [INFO] [CHAT] ╔
+[2026-02-16 16:04:53] [INFO] [CHAT] ╠ Подписывайтесь на наш ТГ - telegram.me/spookytimenet
+[2026-02-16 16:04:53] [INFO] [CHAT] ╚
+[2026-02-16 16:04:56] [INFO] [CHAT] Ⓛ [Игрок] Dooretre123 ⇨ жду скажешь как тепаться
+[2026-02-16 16:05:13] [INFO] [CHAT] Ⓖ <huyok> [Глава] ebaniiac 0iq ⇨ all какой свап лучше кроме круш кара
+[2026-02-16 16:05:49] [INFO] [CHAT] Ⓛ <12231> [Глава] MRSashaTop2 ⇨ оооо кеуу
+[2026-02-16 16:05:53] [INFO] [CHAT] Ⓛ <12231> [Глава] MRSashaTop2 ⇨ ку
+[2026-02-16 16:05:57] [INFO] [CHAT] Ⓛ <huyok> [Глава] ebaniiac 0iq ⇨ qq
+[2026-02-16 16:06:00] [INFO] [CHAT] Ⓛ <12231> [Глава] MRSashaTop2 ⇨ помнишь?
+[2026-02-16 16:06:09] [INFO] [CHAT] Ⓛ <12231> [Глава] MRSashaTop2 ⇨ новерький
+[2026-02-16 16:06:14] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 1 СУПЕР Кейс с Донатом
+║ > Проверь свою удачу у нас!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 16:06:17] [INFO] [CHAT] Ⓛ <huyok> [Глава] ebaniiac 0iq ⇨ ч*о
+[2026-02-16 16:06:25] [INFO] [CHAT] Ⓛ <huie> [Титан] Progassitop Ауе ⇨ мы тим
+[2026-02-16 16:06:31] [INFO] [CHAT] Ⓛ <sham> [Глава] tylak6066 ⇨ t
+[2026-02-16 16:06:42] [INFO] [CHAT] Ⓛ <huie> [Титан] Progassitop Ауе ⇨ я тим с ним
+[2026-02-16 16:06:53] [INFO] [CHAT] ╔
+[2026-02-16 16:06:53] [INFO] [CHAT] ╠ Хочешь получать бонусы и БЕСПЛАТНЫЕ ТОКЕНЫ?
+[2026-02-16 16:06:53] [INFO] [CHAT] ╠ Подпишись на мой вк! Лайк на последний пост!
+[2026-02-16 16:06:53] [INFO] [CHAT] ╠ Ссылка на ВКонтакте: vk.com/kol_kola
+[2026-02-16 16:06:53] [INFO] [CHAT] ╚
+[2026-02-16 16:07:03] [INFO] [CHAT] Ⓛ <huie> [Титан] Progassitop Ауе ⇨ ко вместе на ивенты
+[2026-02-16 16:07:10] [INFO] [CHAT] Ⓛ <huie> [Титан] Progassitop Ауе ⇨ хахах
+[2026-02-16 16:07:10] [INFO] [CHAT] Ⓛ <12231> [Глава] MRSashaTop1 ⇨ м
+[2026-02-16 16:07:31] [INFO] Stopping...
+[2026-02-16 16:07:33] [INFO] Starting ZeroCardinal...
+[2026-02-16 16:07:33] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 16:07:33] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 16:07:33] [INFO] Database tables verified.
+[2026-02-16 16:07:33] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 16:07:34] [INFO] Connecting to server...
+[2026-02-16 16:07:34] [INFO] Socket Server listening on port 19132
+[2026-02-16 16:07:34] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 16:07:34] [INFO] Python Bridge connected via Socket
+[2026-02-16 16:07:34] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 16:07:34] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:07:34] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:07:34] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:07:34] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:07:34] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 16:07:34] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:07:34] [INFO] Order #TEST123456 username changed in DB: Intelark -> mullaxul1. Updating in-memory state.
+[2026-02-16 16:07:35] [INFO] Bot spawned.
+[2026-02-16 16:07:36] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 16:07:37] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:07:37] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:07:37] [INFO] Bot spawned.
+[2026-02-16 16:07:37] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 16:07:41] [INFO] [CHAT] Ⓛ <huie> [Титан] Progassitop Ауе ⇨ жаль что воиса нету
+[2026-02-16 16:07:48] [INFO] [CHAT] Ⓛ <huie> [Титан] Progassitop Ауе ⇨ а тел есть
+[2026-02-16 16:07:49] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:07:49] [INFO] Socket Signal: New Message
+[2026-02-16 16:07:49] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:07:49] [INFO] Processing message from mullaxul1: ку
+[2026-02-16 16:08:07] [INFO] [CHAT] Ⓖ [Игрок] gomahaa5 ⇨ Талисман Крушителя первому кто успеет написать ввв тг brok179
+[2026-02-16 16:08:25] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:08:25] [INFO] Socket Signal: New Message
+[2026-02-16 16:08:25] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:08:25] [INFO] Processing message from mullaxul1: !change
+[2026-02-16 16:08:33] [INFO] [CHAT] Ⓖ <huyok> [Глава] ebaniiac 0iq ⇨ all какой свап лучше кроме круш кара
+[2026-02-16 16:08:37] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:08:37] [INFO] Socket Signal: New Message
+[2026-02-16 16:08:37] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:08:37] [INFO] Processing message from mullaxul1: zeroanal
+[2026-02-16 16:08:40] [INFO] [CHAT] ╔═════════════════════════════
+║ > ❤ Игрок никскрыт купил 10.000 Токенов
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚═════════════════════════════
+[2026-02-16 16:08:41] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:08:41] [INFO] Socket Signal: New Message
+[2026-02-16 16:08:41] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:08:41] [INFO] Processing message from mullaxul1: да
+[2026-02-16 16:08:41] [INFO] Processing order #TEST123456
+[2026-02-16 16:08:41] [INFO] Payment attempt 1/5 for order #TEST123456
+[2026-02-16 16:08:41] [INFO] [CHAT] ⚡ Игрок не найден
+[2026-02-16 16:08:41] [WARN] Payment attempt 1 failed: not_found
+[2026-02-16 16:08:53] [INFO] [CHAT] ╔
+[2026-02-16 16:08:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 16:08:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 16:08:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 16:08:53] [INFO] [CHAT] ╠
+[2026-02-16 16:08:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 16:08:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 16:08:53] [INFO] [CHAT] ╚
+[2026-02-16 16:08:57] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:08:57] [INFO] Socket Signal: New Message
+[2026-02-16 16:09:01] [INFO] Payment attempt 2/5 for order #TEST123456
+[2026-02-16 16:09:01] [INFO] [CHAT] ⚡ Игрок не найден
+[2026-02-16 16:09:01] [WARN] Payment attempt 2 failed: not_found
+[2026-02-16 16:09:21] [INFO] Payment attempt 3/5 for order #TEST123456
+[2026-02-16 16:09:23] [INFO] [CHAT] ⚡ Игрок не найден
+[2026-02-16 16:09:23] [WARN] Payment attempt 3 failed: not_found
+[2026-02-16 16:09:43] [INFO] Payment attempt 4/5 for order #TEST123456
+[2026-02-16 16:09:43] [INFO] [CHAT] ⚡ Игрок не найден
+[2026-02-16 16:09:43] [WARN] Payment attempt 4 failed: not_found
+[2026-02-16 16:10:03] [INFO] Payment attempt 5/5 for order #TEST123456
+[2026-02-16 16:10:03] [INFO] [CHAT] ⚡ Игрок не найден
+[2026-02-16 16:10:03] [WARN] Payment attempt 5 failed: not_found
+[2026-02-16 16:10:03] [WARN] All payment attempts failed for order #TEST123456
+[2026-02-16 16:10:03] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:10:03] [INFO] Processing message from mullaxul1: !change
+[2026-02-16 16:10:53] [INFO] [CHAT] ╔
+[2026-02-16 16:10:53] [INFO] [CHAT] ╠ У нас очень часто проходят конкурсы
+[2026-02-16 16:10:53] [INFO] [CHAT] ╠ Список актуальных конкурсов можно посмотреть:
+[2026-02-16 16:10:53] [INFO] [CHAT] ╠ Вводи команду /конкурсы
+[2026-02-16 16:10:53] [INFO] [CHAT] ╚
+[2026-02-16 16:12:05] [INFO] [CHAT] ╔═════════════════════════════
+║ > ❤ Игрок никскрыт купил 10.000 Токенов
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚═════════════════════════════
+[2026-02-16 16:12:53] [INFO] [CHAT] ╔
+[2026-02-16 16:12:53] [INFO] [CHAT] ╠ У нас можно забрать БЕСПЛАТНЫЕ ТОКЕНЫ!
+[2026-02-16 16:12:53] [INFO] [CHAT] ╠ Подробная информация /tokens
+[2026-02-16 16:12:53] [INFO] [CHAT] ╚
+[2026-02-16 16:14:20] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил Элита + 30.000 ТК
+║ > Теперь он стал намного круче! :)
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 16:14:53] [INFO] [CHAT] ╔
+[2026-02-16 16:14:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 16:14:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 16:14:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 16:14:53] [INFO] [CHAT] ╠
+[2026-02-16 16:14:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 16:14:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 16:14:53] [INFO] [CHAT] ╚
+[2026-02-16 16:14:58] [INFO] [CHAT] Ⓛ [Глава] MARTIN_ROSE7 ⇨ go kv
+[2026-02-16 16:15:12] [INFO] [CHAT] Ⓛ <ABC> [Игрок] koger Дура ⇨ da che
+[2026-02-16 16:15:19] [INFO] [CHAT] ╔══╦══╦══╦══╦══╦══╦══╦══╗
+ ║
+ ║      |||   [Адская резня]   |||
+ ║    Портал активируется через 3 минуты!
+ ║    Телепортация: /warp portal
+ ║
+ ╚══╩══╩══╩══╩══╩══╩══╩══╝
+[2026-02-16 16:15:23] [INFO] [CHAT] Ⓛ <ABC> [Игрок] koger Дура ⇨ ia stou prosto LOL
+[2026-02-16 16:15:29] [INFO] [CHAT] Ⓛ [Глава] MARTIN_ROSE7 ⇨ Hy da
+[2026-02-16 16:15:33] [INFO] [CHAT] Ⓛ [Глава] MARTIN_ROSE7 ⇨ go duel
+[2026-02-16 16:15:35] [INFO] [CHAT] Ⓛ <ABC> [Игрок] koger Дура ⇨ hu da
+[2026-02-16 16:15:52] [INFO] [CHAT] Ⓛ <ABC> [Игрок] koger Дура ⇨ kto tiim
+[2026-02-16 16:16:02] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 1 СУПЕР Кейс с Донатом
+║ > Проверь свою удачу у нас!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 16:16:05] [INFO] [CHAT] Ⓖ [Игрок] anim4ik3322 ⇨ уважаемые игроки spookytime идёт набор в мой клан от 12 лет по дс (у кого мут дс kwizyyyt)
+[2026-02-16 16:16:28] [INFO] [CHAT] Ⓖ [Игрок] gomahaa2 ⇨ Талисман Крушителя первому кто успеет написать ввв тг brok179
+[2026-02-16 16:16:41] [INFO] [CHAT] Ⓖ [Игрок] anim4ik3322 ⇨ уважаемые игроки spookytime идёт набор в мой клан от 12 лет по дс (у кого мут дс kwizyyyt)
+[2026-02-16 16:16:53] [INFO] [CHAT] ╔
+[2026-02-16 16:16:53] [INFO] [CHAT] ╠ Через нашего Телеграм Бота можно узнать:
+[2026-02-16 16:16:53] [INFO] [CHAT] ╠ /mines - список авто-шахт на всех анархиях
+[2026-02-16 16:16:53] [INFO] [CHAT] ╠ /events - список ивентов на всех анархиях
+[2026-02-16 16:16:53] [INFO] [CHAT] ╠ /beacons - список загадочных маяков на всех анархиях
+[2026-02-16 16:16:53] [INFO] [CHAT] ╠ И многое другое, что сделает игру ещё комфортнее
+[2026-02-16 16:16:53] [INFO] [CHAT] ╠ Ссылка: telegram.me/spookytimebot
+[2026-02-16 16:16:53] [INFO] [CHAT] ╚
+[2026-02-16 16:17:08] [INFO] [CHAT] Ⓛ <ABC> [Игрок] koger Дура ⇨ ??
+[2026-02-16 16:17:12] [INFO] [CHAT] Ⓛ [Глава] leha77535 ⇨ дай тал
+[2026-02-16 16:17:15] [INFO] [CHAT] Ⓛ <ABC> [Игрок] koger Дура ⇨ net
+[2026-02-16 16:17:20] [INFO] [CHAT] Ⓛ [Глава] leha77535 ⇨ или пропиши /ci 2 раза
+[2026-02-16 16:17:22] [INFO] [CHAT] Ⓛ <ABC> [Игрок] koger Дура ⇨ moi?
+[2026-02-16 16:17:25] [INFO] [CHAT] Ⓛ <ABC> [Игрок] koger Дура ⇨ net
+[2026-02-16 16:17:33] [INFO] [CHAT] Ⓛ <ABC> [Игрок] koger Дура ⇨ nishii
+[2026-02-16 16:17:37] [INFO] [CHAT] Ⓛ [Глава] leha77535 ⇨ hahahaha
+[2026-02-16 16:17:40] [INFO] [CHAT] Ⓛ [Глава] prezzzidentt Ауе ⇨ чай
+[2026-02-16 16:17:45] [INFO] [CHAT] Ⓛ <ABC> [Игрок] koger Дура ⇨ ia ne povedis e***n
+[2026-02-16 16:18:00] [INFO] [CHAT] ╔═════════════════════════════
+║ > ❤ Игрок никскрыт купил 10.000 Токенов
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚═════════════════════════════
+[2026-02-16 16:18:07] [INFO] [CHAT] Ⓛ [Глава] leha77535 ⇨ y meny 100kk na balice
+[2026-02-16 16:18:13] [INFO] [CHAT] Ⓛ <ABC> [Игрок] koger Дура ⇨ i che?
+[2026-02-16 16:18:17] [INFO] [CHAT] Ⓛ [Глава] leha77535 ⇨ hfhfh
+[2026-02-16 16:18:19] [INFO] [CHAT] ╔══╦══╦══╦══╦══╦══╦══╦══╗
+ ║
+ ║      |||   [Адская резня]   |||
+ ║    Портал на резню активирован!
+ ║    Телепортация: /warp portal
+ ║
+ ╚══╩══╩══╩══╩══╩══╩══╩══╝
+[2026-02-16 16:18:53] [INFO] [CHAT] ╔
+[2026-02-16 16:18:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 16:18:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 16:18:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 16:18:53] [INFO] [CHAT] ╠
+[2026-02-16 16:18:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 16:18:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 16:18:53] [INFO] [CHAT] ╚
+[2026-02-16 16:19:03] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 500.000 Токенов
+║ > Потратить их можно в /tshop!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 16:20:53] [INFO] [CHAT] ╔
+[2026-02-16 16:20:53] [INFO] [CHAT] ╠       ! НАБОР В КОМАНДУ ПРОЕКТА !
+[2026-02-16 16:20:53] [INFO] [CHAT] ╠ Открыт зимний набор в Команду Проекта
+[2026-02-16 16:20:53] [INFO] [CHAT] ╠ Давай бороться с читерами вместе!
+[2026-02-16 16:20:53] [INFO] [CHAT] ╠ Подавай заявку и ты: vk.cc/cCSS5u
+[2026-02-16 16:20:53] [INFO] [CHAT] ╚
+[2026-02-16 16:22:53] [INFO] [CHAT] ╔
+[2026-02-16 16:22:53] [INFO] [CHAT] ╠          ! ГОЛОСОВОЙ ЧАТ !
+[2026-02-16 16:22:53] [INFO] [CHAT] ╠ Теперь на сервере можно говорить!
+[2026-02-16 16:22:53] [INFO] [CHAT] ╠ Подробная информация /voice
+[2026-02-16 16:22:53] [INFO] [CHAT] ╚
+[2026-02-16 16:23:32] [INFO] [CHAT] Ⓛ [Глава] banan259 ⇨ го трейд
+[2026-02-16 16:24:02] [INFO] [CHAT] ✞ zxc_afish покинул игру во время PvP и был убит.
+[2026-02-16 16:24:08] [INFO] [CHAT] ╔═════════════════════════════
+║ > ❤ Игрок никскрыт купил 10.000 Токенов
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚═════════════════════════════
+[2026-02-16 16:24:29] [INFO] [CHAT] Ⓛ <sham> [Глава] tylak6066 ⇨ t
+[2026-02-16 16:24:53] [INFO] [CHAT] ╔
+[2026-02-16 16:24:53] [INFO] [CHAT] ╠    ! НОВАЯ МЕТА ХАЛЯВЫ !
+[2026-02-16 16:24:53] [INFO] [CHAT] ╠ Топовые ежедневные награды!
+[2026-02-16 16:24:53] [INFO] [CHAT] ╠ Подробная информация /daily
+[2026-02-16 16:24:53] [INFO] [CHAT] ╚
+[2026-02-16 16:25:04] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 1 СУПЕР Кейс с Донатом
+║ > Проверь свою удачу у нас!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 16:25:57] [INFO] [CHAT] Ⓛ <ABC> [Игрок] koger Дура ⇨ daite 2
+[2026-02-16 16:26:53] [INFO] [CHAT] ╔
+[2026-02-16 16:26:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 16:26:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 16:26:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 16:26:53] [INFO] [CHAT] ╠
+[2026-02-16 16:26:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 16:26:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 16:26:53] [INFO] [CHAT] ╚
+[2026-02-16 16:28:19] [INFO] [CHAT] Ⓛ [Глава] son1234587 ⇨ *ah
+[2026-02-16 16:28:26] [INFO] Stopping...
+[2026-02-16 16:28:33] [INFO] Starting ZeroCardinal...
+[2026-02-16 16:28:33] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 16:28:33] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 16:28:33] [INFO] Database tables verified.
+[2026-02-16 16:28:33] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 16:28:33] [INFO] Connecting to server...
+[2026-02-16 16:28:34] [INFO] Socket Server listening on port 19132
+[2026-02-16 16:28:34] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 16:28:34] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 16:28:34] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:28:34] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:28:34] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:28:34] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:28:34] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 16:28:34] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:28:34] [INFO] Bot spawned.
+[2026-02-16 16:28:36] [INFO] Python Bridge connected via Socket
+[2026-02-16 16:28:36] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 16:28:36] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:28:36] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:28:37] [INFO] Bot spawned.
+[2026-02-16 16:28:37] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 16:28:53] [INFO] [CHAT] ╔
+[2026-02-16 16:28:53] [INFO] [CHAT] ╠ Хочешь узнавать новости от SpookyCat первым?
+[2026-02-16 16:28:53] [INFO] [CHAT] ╠ Зайдите в мой тг! И следите за новостями!
+[2026-02-16 16:28:53] [INFO] [CHAT] ╠ Ссылка на Телеграм: t.me/SpookyCatTG
+[2026-02-16 16:28:53] [INFO] [CHAT] ╚
+[2026-02-16 16:29:02] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:29:02] [INFO] Socket Signal: New Message
+[2026-02-16 16:29:02] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:29:02] [INFO] Processing message from mullaxul1: .
+[2026-02-16 16:29:43] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 1 СУПЕР Кейс с Донатом
+║ > Проверь свою удачу у нас!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 16:29:51] [INFO] Stopping...
+[2026-02-16 16:32:59] [INFO] Starting ZeroCardinal...
+[2026-02-16 16:32:59] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 16:32:59] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 16:32:59] [INFO] Database tables verified.
+[2026-02-16 16:32:59] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 16:32:59] [INFO] Connecting to server...
+[2026-02-16 16:32:59] [INFO] Socket Server listening on port 19132
+[2026-02-16 16:32:59] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 16:33:00] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 16:33:00] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:33:00] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:33:00] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:33:00] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:33:00] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 16:33:00] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:33:01] [INFO] Bot spawned.
+[2026-02-16 16:33:01] [INFO] Python Bridge connected via Socket
+[2026-02-16 16:33:02] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 16:33:02] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:33:03] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:33:03] [INFO] Bot spawned.
+[2026-02-16 16:33:03] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 16:33:21] [INFO] [CHAT] ╔══╦══╦══╦══╦══╦══╦══╦══╗
+ ║
+ ║      |||   [Сундуки Смерти]   |||
+ ║    Уровень лута: Обычный
+ ║    Появятся уже через 3 минуты!
+ ║
+ ╚══╩══╩══╩══╩══╩══╩══╩══╝
+[2026-02-16 16:33:22] [INFO] Stopping...
+[2026-02-16 16:37:49] [INFO] Starting ZeroCardinal...
+[2026-02-16 16:37:49] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 16:37:49] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 16:37:49] [INFO] Database tables verified.
+[2026-02-16 16:37:49] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 16:37:49] [INFO] Connecting to server...
+[2026-02-16 16:37:49] [INFO] Socket Server listening on port 19132
+[2026-02-16 16:37:49] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 16:37:50] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 16:37:50] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:37:50] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:37:50] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:37:50] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:37:50] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 16:37:50] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:37:50] [INFO] Bot spawned.
+[2026-02-16 16:37:52] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 16:37:52] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:37:52] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:37:52] [INFO] Bot spawned.
+[2026-02-16 16:37:53] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 16:37:53] [INFO] Python Bridge connected via Socket
+[2026-02-16 16:37:53] [INFO] Sending 2 buffered messages to bridge
+[2026-02-16 16:38:50] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:38:50] [INFO] Socket Signal: New Message
+[2026-02-16 16:38:50] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:38:50] [INFO] Processing message from mullaxul1: нет
+[2026-02-16 16:38:53] [INFO] [CHAT] ╔
+[2026-02-16 16:38:53] [INFO] [CHAT] ╠ У нас очень часто проходят конкурсы
+[2026-02-16 16:38:53] [INFO] [CHAT] ╠ Список актуальных конкурсов можно посмотреть:
+[2026-02-16 16:38:53] [INFO] [CHAT] ╠ Вводи команду /конкурсы
+[2026-02-16 16:38:53] [INFO] [CHAT] ╚
+[2026-02-16 16:39:10] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 1 СУПЕР Кейс с Донатом
+║ > Проверь свою удачу у нас!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 16:39:10] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:39:10] [INFO] Socket Signal: New Message
+[2026-02-16 16:39:10] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:39:10] [INFO] Processing message from mullaxul1: нет
+[2026-02-16 16:40:16] [INFO] Stopping...
+[2026-02-16 16:40:18] [INFO] Starting ZeroCardinal...
+[2026-02-16 16:40:18] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 16:40:18] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 16:40:18] [INFO] Database tables verified.
+[2026-02-16 16:40:18] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 16:40:19] [INFO] Connecting to server...
+[2026-02-16 16:40:19] [INFO] Socket Server listening on port 19132
+[2026-02-16 16:40:19] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 16:40:19] [INFO] Python Bridge connected via Socket
+[2026-02-16 16:40:19] [INFO] Sending 2 buffered messages to bridge
+[2026-02-16 16:40:19] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 16:40:19] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:40:19] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:40:19] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:40:19] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:40:19] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 16:40:19] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:40:20] [INFO] Bot spawned.
+[2026-02-16 16:40:21] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 16:40:21] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:40:21] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:40:21] [INFO] Bot spawned.
+[2026-02-16 16:40:22] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 16:40:34] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:40:34] [INFO] Socket Signal: New Message
+[2026-02-16 16:40:34] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:40:34] [INFO] Processing message from mullaxul1: нет
+[2026-02-16 16:40:46] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:40:46] [INFO] Socket Signal: New Message
+[2026-02-16 16:40:46] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:40:46] [INFO] Processing message from mullaxul1: mullaxul1
+[2026-02-16 16:40:53] [INFO] [CHAT] ╔
+[2026-02-16 16:40:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 16:40:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 16:40:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 16:40:53] [INFO] [CHAT] ╠
+[2026-02-16 16:40:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 16:40:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 16:40:53] [INFO] [CHAT] ╚
+[2026-02-16 16:40:54] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:40:54] [INFO] Socket Signal: New Message
+[2026-02-16 16:40:54] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:40:54] [INFO] Processing message from mullaxul1: !refund
+[2026-02-16 16:42:53] [INFO] [CHAT] ╔
+[2026-02-16 16:42:53] [INFO] [CHAT] ╠ Через нашего Телеграм Бота можно узнать:
+[2026-02-16 16:42:53] [INFO] [CHAT] ╠ /mines - список авто-шахт на всех анархиях
+[2026-02-16 16:42:53] [INFO] [CHAT] ╠ /events - список ивентов на всех анархиях
+[2026-02-16 16:42:53] [INFO] [CHAT] ╠ /beacons - список загадочных маяков на всех анархиях
+[2026-02-16 16:42:53] [INFO] [CHAT] ╠ И многое другое, что сделает игру ещё комфортнее
+[2026-02-16 16:42:53] [INFO] [CHAT] ╠ Ссылка: telegram.me/spookytimebot
+[2026-02-16 16:42:53] [INFO] [CHAT] ╚
+[2026-02-16 16:44:25] [INFO] [CHAT] Ⓖ <XDD> [Глава] bilkamobilka ⇨ куплю корды баз
+[2026-02-16 16:44:39] [INFO] [CHAT] Ⓖ <XDD> [Глава] bilkamobilka ⇨ кто тим по вк с алмой
+[2026-02-16 16:44:53] [INFO] [CHAT] ╔
+[2026-02-16 16:44:53] [INFO] [CHAT] ╠          ! ГОЛОСОВОЙ ЧАТ !
+[2026-02-16 16:44:53] [INFO] [CHAT] ╠ Теперь на сервере можно говорить!
+[2026-02-16 16:44:53] [INFO] [CHAT] ╠ Подробная информация /voice
+[2026-02-16 16:44:53] [INFO] [CHAT] ╚
+[2026-02-16 16:46:06] [INFO] [CHAT] Ⓖ <XDD> [Глава] bilkamobilka ⇨ кто тим по вк с алмой
+[2026-02-16 16:46:32] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 1 СУПЕР Кейс с Донатом
+║ > Проверь свою удачу у нас!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 16:46:53] [INFO] [CHAT] ╔
+[2026-02-16 16:46:53] [INFO] [CHAT] ╠    ! НОВАЯ МЕТА ХАЛЯВЫ !
+[2026-02-16 16:46:53] [INFO] [CHAT] ╠ Топовые ежедневные награды!
+[2026-02-16 16:46:53] [INFO] [CHAT] ╠ Подробная информация /daily
+[2026-02-16 16:46:53] [INFO] [CHAT] ╚
+[2026-02-16 16:47:07] [INFO] Stopping...
+[2026-02-16 16:47:08] [INFO] Starting ZeroCardinal...
+[2026-02-16 16:47:08] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 16:47:08] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 16:47:08] [INFO] Database tables verified.
+[2026-02-16 16:47:08] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 16:47:09] [INFO] Connecting to server...
+[2026-02-16 16:47:09] [INFO] Socket Server listening on port 19132
+[2026-02-16 16:47:09] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 16:47:09] [INFO] Python Bridge connected via Socket
+[2026-02-16 16:47:09] [INFO] Sending 2 buffered messages to bridge
+[2026-02-16 16:47:09] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 16:47:09] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:47:09] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:47:09] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:47:09] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:47:09] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 16:47:09] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:47:10] [INFO] Bot spawned.
+[2026-02-16 16:47:11] [INFO] [CHAT] ⚡ Наша группа ВК vk.com/spookytimenet
+[2026-02-16 16:47:12] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 16:47:12] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:47:12] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:47:12] [INFO] Bot spawned.
+[2026-02-16 16:47:12] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 16:47:26] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:47:26] [INFO] Socket Signal: New Message
+[2026-02-16 16:47:26] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:47:26] [INFO] Processing message from mullaxul1: да
+[2026-02-16 16:47:26] [INFO] Processing order #TEST123456
+[2026-02-16 16:47:26] [INFO] Payment attempt 1/5 for order #TEST123456
+[2026-02-16 16:47:26] [INFO] [CHAT] [⟲] Введите команду повторно,
+[2026-02-16 16:47:26] [INFO] Server asked for confirmation. Resending pay command for order #TEST123456
+[2026-02-16 16:47:26] [INFO] [CHAT] чтобы отправить деньги: /pay mullaxul1 1,000,000
+[2026-02-16 16:47:26] [INFO] [CHAT] ⚡ У вас недостаточно денег.
+[2026-02-16 16:47:31] [WARN] Payment attempt 1 failed: timeout_after_confirm
+[2026-02-16 16:47:48] [ERROR] Socket error: read ECONNRESET
+[2026-02-16 16:47:51] [INFO] Payment attempt 2/5 for order #TEST123456
+[2026-02-16 16:47:51] [INFO] [CHAT] ⚡ У вас недостаточно денег.
+[2026-02-16 16:47:56] [WARN] Payment attempt 2 failed: timeout
+[2026-02-16 16:48:01] [INFO] Python Bridge connected via Socket
+[2026-02-16 16:48:01] [INFO] Sending 1 buffered messages to bridge
+[2026-02-16 16:48:17] [INFO] Payment attempt 3/5 for order #TEST123456
+[2026-02-16 16:48:17] [INFO] [CHAT] ⚡ У вас недостаточно денег.
+[2026-02-16 16:48:22] [WARN] Payment attempt 3 failed: timeout
+[2026-02-16 16:48:42] [INFO] Payment attempt 4/5 for order #TEST123456
+[2026-02-16 16:48:42] [INFO] [CHAT] ⚡ У вас недостаточно денег.
+[2026-02-16 16:48:47] [WARN] Payment attempt 4 failed: timeout
+[2026-02-16 16:48:53] [INFO] [CHAT] ╔
+[2026-02-16 16:48:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 16:48:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 16:48:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 16:48:53] [INFO] [CHAT] ╠
+[2026-02-16 16:48:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 16:48:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 16:48:53] [INFO] [CHAT] ╚
+[2026-02-16 16:49:07] [INFO] Payment attempt 5/5 for order #TEST123456
+[2026-02-16 16:49:07] [INFO] [CHAT] ⚡ У вас недостаточно денег.
+[2026-02-16 16:49:12] [WARN] Payment attempt 5 failed: timeout
+[2026-02-16 16:49:12] [WARN] All payment attempts failed for order #TEST123456
+[2026-02-16 16:50:05] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 1 СУПЕР Кейс с Донатом
+║ > Проверь свою удачу у нас!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 16:50:44] [INFO] Stopping...
+[2026-02-16 16:50:46] [INFO] Starting ZeroCardinal...
+[2026-02-16 16:50:46] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 16:50:46] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 16:50:46] [INFO] Database tables verified.
+[2026-02-16 16:50:46] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 16:50:47] [INFO] Connecting to server...
+[2026-02-16 16:50:47] [INFO] Socket Server listening on port 19132
+[2026-02-16 16:50:47] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 16:50:47] [INFO] Python Bridge connected via Socket
+[2026-02-16 16:50:47] [INFO] Sending 2 buffered messages to bridge
+[2026-02-16 16:50:48] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 16:50:48] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:50:48] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:50:48] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:50:48] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:50:48] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 16:50:48] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:50:48] [INFO] Bot spawned.
+[2026-02-16 16:50:50] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 16:50:50] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:50:50] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:50:50] [INFO] Bot spawned.
+[2026-02-16 16:50:51] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 16:50:53] [INFO] [CHAT] ╔
+[2026-02-16 16:50:53] [INFO] [CHAT] ╠       ! НАБОР В КОМАНДУ ПРОЕКТА !
+[2026-02-16 16:50:53] [INFO] [CHAT] ╠ Открыт зимний набор в Команду Проекта
+[2026-02-16 16:50:53] [INFO] [CHAT] ╠ Давай бороться с читерами вместе!
+[2026-02-16 16:50:53] [INFO] [CHAT] ╠ Подавай заявку и ты: vk.cc/cCSS5u
+[2026-02-16 16:50:53] [INFO] [CHAT] ╚
+[2026-02-16 16:50:58] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:50:58] [INFO] Socket Signal: New Message
+[2026-02-16 16:50:58] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:50:58] [INFO] Processing message from mullaxul1: да
+[2026-02-16 16:51:13] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 1 СУПЕР Кейс с Донатом
+║ > Проверь свою удачу у нас!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 16:51:23] [INFO] [CHAT] ╔══╦══╦══╦══╦══╦══╦══╦══╗
+ ║
+ ║      |||   [Адская резня]   |||
+ ║    Портал активируется через 3 минуты!
+ ║    Телепортация: /warp portal
+ ║
+ ╚══╩══╩══╩══╩══╩══╩══╩══╝
+[2026-02-16 16:51:58] [INFO] Stopping...
+[2026-02-16 16:52:00] [INFO] Starting ZeroCardinal...
+[2026-02-16 16:52:00] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 16:52:00] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 16:52:00] [INFO] Database tables verified.
+[2026-02-16 16:52:00] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 16:52:01] [INFO] Connecting to server...
+[2026-02-16 16:52:01] [INFO] Socket Server listening on port 19132
+[2026-02-16 16:52:01] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 16:52:02] [INFO] Python Bridge connected via Socket
+[2026-02-16 16:52:02] [INFO] Sending 2 buffered messages to bridge
+[2026-02-16 16:52:25] [ERROR] Bot error: getaddrinfo ENOTFOUND spookytime.net
+[2026-02-16 16:52:25] [WARN] Connection closed.
+[2026-02-16 16:52:45] [INFO] Reconnecting...
+[2026-02-16 16:52:45] [INFO] Connecting to server...
+[2026-02-16 16:52:45] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 16:52:45] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:52:46] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:52:46] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:52:46] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:52:46] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 16:52:46] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:52:46] [INFO] Bot spawned.
+[2026-02-16 16:52:46] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:52:46] [INFO] Socket Signal: New Message
+[2026-02-16 16:52:46] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:52:46] [INFO] Processing message from mullaxul1: да
+[2026-02-16 16:52:46] [INFO] Processing order #TEST123456
+[2026-02-16 16:52:46] [INFO] Payment attempt 1/5 for order #TEST123456
+[2026-02-16 16:52:46] [INFO] [CHAT] [⚠] Данной команды не существует!
+[2026-02-16 16:52:48] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 16:52:48] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:52:48] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:52:48] [INFO] Bot spawned.
+[2026-02-16 16:52:48] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 16:52:51] [WARN] Payment attempt 1 failed: timeout
+[2026-02-16 16:52:53] [INFO] [CHAT] ╔
+[2026-02-16 16:52:53] [INFO] [CHAT] ╠ Проблема/Вопрос? - vk.com/kol_kola
+[2026-02-16 16:52:53] [INFO] [CHAT] ╚
+[2026-02-16 16:53:02] [INFO] Python Bridge signal: New Message
+[2026-02-16 16:53:02] [INFO] Socket Signal: New Message
+[2026-02-16 16:53:11] [INFO] Payment attempt 2/5 for order #TEST123456
+[2026-02-16 16:53:11] [INFO] [CHAT] [⟲] Введите команду повторно,
+[2026-02-16 16:53:11] [INFO] Server asked for confirmation. Resending pay command for order #TEST123456
+[2026-02-16 16:53:11] [INFO] [CHAT] чтобы отправить деньги: /pay mullaxul1 1,000,000
+[2026-02-16 16:53:11] [INFO] [CHAT] ⚡ У вас недостаточно денег.
+[2026-02-16 16:53:11] [ERROR] Payment failed: Insufficient funds for order #TEST123456
+[2026-02-16 16:53:12] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 16:53:12] [INFO] Processing message from mullaxul1: !change
+[2026-02-16 16:53:34] [INFO] [CHAT] Ⓛ [Глава] CAT_118 ⇨ d
+[2026-02-16 16:54:39] [ERROR] Bot error: read ECONNRESET
+[2026-02-16 16:54:39] [WARN] Connection reset. Reconnecting...
+[2026-02-16 16:54:39] [WARN] Connection closed.
+[2026-02-16 16:54:59] [INFO] Reconnecting...
+[2026-02-16 16:54:59] [INFO] Connecting to server...
+[2026-02-16 16:55:18] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 16:55:18] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:55:18] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:55:18] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:55:18] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:55:18] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 16:55:18] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:55:18] [INFO] Bot spawned.
+[2026-02-16 16:55:20] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 16:55:20] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:55:20] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:55:20] [INFO] Bot spawned.
+[2026-02-16 16:55:21] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 16:56:53] [INFO] [CHAT] ╔
+[2026-02-16 16:56:53] [INFO] [CHAT] ╠          ! ГОЛОСОВОЙ ЧАТ !
+[2026-02-16 16:56:53] [INFO] [CHAT] ╠ Теперь на сервере можно говорить!
+[2026-02-16 16:56:53] [INFO] [CHAT] ╠ Подробная информация /voice
+[2026-02-16 16:56:53] [INFO] [CHAT] ╚
+[2026-02-16 16:57:06] [INFO] [CHAT] Ⓖ 〈Герой〉 kesha8 Нуб ⇨ all чек мой ах
+[2026-02-16 16:58:12] [INFO] Timeout for order #TEST123456
+[2026-02-16 16:58:12] [INFO] Starting dialog for order #TEST123456. Status: pending
+[2026-02-16 16:58:14] [ERROR] Bot error: read ECONNRESET
+[2026-02-16 16:58:14] [WARN] Connection reset. Reconnecting...
+[2026-02-16 16:58:14] [WARN] Connection closed.
+[2026-02-16 16:58:34] [INFO] Reconnecting...
+[2026-02-16 16:58:34] [INFO] Connecting to server...
+[2026-02-16 16:58:53] [ERROR] Bot error: getaddrinfo ENOTFOUND spookytime.net
+[2026-02-16 16:58:53] [WARN] Connection closed.
+[2026-02-16 16:58:57] [INFO] Stopping...
+[2026-02-16 16:59:01] [INFO] Starting ZeroCardinal...
+[2026-02-16 16:59:01] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 16:59:01] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 16:59:01] [INFO] Database tables verified.
+[2026-02-16 16:59:01] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 16:59:01] [INFO] Connecting to server...
+[2026-02-16 16:59:02] [INFO] Socket Server listening on port 19132
+[2026-02-16 16:59:02] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 16:59:02] [INFO] Python Bridge connected via Socket
+[2026-02-16 16:59:02] [INFO] Sending 2 buffered messages to bridge
+[2026-02-16 16:59:02] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 16:59:02] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:59:02] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:59:02] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:59:02] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:59:03] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 16:59:03] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 16:59:03] [INFO] Bot spawned.
+[2026-02-16 16:59:05] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 16:59:05] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 16:59:05] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 16:59:05] [INFO] Bot spawned.
+[2026-02-16 16:59:05] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 16:59:40] [ERROR] Socket error: read ECONNRESET
+[2026-02-16 16:59:41] [INFO] Stopping...
+[2026-02-16 17:00:37] [INFO] Starting ZeroCardinal...
+[2026-02-16 17:00:37] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 17:00:37] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 17:00:37] [INFO] Database tables verified.
+[2026-02-16 17:00:37] [INFO] Loaded 2 dialogs and 1 pending orders
+[2026-02-16 17:00:38] [INFO] Connecting to server...
+[2026-02-16 17:00:38] [INFO] Socket Server listening on port 19132
+[2026-02-16 17:00:38] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 17:00:38] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 17:00:38] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 17:00:38] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 17:00:38] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:00:38] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:00:38] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 17:00:38] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 17:00:39] [INFO] Bot spawned.
+[2026-02-16 17:00:39] [INFO] Python Bridge connected via Socket
+[2026-02-16 17:00:39] [INFO] Sending 2 buffered messages to bridge
+[2026-02-16 17:00:40] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 17:00:41] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 17:00:41] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:00:41] [INFO] Bot spawned.
+[2026-02-16 17:00:41] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 17:00:53] [INFO] [CHAT] ╔
+[2026-02-16 17:00:53] [INFO] [CHAT] ╠ НАШЛИ БАГ ИЛИ ДЮП? - vk.com/kol_kola
+[2026-02-16 17:00:53] [INFO] [CHAT] ╠ Пишите мне в ВКонтакте, БУДЕТ ТОПОВЫЙ ПРИЗ
+[2026-02-16 17:00:53] [INFO] [CHAT] ╚
+[2026-02-16 17:01:33] [INFO] Python Bridge signal: New Message
+[2026-02-16 17:01:33] [INFO] Socket Signal: New Message
+[2026-02-16 17:01:33] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 17:01:33] [INFO] Processing message from mullaxul1: да
+[2026-02-16 17:01:33] [INFO] Processing order #TEST123456
+[2026-02-16 17:01:33] [INFO] Order #TEST123456 payment loop interrupted.
+[2026-02-16 17:02:36] [INFO] [CHAT] Ⓖ <AK47> [Сквид] nikitaiukj ⇨ /home
+[2026-02-16 17:02:53] [INFO] [CHAT] ╔
+[2026-02-16 17:02:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 17:02:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 17:02:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 17:02:53] [INFO] [CHAT] ╠
+[2026-02-16 17:02:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 17:02:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 17:02:53] [INFO] [CHAT] ╚
+[2026-02-16 17:03:21] [INFO] [CHAT] Ⓛ <Gribi> [Элита] nvrghxgs Бог ⇨ куплю норм сеты
+[2026-02-16 17:04:53] [INFO] [CHAT] ╔
+[2026-02-16 17:04:53] [INFO] [CHAT] ╠    ! НОВАЯ МЕТА ХАЛЯВЫ !
+[2026-02-16 17:04:53] [INFO] [CHAT] ╠ Топовые ежедневные награды!
+[2026-02-16 17:04:53] [INFO] [CHAT] ╠ Подробная информация /daily
+[2026-02-16 17:04:53] [INFO] [CHAT] ╚
+[2026-02-16 17:05:45] [INFO] Stopping...
+[2026-02-16 17:06:50] [INFO] Starting ZeroCardinal...
+[2026-02-16 17:06:50] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 17:06:50] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 17:06:50] [INFO] Database tables verified.
+[2026-02-16 17:06:50] [INFO] Loaded 1 dialogs and 0 pending orders
+[2026-02-16 17:06:50] [INFO] Connecting to server...
+[2026-02-16 17:06:50] [INFO] Socket Server listening on port 19132
+[2026-02-16 17:06:50] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 17:06:51] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 17:06:51] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 17:06:51] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 17:06:51] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:06:51] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:06:51] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 17:06:51] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 17:06:51] [INFO] Bot spawned.
+[2026-02-16 17:06:52] [INFO] Python Bridge connected via Socket
+[2026-02-16 17:06:52] [INFO] Sending 1 buffered messages to bridge
+[2026-02-16 17:06:53] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 17:06:53] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 17:06:53] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:06:53] [INFO] Bot spawned.
+[2026-02-16 17:06:54] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 17:07:25] [INFO] [CHAT] Ⓛ <SlavAN> {Герой} gaefma111 Бог ⇨ дай тал круша
+[2026-02-16 17:07:35] [INFO] [CHAT] Ⓖ 〈Герой〉 kesha8 Нуб ⇨ АХАХАХХА СОФТА СЛИЛ
+[2026-02-16 17:07:38] [INFO] [CHAT] Ⓖ <Antis> [Элита] Noob_TL ЧСВ! ⇨ lev
+[2026-02-16 17:07:43] [INFO] [CHAT] Ⓖ [Игрок] 00beb1onuh Бог ⇨ красава
+[2026-02-16 17:07:54] [INFO] [CHAT] Ⓖ <Antis> [Элита] Noob_TL ЧСВ! ⇨ А меня софты 2х1 зажали
+[2026-02-16 17:07:58] [INFO] [CHAT] Ⓖ 〈Герой〉 kesha8 Нуб ⇨ б*я с него сфера не выпала
+[2026-02-16 17:07:59] [INFO] [CHAT] Ⓖ <Antis> [Элита] Noob_TL ЧСВ! ⇨ - сет в 7кк
+[2026-02-16 17:08:12] [INFO] [CHAT] Ⓖ 〈Герой〉 kesha8 Нуб ⇨ зато плюс меч и тотем
+[2026-02-16 17:08:25] [INFO] [CHAT] Ⓛ <SlavAN> {Герой} gaefma111 Бог ⇨ all топ ах
+[2026-02-16 17:08:37] [INFO] [CHAT] Ⓛ <SlavAN> {Герой} gaefma111 Бог ⇨ all топ ах
+[2026-02-16 17:08:47] [INFO] [CHAT] Ⓖ <SLIZ> [Барон] SasKe___ ⇨  all kupliu cordi bazi cena v ls
+[2026-02-16 17:08:50] [INFO] [CHAT] Ⓛ <SlavAN> {Герой} gaefma111 Бог ⇨ чек аук
+[2026-02-16 17:08:53] [INFO] [CHAT] ╔
+[2026-02-16 17:08:53] [INFO] [CHAT] ╠          ! ГОЛОСОВОЙ ЧАТ !
+[2026-02-16 17:08:53] [INFO] [CHAT] ╠ Теперь на сервере можно говорить!
+[2026-02-16 17:08:53] [INFO] [CHAT] ╠ Подробная информация /voice
+[2026-02-16 17:08:53] [INFO] [CHAT] ╚
+[2026-02-16 17:09:05] [INFO] [CHAT] Ⓛ <SlavAN> {Герой} gaefma111 Бог ⇨ чек аук
+[2026-02-16 17:09:15] [INFO] [CHAT] Ⓖ 〈Герой〉 kesha8 Нуб ⇨ б*я почему с типа сфера не выпала?
+[2026-02-16 17:09:25] [INFO] [CHAT] ╔══╦══╦══╦══╦══╦══╦══╦══╗
+ ║
+ ║      |||   [Сундуки Смерти]   |||
+ ║    Уровень лута: Солидный
+ ║    Появятся уже через 3 минуты!
+ ║
+ ╚══╩══╩══╩══╩══╩══╩══╩══╝
+[2026-02-16 17:09:27] [INFO] [CHAT] Ⓖ <chlen> [Игрок] arbuzniiiy ⇨ не выпадают
+[2026-02-16 17:09:32] [INFO] [CHAT] Ⓖ [Игрок] 00beb1onuh Бог ⇨ проклятье утраты
+[2026-02-16 17:09:33] [INFO] [CHAT] Ⓖ 〈Герой〉 kesha8 Нуб ⇨ а да?
+[2026-02-16 17:09:44] [INFO] [CHAT] Ⓖ 〈Герой〉 kesha8 Нуб ⇨ кста он был с бести
+[2026-02-16 17:09:55] [INFO] [CHAT] Ⓖ 〈Герой〉 kesha8 Нуб ⇨ и я его слил
+[2026-02-16 17:10:19] [INFO] [CHAT] Ⓖ [Игрок] 00beb1onuh Бог ⇨ есть у кого кожа 1
+[2026-02-16 17:10:32] [INFO] [CHAT] Ⓖ <SLIZ> [Барон] SasKe___ ⇨  all kupliu cordi bazi cena v ls
+[2026-02-16 17:10:53] [INFO] [CHAT] ╔
+[2026-02-16 17:10:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 17:10:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 17:10:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 17:10:53] [INFO] [CHAT] ╠
+[2026-02-16 17:10:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 17:10:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 17:10:53] [INFO] [CHAT] ╚
+[2026-02-16 17:11:24] [ERROR] Bot error: client timed out after 30000 milliseconds
+[2026-02-16 17:11:54] [WARN] Connection closed.
+[2026-02-16 17:12:14] [INFO] Reconnecting...
+[2026-02-16 17:12:14] [INFO] Connecting to server...
+[2026-02-16 17:12:53] [ERROR] Bot error: AggregateError
+[2026-02-16 17:12:53] [WARN] Connection closed.
+[2026-02-16 17:13:08] [INFO] Python Bridge signal: New Message
+[2026-02-16 17:13:08] [INFO] Socket Signal: New Message
+[2026-02-16 17:13:08] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 17:13:08] [INFO] Processing message from mullaxul1: да
+[2026-02-16 17:13:08] [INFO] Processing order #TEST123456
+[2026-02-16 17:13:08] [INFO] Payment attempt 1/5 for order #TEST123456
+[2026-02-16 17:13:13] [WARN] Payment attempt 1 failed: timeout
+[2026-02-16 17:13:13] [INFO] Reconnecting...
+[2026-02-16 17:13:13] [INFO] Connecting to server...
+[2026-02-16 17:13:14] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 17:13:14] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 17:13:14] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 17:13:14] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:13:14] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:13:14] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 17:13:14] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 17:13:14] [INFO] Bot spawned.
+[2026-02-16 17:13:16] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 17:13:16] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 17:13:16] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:13:16] [INFO] Bot spawned.
+[2026-02-16 17:13:17] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 17:13:33] [INFO] Payment attempt 2/5 for order #TEST123456
+[2026-02-16 17:13:33] [INFO] [CHAT] [⟲] Введите команду повторно,
+[2026-02-16 17:13:33] [INFO] Server asked for confirmation. Resending pay command for order #TEST123456
+[2026-02-16 17:13:33] [INFO] [CHAT] чтобы отправить деньги: /pay mullaxul1 1,000,000
+[2026-02-16 17:13:33] [INFO] [CHAT] ⚡ У вас недостаточно денег.
+[2026-02-16 17:13:33] [ERROR] Payment failed: Insufficient funds for order #TEST123456
+[2026-02-16 17:13:56] [INFO] [CHAT] Ⓖ <123zf> [Страж] Alexstorm2024 ЧСВ! ⇨ a
+[2026-02-16 17:14:00] [INFO] Stopping...
+[2026-02-16 17:23:15] [INFO] Starting ZeroCardinal...
+[2026-02-16 17:23:15] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 17:23:15] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 17:23:15] [INFO] Database tables verified.
+[2026-02-16 17:23:15] [INFO] Loaded 1 dialogs and 0 pending orders
+[2026-02-16 17:23:16] [INFO] Connecting to server...
+[2026-02-16 17:23:16] [INFO] Socket Server listening on port 19132
+[2026-02-16 17:23:16] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 17:23:17] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 17:23:17] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 17:23:17] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 17:23:17] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:23:17] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:23:17] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 17:23:17] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 17:23:17] [INFO] Python Bridge connected via Socket
+[2026-02-16 17:23:17] [INFO] Sending 1 buffered messages to bridge
+[2026-02-16 17:23:17] [INFO] Bot spawned.
+[2026-02-16 17:23:19] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 17:23:19] [INFO] Bot mullaxul1133 logged in.
+[2026-02-16 17:23:19] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:23:19] [INFO] Bot spawned.
+[2026-02-16 17:23:20] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 17:23:56] [INFO] Python Bridge signal: New Message
+[2026-02-16 17:23:56] [INFO] Socket Signal: New Message
+[2026-02-16 17:23:56] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 17:23:56] [INFO] Processing message from mullaxul1: да
+[2026-02-16 17:23:56] [INFO] Processing order #TEST123456
+[2026-02-16 17:23:56] [INFO] Checking balance before payment for order #TEST123456
+[2026-02-16 17:23:56] [INFO] [CHAT] [$] Ваш баланс: $10,000
+[2026-02-16 17:23:56] [INFO] Parsed balance: 10000 from "[$] Ваш баланс: $10,000"
+[2026-02-16 17:23:56] [ERROR] Proactive check: Insufficient funds (10000 < 1000000)
+[2026-02-16 17:24:07] [INFO] Stopping...
+[2026-02-16 17:28:16] [INFO] Starting ZeroCardinal...
+[2026-02-16 17:28:16] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 17:28:16] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 17:28:16] [INFO] Database tables verified.
+[2026-02-16 17:28:16] [INFO] Loaded 1 dialogs and 0 pending orders
+[2026-02-16 17:28:16] [INFO] Connecting to server...
+[2026-02-16 17:28:17] [INFO] Socket Server listening on port 19132
+[2026-02-16 17:28:17] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 17:28:18] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 17:28:18] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:18] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 17:28:18] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 17:28:19] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:19] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:20] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:20] [INFO] Python Bridge connected via Socket
+[2026-02-16 17:28:20] [INFO] Sending 1 buffered messages to bridge
+[2026-02-16 17:28:20] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 17:28:20] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 17:28:20] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:21] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:21] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 17:28:21] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 17:28:22] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:23] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:23] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 17:28:23] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 17:28:24] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:25] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:26] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:26] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 17:28:26] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 17:28:26] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:26] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 17:28:26] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 17:28:26] [INFO] [CHAT] ➥ Вы успешно прошли проверку! :)
+[2026-02-16 17:28:26] [INFO] [CHAT] [✾] Войдите в игру ⇝ /login <Пароль>
+[2026-02-16 17:28:26] [INFO] Auth required. Sending password...
+[2026-02-16 17:28:26] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 17:28:26] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:26] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:26] [INFO] Bot spawned.
+[2026-02-16 17:28:26] [INFO] Bot spawned.
+[2026-02-16 17:28:27] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 17:28:27] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 17:28:28] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 17:28:28] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:28] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:28] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 17:28:28] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 17:28:28] [INFO] Bot spawned.
+[2026-02-16 17:28:29] [INFO] [CHAT] ⚡ Наш ДС сервер discord.gg/spookytime
+[2026-02-16 17:28:30] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 17:28:30] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 17:28:30] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 17:28:30] [INFO] Bot spawned.
+[2026-02-16 17:28:30] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 17:28:44] [INFO] Stopping...

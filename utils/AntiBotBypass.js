@@ -33,10 +33,8 @@ function startVanillaMimicTimers() {
     const sendArm = (hand) => {
         if (!bot?._client || bot._client.ended) return
         try {
-            console.log(`[bot] vanilla-mimic arm -> ${hand}`)
             bot._client.write('arm_animation', { hand })
         } catch (err) {
-            console.log('[bot] vanilla-mimic arm error', err)
         }
     }
 
@@ -44,10 +42,8 @@ function startVanillaMimicTimers() {
         if (!bot?._client || bot._client.ended) return
         const onGround = !!bot.entity?.onGround
         try {
-            console.log('[bot] vanilla-mimic flying ->', onGround)
             bot._client.write('flying', { onGround })
         } catch (err) {
-            console.log('[bot] vanilla-mimic flying error', err)
         }
     }
 
@@ -66,19 +62,16 @@ function bind(bot) {
     botReference = bot
 
     bot.on('login', () => {
-        console.log(`[bot] login ok`)
         setTimeout(() => {
             if (!mimicActive) startVanillaMimicTimers()
         }, 200)
     })
 
     bot.on('spawn', () => {
-        console.log(`[bot] spawn`)
         startVanillaMimicTimers()
     })
 
     bot.on('message', (message) => {
-        console.log(`[chat] ${message.toString()}`)
     })
 
     // Preserving original logging but maybe we should use the project's Logger? 
@@ -87,12 +80,10 @@ function bind(bot) {
     // However, I'll stick to the logic flow.
 
     bot.on('kicked', (reason) => {
-        console.log(`[bot] kicked: ${reason}`)
         stopVanillaMimicTimers()
     })
 
     bot.on('end', (reason) => {
-        console.log(`[bot] end: ${reason}`)
         stopVanillaMimicTimers()
     })
 }

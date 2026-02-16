@@ -8,6 +8,7 @@ class SocketService extends EventEmitter {
         super();
         this.server = null;
         this.sockets = new Set();
+        this.messageBuffer = []; // Buffer for messages sent while bridge is offline
         this.port = config.bot.socketPort || 19132;
     }
 
@@ -20,6 +21,15 @@ class SocketService extends EventEmitter {
             }
             Logger.info('Python Bridge connected via Socket');
             this.sockets.add(socket);
+
+            // Send buffered messages
+            if (this.messageBuffer.length > 0) {
+                Logger.info(`Sending ${this.messageBuffer.length} buffered messages to bridge`);
+                while (this.messageBuffer.length > 0) {
+                    const payload = this.messageBuffer.shift();
+                    socket.write(payload);
+                }
+            }
 
             socket.on('data', (data) => {
                 const chunks = data.toString().split('\n');
@@ -72,6 +82,12 @@ class SocketService extends EventEmitter {
 
     send(data) {
         const payload = JSON.stringify(data) + '\n';
+        if (this.sockets.size === 0) {
+            this.messageBuffer.push(payload);
+            // Optional: Limit buffer size to avoid memory issues
+            if (this.messageBuffer.length > 50) this.messageBuffer.shift();
+            return;
+        }
         for (const socket of this.sockets) {
             socket.write(payload);
         }

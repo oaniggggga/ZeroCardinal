@@ -92,7 +92,7 @@ class DatabaseManager {
     }
 
     getPendingOrders() {
-        return this.db.prepare("SELECT * FROM orders WHERE status = 'pending' ORDER BY created_at ASC").all();
+        return this.db.prepare("SELECT * FROM orders WHERE status IN ('pending', 'contacted', 'confirming', 'processing', 'delivering') ORDER BY created_at ASC").all();
     }
 
     getActiveOrderForUser(username) {

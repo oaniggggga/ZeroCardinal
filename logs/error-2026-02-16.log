@@ -1,0 +1,251 @@
+[2026-02-16 15:44:17] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:18] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:19] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:20] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:21] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:22] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:23] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:24] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:25] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:26] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:27] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:28] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:29] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:30] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:31] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:32] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:33] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:34] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:35] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:36] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:37] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:38] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:39] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:40] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:41] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:42] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:43] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:44] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:45] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:46] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:47] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:48] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:49] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:50] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:51] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:52] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:53] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:54] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:55] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 15:44:56] [ERROR] Error in poll loop: ReferenceError: path is not defined
+    at OrderManager.syncLegacyOrders (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:67:28)
+    at OrderManager.pollLoop (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:55:24)
+    at Timeout._onTimeout (C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\managers\OrderManager.js:36:52)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[2026-02-16 16:47:48] [ERROR] Socket error: read ECONNRESET
+[2026-02-16 16:52:25] [ERROR] Bot error: getaddrinfo ENOTFOUND spookytime.net
+[2026-02-16 16:53:11] [ERROR] Payment failed: Insufficient funds for order #TEST123456
+[2026-02-16 16:54:39] [ERROR] Bot error: read ECONNRESET
+[2026-02-16 16:58:14] [ERROR] Bot error: read ECONNRESET
+[2026-02-16 16:58:53] [ERROR] Bot error: getaddrinfo ENOTFOUND spookytime.net
+[2026-02-16 16:59:40] [ERROR] Socket error: read ECONNRESET
+[2026-02-16 17:11:24] [ERROR] Bot error: client timed out after 30000 milliseconds
+[2026-02-16 17:12:53] [ERROR] Bot error: AggregateError
+[2026-02-16 17:13:33] [ERROR] Payment failed: Insufficient funds for order #TEST123456
+[2026-02-16 17:23:56] [ERROR] Proactive check: Insufficient funds (10000 < 1000000)
