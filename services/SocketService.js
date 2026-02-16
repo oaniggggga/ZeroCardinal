@@ -14,10 +14,23 @@ class SocketService extends EventEmitter {
 
     start() {
         this.server = net.createServer((socket) => {
+            // Enable keep-alive to detect dead connections faster
+            socket.setKeepAlive(true, 10000);
+
             if (this.sockets.size > 0) {
-                Logger.warn('Python Bridge connection rejected (only one bridge allowed)');
-                socket.end('One bridge already connected\n');
-                return;
+                const remote = socket.remoteAddress;
+                // If it's a local reconnection, assume the old one is a ghost and replace it
+                if (remote === '127.0.0.1' || remote === '::1' || remote === '::ffff:127.0.0.1') {
+                    Logger.warn('Local reconnection detected. Closing old ghost bridge socket.');
+                    for (const s of this.sockets) {
+                        s.destroy();
+                        this.sockets.delete(s);
+                    }
+                } else {
+                    Logger.warn('Python Bridge connection rejected (only one bridge allowed)');
+                    socket.end(JSON.stringify({ type: 'error', message: 'One bridge already connected' }) + '\n');
+                    return;
+                }
             }
             Logger.info('Python Bridge connected via Socket');
             this.sockets.add(socket);
