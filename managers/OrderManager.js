@@ -753,6 +753,88 @@ class OrderManager {
         } else if (cmd === '!refund') {
             this.sendFunPayMessage(username, "Для возврата средств, пожалуйста, обратитесь к администратору или создайте тикет на FunPay.");
             return true;
+        } else if (cmd.startsWith('!start')) {
+            const parts = text.trim().split(/\s+/);
+            const idArg = parts.length > 1 ? parts[1] : null;
+            const isAdmin = rootConfig.admins && rootConfig.admins.includes(username);
+
+            // Manual creation (Admin only): !start ID AMOUNT USERNAME
+            if (isAdmin && parts.length >= 4) {
+                const id = parts[1];
+                const amount = parseFloat(parts[2].replace(',', '.'));
+                const targetUser = parts[3];
+
+                if (isNaN(amount)) {
+                    this.sendFunPayMessage(username, "❌ Неверный формат суммы. Пример: !start TEST1 100 User123");
+                    return true;
+                }
+
+                Logger.info(`Admin ${username} creating manual order #${id} for ${targetUser} (${amount})`);
+
+                // We use replace to ensure it's "created or updated" for testing
+                const stmt = DatabaseManager.db.prepare(`
+                    INSERT INTO orders (id, username, amount, description, status, created_at, updated_at, is_manual)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, 1)
+                    ON CONFLICT(id) DO UPDATE SET 
+                        username=excluded.username, 
+                        amount=excluded.amount, 
+                        status=excluded.status, 
+                        updated_at=excluded.updated_at
+                `);
+
+                stmt.run(id, targetUser, amount, "Ручной заказ (Admin)", "pending", Date.now(), Date.now());
+
+                this.sendFunPayMessage(username, `✅ Ручной заказ #${id} для **${targetUser}** (${amount} кк) запущен!`);
+
+                // Trigger a check to pick it up immediately
+                this.checkNewOrders();
+                return true;
+            }
+
+            let orderToStart = null;
+
+            if (idArg) {
+                // Find specific order by ID
+                const orderRow = DatabaseManager.getOrder(idArg);
+                if (!orderRow) {
+                    this.sendFunPayMessage(username, `❌ Заказ #${idArg} не найден в базе данных.`);
+                    return true;
+                }
+
+                if (!isAdmin && orderRow.username !== username) {
+                    this.sendFunPayMessage(username, "⛔ Вы можете запускать только свои заказы.");
+                    return true;
+                }
+                orderToStart = orderRow;
+            } else {
+                // Find current user's active order
+                orderToStart = DatabaseManager.getActiveOrderForUser(username);
+                // Also check for paused orders specifically
+                if (!orderToStart) {
+                    const pausedOrder = DatabaseManager.db.prepare("SELECT * FROM orders WHERE username = ? AND status = 'paused' LIMIT 1").get(username);
+                    if (pausedOrder) orderToStart = pausedOrder;
+                }
+
+                if (!orderToStart) {
+                    this.sendFunPayMessage(username, "❌ У вас нет активных или приостановленных заказов.");
+                    return true;
+                }
+            }
+
+            // If found and paused/pending, reset to pending and check
+            if (['pending', 'paused', 'contacted', 'skipped'].includes(orderToStart.status)) {
+                Logger.info(`Manual start requested for order #${orderToStart.id} by ${username}`);
+                DatabaseManager.updateOrder(orderToStart.id, { status: 'pending' });
+                this.sendFunPayMessage(username, `🚀 Запуск обработки заказа #${orderToStart.id}...`);
+
+                // Manually trigger a check
+                this.checkNewOrders();
+            } else if (orderToStart.status === 'completed') {
+                this.sendFunPayMessage(username, "✅ Этот заказ уже успешно выполнен.");
+            } else {
+                this.sendFunPayMessage(username, `⏳ Заказ #${orderToStart.id} уже находится в процессе (${orderToStart.status}).`);
+            }
+            return true;
         }
         return false;
     }
