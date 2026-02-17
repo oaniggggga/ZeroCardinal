@@ -1795,3 +1795,640 @@
 ** Привяжите его к ВК: /vk
 ** Или к Телеграм: /tg
 [2026-02-16 17:28:44] [INFO] Stopping...
+[2026-02-16 21:13:30] [INFO] Starting ZeroCardinal...
+[2026-02-16 21:13:30] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 21:13:30] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 21:13:30] [INFO] Database tables verified.
+[2026-02-16 21:13:30] [INFO] Loaded 1 dialogs and 1 pending orders
+[2026-02-16 21:13:31] [INFO] Connecting to server...
+[2026-02-16 21:13:32] [INFO] Socket Server listening on port 19132
+[2026-02-16 21:13:32] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 21:13:32] [INFO] Syncing legacy/manual order: #TEST123
+[2026-02-16 21:13:32] [INFO] New order detected: #TEST123
+[2026-02-16 21:13:32] [INFO] Processing 13 new messages from FunPay
+[2026-02-16 21:13:32] [INFO] Processing message from BoostedNUMBER1: 📦 Я занимаюсь мгновенной автоматической выдачей товаров после оплаты.
+💰 Чтобы начать, просто оплатите любой из наших лотов, и я сразу напишу вам здесь!
+
+📊 Команды:
+!status — Работает ли бот сейчас
+!help — Показать список всех команд
+
+🐦 ZeroCardinal
+[2026-02-16 21:13:32] [INFO] Sending guest welcome to BoostedNUMBER1
+[2026-02-16 21:13:32] [INFO] Processing message from BoostedNUMBER1: !start TEST123 1 Intelark ​‍‌
+[2026-02-16 21:13:32] [INFO] Admin BoostedNUMBER1 creating manual order #TEST123 for Intelark (1)
+[2026-02-16 21:13:32] [INFO] Processing message from BoostedNUMBER1: 📦 Я занимаюсь мгновенной автоматической выдачей товаров после оплаты.
+💰 Чтобы начать, просто оплатите любой из наших лотов, и я сразу напишу вам здесь!
+
+📊 Команды:
+!status — Работает ли бот сейчас
+!help — Показать список всех команд
+
+🐦 ZeroCardinal
+[2026-02-16 21:13:32] [INFO] Processing message from FunPay: Покупатель Intelark оплатил заказ #DDBNA9TY. Minecraft, Валюта, 🎃🔥Sᴘᴏᴏᴋʏᴛɪᴍᴇ🔥Цена за 1кк🔥Быстрая выдача🔥🎃, SpookyTime (цена за 1кк), 3 шт.
+Intelark, не забудьте потом нажать кнопку «Подтвердить выполнение заказа».
+[2026-02-16 21:13:32] [INFO] Sending guest welcome to FunPay
+[2026-02-16 21:13:32] [INFO] Processing message from BoostedNUMBER1: 🎉 Спасибо за покупку! Ваш заказ на валюту SpookyTime уже в обработке. Ожидайте когда вам напишет продавец! Если будут вопросы, пишите мне в чат. 🚀
+[2026-02-16 21:13:32] [INFO] Processing message from BoostedNUMBER1: ⏳ В данный момент я занят выдачей другого заказа.
+
+Ваш заказ #DDBNA9TY добавлен в лист ожидания.
+📊 Ваша текущая позиция: #1
+
+Не уходите далеко, я сообщу, когда наступит ваша очередь!
+
+🐦 ZeroCardinal
+[2026-02-16 21:13:32] [INFO] Processing message from BoostedNUMBER1: ⛔ У вас нет прав для выполнения этой команды.
+
+🐦 ZeroCardinal
+[2026-02-16 21:13:32] [INFO] Processing message from BoostedNUMBER1: !skip ​‍‌
+[2026-02-16 21:13:32] [INFO] Processing message from BoostedNUMBER1: ⛔ У вас нет прав для выполнения этой команды.
+
+🐦 ZeroCardinal
+[2026-02-16 21:13:32] [INFO] Processing message from BoostedNUMBER1: ⛔ Сейчас нет активного заказа в процессе выдачи.
+
+🐦 ZeroCardinal
+[2026-02-16 21:13:32] [INFO] Processing message from BoostedNUMBER1: 📊 Ваша позиция в листе ожидания: #1.
+Перед вами в очереди: 0 чел.
+
+🐦 ZeroCardinal
+[2026-02-16 21:13:32] [INFO] Processing message from BoostedNUMBER1: 💰 Наш текущий баланс на сервере: 3,010,000 валюты.
+
+🐦 ZeroCardinal
+[2026-02-16 21:13:32] [INFO] Processing message from BoostedNUMBER1: ⛔ Сейчас нет активного заказа в процессе выдачи.
+
+🐦 ZeroCardinal
+[2026-02-16 21:13:32] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 21:13:32] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:32] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 21:13:32] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 21:13:33] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:34] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:34] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:34] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:34] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 21:13:34] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 21:13:36] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:37] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 21:13:37] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 21:13:37] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:39] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:39] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:39] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 21:13:39] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 21:13:39] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:40] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 21:13:40] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 21:13:40] [INFO] [CHAT] ➥ Вы успешно прошли проверку! :)
+[2026-02-16 21:13:40] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 21:13:40] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 21:13:40] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 21:13:40] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:40] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:40] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 21:13:40] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 21:13:40] [INFO] Bot spawned.
+[2026-02-16 21:13:40] [INFO] Bot spawned.
+[2026-02-16 21:13:42] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 21:13:42] [INFO] [CHAT] Вы уже подключены на этот сервер!
+[2026-02-16 21:13:42] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:13:42] [INFO] Bot spawned.
+[2026-02-16 21:13:43] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 21:14:17] [INFO] Python Bridge connected via Socket
+[2026-02-16 21:14:17] [INFO] Sending 5 buffered messages to bridge
+[2026-02-16 21:14:41] [INFO] Python Bridge signal: New Message
+[2026-02-16 21:14:41] [INFO] Socket Signal: New Message
+[2026-02-16 21:14:41] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 21:14:41] [INFO] Processing message from BoostedNUMBER1: quadroi ​‍‌
+[2026-02-16 21:14:45] [INFO] Python Bridge signal: New Message
+[2026-02-16 21:14:45] [INFO] Socket Signal: New Message
+[2026-02-16 21:14:45] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 21:14:45] [INFO] Processing message from BoostedNUMBER1: привет ​‍‌
+[2026-02-16 21:14:53] [INFO] [CHAT] ╔
+[2026-02-16 21:14:53] [INFO] [CHAT] ╠ /donshop магазин для твоей души
+[2026-02-16 21:14:53] [INFO] [CHAT] ╚
+[2026-02-16 21:15:30] [INFO] [CHAT] Ⓖ [Игрок] ZXC_ZeReTex_ZXC ⇨ ПИДАААРАААС
+[2026-02-16 21:15:59] [INFO] [CHAT] Ⓛ [Игрок] ZXC_ZeReTex_ZXC ⇨ дай ресов
+[2026-02-16 21:15:59] [INFO] [CHAT] ╔══╦══╦══╦══╦══╦══╦══╦══╗
+ ║
+ ║      |||   [Маяк убийца]   |||
+ ║    Уровень лута: Элитный
+ ║    Появился на координатах -1792 69 -2335
+ ║
+ ╚══╩══╩══╩══╩══╩══╩══╩══╝
+[2026-02-16 21:15:59] [INFO] [CHAT] Ⓛ [Игрок] ZXC_ZeReTex_ZXC ⇨ дай ресов
+[2026-02-16 21:16:00] [INFO] Stopping...
+[2026-02-16 21:19:31] [INFO] Starting ZeroCardinal...
+[2026-02-16 21:19:31] [INFO] OrderManager started (DB Mode + Socket)
+[2026-02-16 21:19:31] [INFO] Initializing database at C:\Users\mrmal\Desktop\projects\java\ZeroCardinal\FpCardinal\shared\data.db
+[2026-02-16 21:19:31] [INFO] Database tables verified.
+[2026-02-16 21:19:31] [INFO] [Bot -> mullaxul1] 👋 Я снова в сети! Ваш заказ #TEST123456 в обработке.
+
+📍 Напоминаю: вы должны быть на режиме "Anarchy 401".
+Выдаем на ник: **mullaxul1**? (Да/Нет)
+[2026-02-16 21:19:31] [INFO] Loaded 1 dialogs and 2 pending orders
+[2026-02-16 21:19:32] [INFO] Connecting to server...
+[2026-02-16 21:19:33] [INFO] Socket Server listening on port 19132
+[2026-02-16 21:19:33] [INFO] Web Dashboard running at http://localhost:3000
+[2026-02-16 21:19:34] [INFO] Python Bridge connected via Socket
+[2026-02-16 21:19:34] [INFO] Sending 1 buffered messages to bridge
+[2026-02-16 21:19:34] [WARN] Bot kicked: {"color":"red","extra":[{"color":"green","extra":[{"color":"red","extra":[{"color":"dark_red","text":"vk.com/vladyaso"}],"text":"если не поможет, обратитесь к "}],"text":"Попробуйте зайти через минуту,\n"}],"text":"Вы уже авторизованы!\n\n"}
+[2026-02-16 21:19:34] [WARN] Connection closed.
+[2026-02-16 21:19:54] [INFO] Reconnecting...
+[2026-02-16 21:19:54] [INFO] Connecting to server...
+[2026-02-16 21:19:54] [WARN] Bot kicked: {"color":"red","text":"Игрок с таким ником уже на сервере!"}
+[2026-02-16 21:19:54] [WARN] Connection closed.
+[2026-02-16 21:20:14] [INFO] Reconnecting...
+[2026-02-16 21:20:14] [INFO] Connecting to server...
+[2026-02-16 21:20:14] [WARN] Bot kicked: {"color":"red","extra":[{"color":"green","extra":[{"color":"red","extra":[{"color":"dark_red","text":"vk.com/vladyaso"}],"text":"если не поможет, обратитесь к "}],"text":"Попробуйте зайти через минуту,\n"}],"text":"Вы уже авторизованы!\n\n"}
+[2026-02-16 21:20:14] [WARN] Connection closed.
+[2026-02-16 21:20:34] [INFO] Reconnecting...
+[2026-02-16 21:20:34] [INFO] Connecting to server...
+[2026-02-16 21:20:34] [WARN] Bot kicked: {"color":"red","text":"Игрок с таким ником уже на сервере!"}
+[2026-02-16 21:20:34] [WARN] Connection closed.
+[2026-02-16 21:20:36] [INFO] [Dashboard] Deleted order TEST123
+[2026-02-16 21:20:37] [INFO] Syncing legacy/manual order: #TEST123
+[2026-02-16 21:20:54] [INFO] Reconnecting...
+[2026-02-16 21:20:54] [INFO] Connecting to server...
+[2026-02-16 21:20:55] [WARN] Bot kicked: {"color":"red","extra":[{"color":"green","extra":[{"color":"red","extra":[{"color":"dark_red","text":"vk.com/vladyaso"}],"text":"если не поможет, обратитесь к "}],"text":"Попробуйте зайти через минуту,\n"}],"text":"Вы уже авторизованы!\n\n"}
+[2026-02-16 21:20:55] [WARN] Connection closed.
+[2026-02-16 21:21:15] [INFO] Reconnecting...
+[2026-02-16 21:21:15] [INFO] Connecting to server...
+[2026-02-16 21:21:16] [WARN] Bot kicked: {"color":"red","extra":[{"color":"green","extra":[{"color":"red","extra":[{"color":"dark_red","text":"vk.com/vladyaso"}],"text":"если не поможет, обратитесь к "}],"text":"Попробуйте зайти через минуту,\n"}],"text":"Вы уже авторизованы!\n\n"}
+[2026-02-16 21:21:16] [WARN] Connection closed.
+[2026-02-16 21:21:17] [INFO] [Dashboard] Deleted order TEST123456
+[2026-02-16 21:21:22] [INFO] [Dashboard] Deleted order TEST123
+[2026-02-16 21:21:22] [INFO] Syncing legacy/manual order: #TEST123
+[2026-02-16 21:21:36] [INFO] Reconnecting...
+[2026-02-16 21:21:36] [INFO] Connecting to server...
+[2026-02-16 21:21:36] [INFO] [CHAT] [✾] Войдите в игру ⇝ /login <Пароль>
+[2026-02-16 21:21:36] [INFO] Auth required. Sending password...
+[2026-02-16 21:21:36] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 21:21:36] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:21:36] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:21:37] [INFO] Bot spawned.
+[2026-02-16 21:21:37] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 21:21:37] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 21:21:37] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 21:21:37] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:21:37] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:21:37] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 21:21:37] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 21:21:37] [INFO] Bot spawned.
+[2026-02-16 21:21:37] [INFO] [CHAT] ⚡ Вы играете на SpookyTime!
+[2026-02-16 21:21:38] [INFO] [CHAT] [⚠] Данной команды не существует!
+[2026-02-16 21:21:39] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 21:21:39] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 21:21:39] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:21:39] [INFO] Bot spawned.
+[2026-02-16 21:21:40] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 21:21:44] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:21:44] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:21:55] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:21:55] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:21:58] [INFO] Python Bridge signal: New Message
+[2026-02-16 21:21:58] [INFO] Socket Signal: New Message
+[2026-02-16 21:21:58] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 21:21:58] [INFO] Processing message from mullaxul1: привет
+[2026-02-16 21:21:58] [INFO] [Bot -> mullaxul1] ⚠️ Для продолжения мне нужен четкий ответ.
+Пожалуйста, напишите "Да" (для подтверждения) или "Нет" (для смены ника).
+[2026-02-16 21:22:06] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:22:06] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:22:10] [INFO] Python Bridge signal: New Message
+[2026-02-16 21:22:10] [INFO] Socket Signal: New Message
+[2026-02-16 21:22:10] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 21:22:10] [INFO] Processing message from mullaxul1: нет
+[2026-02-16 21:22:10] [INFO] [Bot -> mullaxul1] 🔄 Хорошо, давайте исправим ошибку.
+Пожалуйста, введите ваш новый игровой ник:
+[2026-02-16 21:22:18] [INFO] Python Bridge signal: New Message
+[2026-02-16 21:22:18] [INFO] Socket Signal: New Message
+[2026-02-16 21:22:18] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 21:22:18] [INFO] Processing message from mullaxul1: подарок
+[2026-02-16 21:22:18] [INFO] [Bot -> mullaxul1] 🤖 Вижу, что вам, возможно, не нужна выдача. Я позвал администратора.
+[2026-02-16 21:22:18] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:22:18] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:22:29] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:22:29] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:22:40] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:22:40] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:22:52] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:22:52] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:22:53] [INFO] [CHAT] ╔
+[2026-02-16 21:22:53] [INFO] [CHAT] ╠ Через нашего Телеграм Бота можно узнать:
+[2026-02-16 21:22:53] [INFO] [CHAT] ╠ /mines - список авто-шахт на всех анархиях
+[2026-02-16 21:22:53] [INFO] [CHAT] ╠ /events - список ивентов на всех анархиях
+[2026-02-16 21:22:53] [INFO] [CHAT] ╠ /beacons - список загадочных маяков на всех анархиях
+[2026-02-16 21:22:53] [INFO] [CHAT] ╠ И многое другое, что сделает игру ещё комфортнее
+[2026-02-16 21:22:53] [INFO] [CHAT] ╠ Ссылка: telegram.me/spookytimebot
+[2026-02-16 21:22:53] [INFO] [CHAT] ╚
+[2026-02-16 21:23:04] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:23:04] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:23:16] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:23:16] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:23:28] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:23:28] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:24:05] [INFO] [CHAT] Ⓖ <fsfs> [Князь] Alphotic 0iq ⇨ теперь не дам
+[2026-02-16 21:24:06] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил Элита + 30.000 ТК
+║ > Теперь он стал намного круче! :)
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 21:24:13] [INFO] [CHAT] Ⓖ <best> ﴾Барон﴿ URL1448 ЧСВ! ⇨ Я ХЗ КТО ОН
+[2026-02-16 21:24:15] [INFO] [CHAT] Ⓖ <best> [Элита] gram_200 ⇨ давай верну элики
+[2026-02-16 21:24:22] [INFO] [CHAT] Ⓖ <fsfs> [Князь] Alphotic 0iq ⇨ мне пох*й
+[2026-02-16 21:24:27] [INFO] [CHAT] Ⓖ <fsfs> [Князь] Alphotic 0iq ⇨ вы мне 2 раза кт дали
+[2026-02-16 21:24:30] [INFO] [CHAT] Ⓖ <fsfs> [Князь] Alphotic 0iq ⇨ е***ны
+[2026-02-16 21:24:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:24:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:24:53] [INFO] [CHAT] ╔
+[2026-02-16 21:24:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 21:24:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 21:24:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 21:24:53] [INFO] [CHAT] ╠
+[2026-02-16 21:24:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 21:24:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 21:24:53] [INFO] [CHAT] ╚
+[2026-02-16 21:25:02] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:25:02] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:25:07] [INFO] [Dashboard] Deleted order TEST123
+[2026-02-16 21:25:08] [INFO] Syncing legacy/manual order: #TEST123
+[2026-02-16 21:25:13] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:25:13] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:25:18] [INFO] Python Bridge signal: New Message
+[2026-02-16 21:25:18] [INFO] Socket Signal: New Message
+[2026-02-16 21:25:18] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 21:25:18] [INFO] Processing message from mullaxul1: извини но нет
+[2026-02-16 21:25:18] [INFO] Sending guest welcome to mullaxul1
+[2026-02-16 21:25:18] [INFO] [Bot -> mullaxul1] 👋 Привет! Я — официальный бот ZeroCardinal.
+
+📦 Я занимаюсь мгновенной автоматической выдачей товаров после оплаты.
+💰 Чтобы начать, просто оплатите любой из наших лотов, и я сразу напишу вам здесь!
+
+📊 Команды:
+!status — Работает ли бот сейчас
+!help — Показать список всех команд
+[2026-02-16 21:25:23] [INFO] [Dashboard] Deleted order TEST123
+[2026-02-16 21:25:23] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:25:23] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:25:24] [INFO] Syncing legacy/manual order: #TEST123
+[2026-02-16 21:25:28] [INFO] [Dashboard] Reset order TEST123
+[2026-02-16 21:25:35] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:25:35] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:25:47] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:25:47] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:25:50] [INFO] Python Bridge signal: New Message
+[2026-02-16 21:25:50] [INFO] Socket Signal: New Message
+[2026-02-16 21:25:50] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 21:25:50] [INFO] Processing message from mullaxul1: отмена
+[2026-02-16 21:25:59] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:25:59] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:26:06] [INFO] Python Bridge signal: New Message
+[2026-02-16 21:26:06] [INFO] Socket Signal: New Message
+[2026-02-16 21:26:06] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 21:26:06] [INFO] Processing message from mullaxul1: !help
+[2026-02-16 21:26:06] [INFO] [Bot -> mullaxul1] 📜 Список доступных команд:
+!status — Статус работы бота
+!queue — Ваше место в очереди
+!balance — Наш текущий запас валюты
+Нет — Изменить ник (если ошиблись)
+!help — Показать это меню
+[2026-02-16 21:26:11] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:26:11] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:26:50] [ERROR] Bot error: client timed out after 30000 milliseconds
+[2026-02-16 21:27:20] [WARN] Connection closed.
+[2026-02-16 21:27:40] [INFO] Reconnecting...
+[2026-02-16 21:27:40] [INFO] Connecting to server...
+[2026-02-16 21:27:57] [ERROR] Bot error: getaddrinfo ENOTFOUND spookytime.net
+[2026-02-16 21:27:57] [WARN] Connection closed.
+[2026-02-16 21:28:17] [INFO] Reconnecting...
+[2026-02-16 21:28:17] [INFO] Connecting to server...
+[2026-02-16 21:28:23] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 21:28:23] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 21:28:23] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 21:28:23] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:28:23] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:28:23] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 21:28:23] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 21:28:24] [INFO] Bot spawned.
+[2026-02-16 21:28:24] [INFO] Python Bridge signal: New Message
+[2026-02-16 21:28:24] [INFO] Socket Signal: New Message
+[2026-02-16 21:28:24] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 21:28:24] [INFO] Processing message from mullaxul1: !change
+[2026-02-16 21:28:24] [INFO] Python Bridge signal: New Message
+[2026-02-16 21:28:24] [INFO] Socket Signal: New Message
+[2026-02-16 21:28:24] [INFO] Processing 1 new messages from FunPay
+[2026-02-16 21:28:24] [INFO] Processing message from mullaxul1: Нет
+[2026-02-16 21:28:25] [INFO] [CHAT] Уже подключаемся на этот сервер!
+[2026-02-16 21:28:25] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 21:28:26] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:28:26] [INFO] Bot spawned.
+[2026-02-16 21:28:26] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 21:28:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:28:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:28:53] [INFO] [CHAT] ╔
+[2026-02-16 21:28:53] [INFO] [CHAT] ╠       ! НАБОР В КОМАНДУ ПРОЕКТА !
+[2026-02-16 21:28:53] [INFO] [CHAT] ╠ Открыт зимний набор в Команду Проекта
+[2026-02-16 21:28:53] [INFO] [CHAT] ╠ Давай бороться с читерами вместе!
+[2026-02-16 21:28:53] [INFO] [CHAT] ╠ Подавай заявку и ты: vk.cc/cCSS5u
+[2026-02-16 21:28:53] [INFO] [CHAT] ╚
+[2026-02-16 21:29:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:29:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:30:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:30:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:30:53] [INFO] [CHAT] ╔
+[2026-02-16 21:30:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 21:30:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 21:30:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 21:30:53] [INFO] [CHAT] ╠
+[2026-02-16 21:30:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 21:30:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 21:30:53] [INFO] [CHAT] ╚
+[2026-02-16 21:31:24] [INFO] [CHAT] ╔═════════════════════════════
+║ > ❤ Игрок никскрыт купил 10.000 Токенов
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚═════════════════════════════
+[2026-02-16 21:31:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:31:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:31:48] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил Принц + 90.000 ТК
+║ > Теперь он стал намного круче! :)
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 21:32:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:32:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:32:53] [INFO] [CHAT] ╔
+[2026-02-16 21:32:53] [INFO] [CHAT] ╠ Кирка Крушителя на Эффективность-10, Удачу-5,
+[2026-02-16 21:32:53] [INFO] [CHAT] ╠ Починку, Бульдозер и другие чары очень
+[2026-02-16 21:32:53] [INFO] [CHAT] ╠ дешево можно купить в магазине /tshop
+[2026-02-16 21:32:53] [INFO] [CHAT] ╚
+[2026-02-16 21:33:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:33:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:34:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:34:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:34:53] [INFO] [CHAT] ╔
+[2026-02-16 21:34:53] [INFO] [CHAT] ╠    ! НОВАЯ МЕТА ХАЛЯВЫ !
+[2026-02-16 21:34:53] [INFO] [CHAT] ╠ Топовые ежедневные награды!
+[2026-02-16 21:34:53] [INFO] [CHAT] ╠ Подробная информация /daily
+[2026-02-16 21:34:53] [INFO] [CHAT] ╚
+[2026-02-16 21:35:12] [INFO] [CHAT] Ⓛ <qwyr> [Глава] X_SUMMER_BLICH ЧСВ! ⇨ lpvp
+[2026-02-16 21:35:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:35:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:35:33] [INFO] [CHAT] ╔═════════════════════════════
+║ > ❤ Игрок никскрыт купил 10.000 Токенов
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚═════════════════════════════
+[2026-02-16 21:35:33] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил 2 СУПЕР Кейс с Донатом
+║ > Проверь свою удачу у нас!
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 21:36:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:36:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:36:53] [INFO] [CHAT] ╔
+[2026-02-16 21:36:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 21:36:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 21:36:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 21:36:53] [INFO] [CHAT] ╠
+[2026-02-16 21:36:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 21:36:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 21:36:53] [INFO] [CHAT] ╚
+[2026-02-16 21:37:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:37:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:38:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:38:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:38:50] [INFO] [CHAT] ╔═════════════════════════════
+║ > ❤ Игрок никскрыт купил 10.000 Токенов
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚═════════════════════════════
+[2026-02-16 21:38:53] [INFO] [CHAT] ╔
+[2026-02-16 21:38:53] [INFO] [CHAT] ╠ Обезопась свой Аккаунт при помощи его
+[2026-02-16 21:38:53] [INFO] [CHAT] ╠ привязки к ВКонтакте и Телеграму
+[2026-02-16 21:38:53] [INFO] [CHAT] ╠ и получи за это 2,000 Токенов!
+[2026-02-16 21:38:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 21:38:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 21:38:53] [INFO] [CHAT] ╚
+[2026-02-16 21:39:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:39:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:40:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:40:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:40:53] [INFO] [CHAT] ╔
+[2026-02-16 21:40:53] [INFO] [CHAT] ╠ Подключайся к нашим сообществам /links
+[2026-02-16 21:40:53] [INFO] [CHAT] ╚
+[2026-02-16 21:41:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:41:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:42:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:42:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:42:45] [INFO] [CHAT] Ⓛ <xdel> [Игрок] Flaimix ⇨ и че
+[2026-02-16 21:42:53] [INFO] [CHAT] ╔
+[2026-02-16 21:42:53] [INFO] [CHAT] ╠          ! ГОЛОСОВОЙ ЧАТ !
+[2026-02-16 21:42:53] [INFO] [CHAT] ╠ Теперь на сервере можно говорить!
+[2026-02-16 21:42:53] [INFO] [CHAT] ╠ Подробная информация /voice
+[2026-02-16 21:42:53] [INFO] [CHAT] ╚
+[2026-02-16 21:43:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:43:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:43:32] [INFO] [CHAT] Ⓖ [Принц] ZXC_ZeReTex_ZXC ⇨ tp warp pvp kto pvp
+[2026-02-16 21:43:48] [ERROR] Bot error: read ECONNRESET
+[2026-02-16 21:43:48] [WARN] Connection reset. Reconnecting...
+[2026-02-16 21:43:48] [WARN] Connection closed.
+[2026-02-16 21:44:08] [INFO] Reconnecting...
+[2026-02-16 21:44:08] [INFO] Connecting to server...
+[2026-02-16 21:44:09] [WARN] Bot kicked: {"color":"red","extra":[{"color":"green","extra":[{"color":"red","extra":[{"color":"dark_red","text":"vk.com/vladyaso"}],"text":"если не поможет, обратитесь к "}],"text":"Попробуйте зайти через минуту,\n"}],"text":"Вы уже авторизованы!\n\n"}
+[2026-02-16 21:44:09] [WARN] Connection closed.
+[2026-02-16 21:44:29] [INFO] Reconnecting...
+[2026-02-16 21:44:29] [INFO] Connecting to server...
+[2026-02-16 21:44:29] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 21:44:29] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:29] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 21:44:29] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 21:44:29] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:30] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:31] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:31] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 21:44:31] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 21:44:31] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:31] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:31] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 21:44:31] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 21:44:32] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:34] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 21:44:34] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 21:44:34] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:36] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:37] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:37] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 21:44:37] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 21:44:37] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:37] [INFO] [CHAT] ➥ Идёт проверка, пожалуйста, подождите...
+[2026-02-16 21:44:37] [INFO] Verification: PASSIVE (Jitter + Dumb Actions running)...
+[2026-02-16 21:44:37] [INFO] [CHAT] ➥ Вы успешно прошли проверку! :)
+[2026-02-16 21:44:37] [INFO] [CHAT] [✾] Успешная авторизация! Приятной игры!
+[2026-02-16 21:44:37] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 21:44:37] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 21:44:37] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:37] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:37] [INFO] [CHAT] ╔════ ★ SpookyTime.net ★ ════╗
+║ 
+║  Добро пожаловать на SpookyTime
+║  Наши социальные сети — /links
+║  Приятной игры и новых побед!
+║ 
+╚══════════════════════╝
+[2026-02-16 21:44:37] [INFO] Auth successful. Joining Anarchy 401...
+[2026-02-16 21:44:37] [INFO] Bot spawned.
+[2026-02-16 21:44:37] [INFO] Bot spawned.
+[2026-02-16 21:44:38] [INFO] [CHAT] ⚡ Проблема/Вопрос? vk.com/kol_kola
+[2026-02-16 21:44:39] [INFO] Bot mullaxul1134 logged in.
+[2026-02-16 21:44:39] [INFO] [CHAT] Вы уже подключены на этот сервер!
+[2026-02-16 21:44:39] [INFO] Server forced rotation. ACKing with micro-jitter.
+[2026-02-16 21:44:39] [INFO] Bot spawned.
+[2026-02-16 21:44:40] [INFO] [CHAT] ** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+
+** ! Внимание !
+** Чтобы ваш Аккаунт был в БЕЗОПАСНОСТИ!
+** Привяжите его к ВК: /vk
+** Или к Телеграм: /tg
+[2026-02-16 21:44:53] [INFO] [CHAT] ╔
+[2026-02-16 21:44:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 21:44:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 21:44:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 21:44:53] [INFO] [CHAT] ╠
+[2026-02-16 21:44:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 21:44:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 21:44:53] [INFO] [CHAT] ╚
+[2026-02-16 21:45:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:45:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:45:46] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:45:46] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:45:49] [INFO] [CHAT] ╔══╦══╦══╦══╦══╦══╦══╦══╗
+ ║
+ ║      |||   [Метеоритный Дождь]   |||
+ ║    Уровень лута: Легендарный
+ ║    Появится уже через 3 минуты!
+ ║
+ ╚══╩══╩══╩══╩══╩══╩══╩══╝
+[2026-02-16 21:45:57] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:45:57] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:46:09] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:46:09] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:46:19] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:46:19] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:46:31] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:46:31] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:46:37] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил Титан + 60.000 ТК
+║ > Теперь он стал намного круче! :)
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 21:46:43] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:46:43] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:46:53] [INFO] [CHAT] ╔
+[2026-02-16 21:46:53] [INFO] [CHAT] ╠ У нас очень часто проходят конкурсы
+[2026-02-16 21:46:53] [INFO] [CHAT] ╠ Список актуальных конкурсов можно посмотреть:
+[2026-02-16 21:46:53] [INFO] [CHAT] ╠ Вводи команду /конкурсы
+[2026-02-16 21:46:53] [INFO] [CHAT] ╚
+[2026-02-16 21:47:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:47:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:47:58] [INFO] [CHAT] Ⓖ <cffd> [Игрок] MrBarmaley29 Нуб ⇨ all купите кровавые стрелы,мне на сетку надо
+[2026-02-16 21:48:00] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:48:00] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:48:11] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:48:11] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:48:22] [INFO] [CHAT] Ⓖ [Принц] ZXC_ZeReTex_ZXC ⇨ tp warp pvp kto pvp
+[2026-02-16 21:48:23] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:48:23] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:48:25] [INFO] [CHAT] Ⓖ [Аспид] aWqL366 ⇨ кто тим тп или в лс
+[2026-02-16 21:48:35] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:48:35] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:48:41] [INFO] [CHAT] ╔══════════════════════════════════
+║ > ❤ Игрок никскрыт купил Герцог + 500.000 ТК
+║ > Теперь он стал намного круче! :)
+║ > Покупай и ты на сайте shop.SpookyTime.net
+╚══════════════════════════════════
+[2026-02-16 21:48:47] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:48:47] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:48:49] [INFO] [CHAT] ╔══╦══╦══╦══╦══╦══╦══╦══╗
+ ║
+ ║      |||   [Метеоритный Дождь]   |||
+ ║    Уровень лута: Легендарный
+ ║    Появился на координатах -689 63 1302
+ ║
+ ╚══╩══╩══╩══╩══╩══╩══╩══╝
+[2026-02-16 21:48:53] [INFO] [CHAT] ╔
+[2026-02-16 21:48:53] [INFO] [CHAT] ╠ Покупай Токены и получи бонус Кэшбек!
+[2026-02-16 21:48:53] [INFO] [CHAT] ╠ Их можно потратить на некоторые товары
+[2026-02-16 21:48:53] [INFO] [CHAT] ╠ Вводи команду /cashback для просмотра!
+[2026-02-16 21:48:53] [INFO] [CHAT] ╚
+[2026-02-16 21:48:59] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:48:59] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:49:09] [INFO] [CHAT] Ⓖ [Принц] ZXC_ZeReTex_ZXC ⇨ кто тепнет на метеорит за 10к
+[2026-02-16 21:49:09] [INFO] [CHAT] Ⓖ ﴾Игрок﴿ morphine_attack1 (◑‿◐) ⇨  ты гле
+[2026-02-16 21:49:16] [INFO] [CHAT] Ⓖ ﴾Игрок﴿ morphine_attack1 (◑‿◐) ⇨  на варп пвп
+[2026-02-16 21:49:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:49:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:50:20] [INFO] [CHAT] Ⓛ [Принц] ZXC_ZeReTex_ZXC ⇨ эх
+[2026-02-16 21:50:23] [INFO] [CHAT] Ⓖ [Принц] ZXC_ZeReTex_ZXC ⇨ маладец
+[2026-02-16 21:50:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:50:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:50:53] [INFO] [CHAT] ╔
+[2026-02-16 21:50:53] [INFO] [CHAT] ╠                  !!! ВАЖНО !!!
+[2026-02-16 21:50:53] [INFO] [CHAT] ╠ Получите 2,000 Токенов за привязку к
+[2026-02-16 21:50:53] [INFO] [CHAT] ╠ ВКонтакте и Телеграму!
+[2026-02-16 21:50:53] [INFO] [CHAT] ╠
+[2026-02-16 21:50:53] [INFO] [CHAT] ╠ Подробнее: /tg (Привязка к ТГ)
+[2026-02-16 21:50:53] [INFO] [CHAT] ╠ Подробнее: /vk (Привязка к ВК)
+[2026-02-16 21:50:53] [INFO] [CHAT] ╚
+[2026-02-16 21:51:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:51:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:52:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:52:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:52:53] [INFO] [CHAT] ╔
+[2026-02-16 21:52:53] [INFO] [CHAT] ╠ Мы есть в ВК - vk.com/spookytimenet
+[2026-02-16 21:52:53] [INFO] [CHAT] ╚
+[2026-02-16 21:53:30] [INFO] [CHAT] [$] Ваш баланс: $3,010,000
+[2026-02-16 21:53:30] [INFO] Parsed balance: 3010000 from "[$] Ваш баланс: $3,010,000"
+[2026-02-16 21:53:41] [INFO] [CHAT] [❖] Реклама ⇨ all пж купите у моего кента дк на донмаркете это его первый донат ник drak15 !!!!! (Mrpivoo)
+[2026-02-16 21:53:45] [INFO] Stopping...

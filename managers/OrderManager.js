@@ -315,12 +315,23 @@ class OrderManager {
                     Logger.info(`Found active order for ${msg.username}. Triggering checkNewOrders.`);
                     await this.checkNewOrders();
 
-                    // Re-check if we now have a dialog state for this user (after checkNewOrders sync)
+                    // 1. Re-check if we now have a dialog state for this user (after checkNewOrders sync)
                     for (const [orderId, state] of this.dialogStates.entries()) {
                         if (state.order.username.toLowerCase() === msg.username.toLowerCase()) {
                             await this.handleUserMessage(orderId, msg.username, msg.message);
                             return;
                         }
+                    }
+
+                    // 2. If not in dialogStates but activeOrder exists, they must be in the queue
+                    const pos = this.orderQueue.getPositionByUsername(msg.username);
+                    if (pos > 0) {
+                        const msgText = this.formatMessage(config.messages.dialog.queueStatus, { position: pos, ahead: pos - 1 });
+                        this.sendFunPayMessage(msg.username, msgText);
+                    } else if (pos === 0) {
+                        // Edge case: position 0 but no dialog state (unlikely after sync, but safety first)
+                        const current = this.orderQueue.getCurrent();
+                        if (current) await this.startOrderDialog(current);
                     }
                 } else {
                     // No active order, send greeting if not sent recently
@@ -864,6 +875,7 @@ class OrderManager {
         DatabaseManager.addRequest('message', payload);
 
         Logger.chat(`[Bot -> ${username}] ${message}`); // Log outgoing message
+        Logger.info(`[Bot -> ${username}] ${message}`); // Visible in console
 
         // Send via Socket for instant delivery
         SocketService.sendFunPayMessage(username, message, orderId, nodeId);
@@ -877,5 +889,3 @@ class OrderManager {
 }
 
 module.exports = new OrderManager();
-
-console.log('OrderManager loaded');

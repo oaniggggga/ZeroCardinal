@@ -249,3 +249,6 @@
 [2026-02-16 17:12:53] [ERROR] Bot error: AggregateError
 [2026-02-16 17:13:33] [ERROR] Payment failed: Insufficient funds for order #TEST123456
 [2026-02-16 17:23:56] [ERROR] Proactive check: Insufficient funds (10000 < 1000000)
+[2026-02-16 21:26:50] [ERROR] Bot error: client timed out after 30000 milliseconds
+[2026-02-16 21:27:57] [ERROR] Bot error: getaddrinfo ENOTFOUND spookytime.net
+[2026-02-16 21:43:48] [ERROR] Bot error: read ECONNRESET
